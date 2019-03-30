@@ -3,9 +3,9 @@
     "",
     "\\www",
     "\\www\\css",
-    "\\www\\img",
-    "\\www\\js"
+    "\\www\\js",
+    "\\www\\res"
   ],
-  "SelectedNode": "\\config.xml",
+  "SelectedNode": "\\www\\css\\index.css",
   "PreviewInSolutionExplorer": false
 }

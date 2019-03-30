@@ -130,7 +130,7 @@ body {
     padding: 5px;
 }
 
-#dialogue {
+#messages {
     float: left;
     width:100%;
     height: 400px;
@@ -146,7 +146,7 @@ body {
     padding-top: 15px;
 }
 
-#message {
+#msg {
     width: 70%;
     float: left;
     padding: 10px;

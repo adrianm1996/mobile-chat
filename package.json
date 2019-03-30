@@ -1,0 +1,12 @@
+{
+  "name": "devcorner-chat",
+  "version": "0.0.1",
+  "description": "Devcorner chat",
+  "dependencies": {
+    "connect-phonegap": "^0.25.0",
+    "express": "^4.16.4",
+    "mongodb": "^3.2.2",
+    "phonegap": "^8.2.2",
+    "socket.io": "^2.2.0"
+  }
+}
