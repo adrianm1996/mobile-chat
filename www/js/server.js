@@ -7,7 +7,7 @@ var phonegap = require('connect-phonegap'),
 
 //server.listen(process.env.PORT || 3000);
 
-var server = app.listen(process.env.PORT || 3000, '::1', function () {
+var server = app.listen(process.env.PORT, '::1', function () {
     var host = server.address().address;
     var port = server.address().port;
     console.log('running at http://' + host + ':' + port)

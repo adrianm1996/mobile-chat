@@ -8,5 +8,8 @@
     "mongodb": "^3.2.2",
     "phonegap": "^8.2.2",
     "socket.io": "^2.2.0"
+	"scripts": {
+  "start": "node server.js"
+}
   }
 }
