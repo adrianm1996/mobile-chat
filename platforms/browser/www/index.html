@@ -95,15 +95,15 @@
         if (username) {
             $('form').submit(function () {
                 //console.log(username);
-                //if ($('#msg').val().length > 0) {
-                    //console.log(msg);
+                if ($('#msg').val().length > 0) {
+                    console.log(msg);
                     socket.emit('message', {
                         message: $('#msg').val(),
                         username: username
                     });
                     $('#msg').val('');
 
-                //}
+                }
                 return false;
             });
 
