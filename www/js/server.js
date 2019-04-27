@@ -1,13 +1,18 @@
-var phonegap = require('connect-phonegap'),
-    express = require('express'),
-    path = require('path'),
+//var phonegap = require('connect-phonegap'),
+//    express = require('express'),
+//    path = require('path'),
+//    app = express(),
+//    http = require('http'),
+//    mongo = require('mongodb').MongoClient;
+var express = require('express'),
     app = express(),
-    http = require('http'),
+    server = require('http').createServer(app),
+    //io = require('socket.io').listen(server),
     mongo = require('mongodb').MongoClient;
 
 //server.listen(process.env.PORT || 3000);
 
-var server = app.listen(process.env.PORT, '::1', function () {
+var server = app.listen(process.env.PORT ||3000, '::1', function () {
     var host = server.address().address;
     var port = server.address().port;
     console.log('running at http://' + host + ':' + port)
