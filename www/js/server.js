@@ -21,7 +21,7 @@ var io = require('socket.io').listen(server);
 
 app.get('/', function (req, res) {
 
-    res.sendFile('index.html', { root: '../../www' });
+    res.sendFile('index.html', { root: './www' });
 });
 
 mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app?retryWrites=true', { useNewUrlParser: true }, function (err, db) {
