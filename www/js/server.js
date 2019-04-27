@@ -34,7 +34,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
      
             //var col = db.db().collection('messages');
-            var col = db.db().collection('messages');
+            var col = db.collection('messages');
 
             col.find().toArray(function (err, res) {
                 if (err)
