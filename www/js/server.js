@@ -10,13 +10,13 @@ var express = require('express'),
     //io = require('socket.io').listen(server),
     mongo = require('mongodb').MongoClient;
 
-server.listen(process.env.PORT || 3000);
+//server.listen(process.env.PORT || 3000);
 
-// var server = app.listen(process.env.PORT ||3000, '::1', function () {
-//     var host = server.address().address;
-//     var port = server.address().port;
-//     console.log('running at http://' + host + ':' + port)
-// });
+var server = app.listen(process.env.PORT ||3000, '::1', function () {
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log('running at http://' + host + ':' + port)
+});
 var io = require('socket.io').listen(server);
 
 app.get('/', function (req, res) {
