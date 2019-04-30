@@ -52,7 +52,7 @@ app.get('/', function (req, res) {
     res.sendFile('index.html', { root: './www' });
 });
 
-http.listen(process.env.MONGO_URL || 3000, function () {
+http.listen(process.env.PORT || 3000, function () {
     var host = http.address().address;
     var port = http.address().port;
     console.log('running at http://' + host + ':' + port)
