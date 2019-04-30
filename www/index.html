@@ -84,8 +84,8 @@
     </script>
     <script>
         $(function () {
-             var socket = io.connect('http://192.168.0.105:3000');
-            //var socket = io();
+             //var socket = io.connect('http://192.168.0.105:3000');
+            var socket = io();
             socket.on('output', function (data) {
                 if (data.length) {
                     for (var x = 0; x < data.length; x++) {
