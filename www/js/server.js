@@ -52,7 +52,7 @@ app.get('/', function (req, res) {
     res.sendFile('index.html', { root: './www' });
 });
 
-http.listen(process.env.PORT || 3000, function () {
+http.listen(process.env.MON || 3000, function () {
     var host = http.address().address;
     var port = http.address().port;
     console.log('running at http://' + host + ':' + port)
@@ -60,8 +60,8 @@ http.listen(process.env.PORT || 3000, function () {
 });
 app.use(express.static('public'));
 
-mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app?retryWrites=true',
-    //{ useNewUrlParser: true },
+mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app?',
+    { useNewUrlParser: true },
     function (err, db) {
     //mongo.connect('mongodb://127.0.0.1/test', { useNewUrlParser: true }, function (err, db) {
     
