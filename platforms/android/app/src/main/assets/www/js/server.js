@@ -61,7 +61,7 @@ http.listen(process.env.PORT || 3000, function () {
 app.use(express.static('public'));
 
 mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app?',
-    //{ useNewUrlParser: true },
+    { useNewUrlParser: true },
     function (err, db) {
     //mongo.connect('mongodb://127.0.0.1/test', { useNewUrlParser: true }, function (err, db) {
     
