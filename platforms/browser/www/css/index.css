@@ -130,12 +130,15 @@ body {
     padding: 5px;
 }
 
+
 #messages {
+    overflow: scroll;
     float: left;
-    width:100%;
+    width:97%;
     height: 400px;
     background-color: snow;
 }
+
 
 #typing {
    clear:both;
