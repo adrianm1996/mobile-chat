@@ -218,7 +218,13 @@
     </script>
     <script>
         $(function () {
+<<<<<<< HEAD
             var socket = io.connect('http://admis-chat.herokuapp.com');
+=======
+           //  var socket = io.connect('http://192.168.0.105:3000');
+             //var socket = io.connect('http://admis-chat.herokuapp.com');
+            var socket = io();
+>>>>>>> parent of 2bf71e6c... connect heroku
             socket.on('output', function (data) {
                 if (data.length) {
                     for (var x = 0; x < data.length; x++) {
