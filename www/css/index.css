@@ -90,9 +90,19 @@ body, html {
     cursor: pointer;
 }
 
+<<<<<<< HEAD
+#messages {
+
+    overflow-y: auto;
+    float: left;
+    width: 97%;
+    height: 400px;
+    background-color: snow;
+=======
 .contacts {
     list-style: none;
     padding: 0;
+>>>>>>> master
 }
 
     .contacts li {
