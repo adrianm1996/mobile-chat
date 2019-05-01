@@ -132,9 +132,10 @@ body {
 
 
 #messages {
-    overflow: scroll;
+
+    overflow-y: auto;
     float: left;
-    width:97%;
+    width: 97%;
     height: 400px;
     background-color: snow;
 }

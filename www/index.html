@@ -84,21 +84,23 @@
     </script>
     <script>
         $(function () {
-           //  var socket = io.connect('http://192.168.0.105:3000');
              var socket = io.connect('http://admis-chat.herokuapp.com');
-            //var socket = io();
             socket.on('output', function (data) {
                 if (data.length) {
                     for (var x = 0; x < data.length; x++) {
                         $('#messages').append($('<li>').text(data[x].username + ": " + data[x].message));
+                        //$('#messages').animate({scrollTop: $('#messages').prop("scrollHeight")}, 100);
+                        $('#messages').scrollTop($('#messages')[0].scrollHeight);
+                        //$("#messages").scrollTop(bottom);
+
                     }
+
                 }
             });
 
             var username = prompt("Nazwa");
             if (username) {
                 $('form').submit(function () {
-                    //console.log(username);
                     if ($('#msg').val().length > 0) {
                         console.log(msg);
                         socket.emit('message', {
@@ -114,6 +116,7 @@
                 socket.on('message', function (msg) {
 
                     $('#messages').append($('<li>').text(msg.username + ": " + msg.message));
+                    $('#messages').animate({scrollTop: $('#messages').prop("scrollHeight")}, 500);
                     $("html, body").scrollTop($(document).height());
                 });
             }
