@@ -1,189 +1,260 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-
-body {
-    background-color: #d5d68d;
+body, html {
+    height: 100%;
+    margin: 0;
+    background: #7F7FD5;
+    background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+    background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
 }
 
-#container {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    font-family: 'Lato', sans-serif;
+.chat {
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
-#logo {
-    color: white;
-    margin-top: 20px;
-    font-size: 44px;
-    letter-spacing: 3px;
-    font-family: 'Pacifico', cursive;
-    font-weight: 900;
-    text-align: center;
+.card {
+    height: 500px;
+    border-radius: 15px !important;
+    background-color: rgba(0,0,0,0.4) !important;
 }
 
-#menu {
-    background-color: #babc3e;
-    margin-top: 20px;
-    color: white;
-    
+.contacts_body {
+    padding: 0.75rem 0 !important;
+    overflow-y: auto;
+    white-space: nowrap;
 }
 
-#person {
-    background-color: #d6d6cf;
-    color: white;
-    padding: 10px;
-    margin-top: 20px;
-    margin-bottom: 25px;
-    height: 100px;
-    text-align: center;
+.msg_card_body {
+    overflow-y: auto;
 }
 
-#personIMG {
-    float: left;
-    padding: 10px;
-    width: 20%;
-    text-align: center;
+.card-header {
+    border-radius: 15px 15px 0 0 !important;
+    border-bottom: 0 !important;
 }
 
-#personIMG img {
+.card-footer {
+    border-radius: 0 0 15px 15px !important;
+    border-top: 0 !important;
+}
+
+.container {
+    align-content: center;
+}
+
+.search {
+    border-radius: 15px 0 0 15px !important;
+    background-color: rgba(0,0,0,0.3) !important;
+    border: 0 !important;
+    color: white !important;
+}
+
+    .search:focus {
+        box-shadow: none !important;
+        outline: 0px !important;
+    }
+
+.type_msg {
+    background-color: rgba(0,0,0,0.3) !important;
+    border: 0 !important;
+    color: white !important;
+    height: 60px !important;
+    overflow-y: auto;
+}
+
+    .type_msg:focus {
+        box-shadow: none !important;
+        outline: 0px !important;
+    }
+
+.attach_btn {
+    border-radius: 15px 0 0 15px !important;
+    background-color: rgba(0,0,0,0.3) !important;
+    border: 0 !important;
+    color: white !important;
+    cursor: pointer;
+}
+
+.send_btn {
+    border-radius: 0 15px 15px 0 !important;
+    background-color: rgba(0,0,0,0.3) !important;
+    border: 0 !important;
+    color: white !important;
+    cursor: pointer;
+}
+
+.search_btn {
+    border-radius: 0 15px 15px 0 !important;
+    background-color: rgba(0,0,0,0.3) !important;
+    border: 0 !important;
+    color: white !important;
+    cursor: pointer;
+}
+
+.contacts {
+    list-style: none;
+    padding: 0;
+}
+
+    .contacts li {
+        width: 100% !important;
+        padding: 5px 10px;
+        margin-bottom: 15px !important;
+    }
+
+.active {
+    background-color: rgba(0,0,0,0.3);
+}
+
+.user_img {
+    height: 70px;
+    width: 70px;
+    border: 1.5px solid #f5f6fa;
+}
+
+.user_img_msg {
+    height: 40px;
+    width: 40px;
+    border: 1.5px solid #f5f6fa;
+}
+
+.img_cont {
+    position: relative;
+    height: 70px;
+    width: 70px;
+}
+
+.img_cont_msg {
+    height: 40px;
+    width: 40px;
+}
+
+.online_icon {
     position: absolute;
-    width: 80px;
-    height: 80px;
+    height: 15px;
+    width: 15px;
+    background-color: #4cd137;
     border-radius: 50%;
-    
-    
+    bottom: 0.2em;
+    right: 0.4em;
+    border: 1.5px solid white;
 }
 
-#personName {
-    float: left;
-    padding-left: 50px;
-    width: 50%;
-    letter-spacing: 3px;
-    font-size: 40px;
-    text-align: center;
+.offline {
+    background-color: #c23616 !important;
 }
 
-#friends {
-    background: #ffc000;
-    border-radius: 0px 4px 4px 0px;
-    left: -304px;
-    padding: 4px 4px 4px 0px;
-    position: fixed;
-    top: 300px;
-    transition: transform 1s;
-    width: 300px;
-    z-index: 1;
+.user_info {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 15px;
 }
 
-#friends:hover {
-    transform: translateX(304px);
+    .user_info span {
+        font-size: 20px;
+        color: white;
+    }
+
+    .user_info p {
+        font-size: 10px;
+        color: rgba(255,255,255,0.6);
+    }
+
+.video_cam {
+    margin-left: 50px;
+    margin-top: 5px;
 }
 
+    .video_cam span {
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        margin-right: 20px;
+    }
 
-#friends #friends_content{
-    background: #fff;
-    min-height: 200px;
+.msg_cotainer {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+    border-radius: 25px;
+    background-color: #82ccdd;
     padding: 10px;
     position: relative;
 }
 
-#friends #friends_submit {
-    background: #fff;
-    border: solid #ffc000;
-    border-radius: 0px 0px 4px 4px;
-    border-width: 0px 4px 4px;
-    cursor: default;
-    font-size: 18px;
-    height: 30px;
-    line-height: 30px;
+.msg_cotainer_send {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 10px;
+    border-radius: 25px;
+    background-color: #78e08f;
+    padding: 10px;
+    position: relative;
+}
+
+.msg_time {
     position: absolute;
-    right: -74px;
-    text-align: center;
-    top: 70px;
-    transform: rotate(-90deg);
-    width: 106px;
+    left: 0;
+    bottom: -15px;
+    color: rgba(255,255,255,0.5);
+    font-size: 10px;
 }
 
-#friends_list {
-    width: 250px;
-    height: 260px;
-    background: #FFF;
-    float: right;
-    border-radius: 0px 0px 0px 10px;
-    padding: 5px;
+.msg_time_send {
+    position: absolute;
+    right: 0;
+    bottom: -15px;
+    color: rgba(255,255,255,0.5);
+    font-size: 10px;
 }
 
-
-#messages {
-    overflow: scroll;
-    float: left;
-    width:97%;
-    height: 400px;
-    background-color: snow;
+.msg_head {
+    position: relative;
 }
 
-
-#typing {
-   clear:both;
-    
-}
-
-#form1 {
-    padding-top: 15px;
-}
-
-#msg {
-    width: 70%;
-    float: left;
-    padding: 10px;
-}
-
-#submit {
-
-}
-
-input[type=submit] {
-    float: left;
-    background-color: #4CAF50;
+#action_menu_btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
     color: white;
-    border: none;
-    border-radius: 4px;
     cursor: pointer;
-    width: 20%;
-    padding: 20px;
-    margin-left: 10px;
-    
+    font-size: 20px;
 }
 
-.option {
-    float: left;
-    min-width: 50px;
-    height: 25px;
-    font-size: 18px;
-    padding: 10px;
-    border-right: 2px dashed #444444;
-    opacity: 0.8;
+.action_menu {
+    z-index: 1;
+    position: absolute;
+    padding: 15px 0;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border-radius: 15px;
+    top: 30px;
+    right: 15px;
+    display: none;
 }
 
-.option:hover {
-    background-color: #484900;
-    cursor: pointer;
-}
+    .action_menu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
 
+        .action_menu ul li {
+            width: 100%;
+            padding: 10px 15px;
+            margin-bottom: 5px;
+        }
+
+            .action_menu ul li i {
+                padding-right: 10px;
+            }
+
+            .action_menu ul li:hover {
+                cursor: pointer;
+                background-color: rgba(0,0,0,0.2);
+            }
+
+@media(max-width: 576px) {
+    .contacts_card {
+        margin-bottom: 15px !important;
+    }
+}
