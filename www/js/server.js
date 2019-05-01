@@ -49,7 +49,7 @@ var express = require('express'),
 
 app.get('/', function (req, res) {
 
-    res.sendFile('index.html', { root: '../../www' });
+    res.sendFile('index.html', { root: './www' });
 });
 
 http.listen(process.env.PORT || 3000, function () {
