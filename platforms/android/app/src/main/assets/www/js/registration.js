@@ -1,17 +1,4 @@
-﻿var express = require('express'),
-    app = express(),
-    http = require('http').createServer(app),
-    io = require('socket.io')(http),
-    mongo = require('mongodb').MongoClient;
-
-
-http.listen(process.env.PORT || 3000, function () {
-    var host = http.address().address;
-    var port = http.address().port;
-    console.log('running at http://' + host + ':' + port)
-    //console.log('listening on *:  ');
-});
-app.use(express.static('public'));
+﻿const server = require('server');
 
 mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app',
     { useNewUrlParser: true },
