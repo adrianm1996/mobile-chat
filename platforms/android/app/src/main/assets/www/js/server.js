@@ -55,7 +55,7 @@ app.get('/', function (req, res) {
 http.listen(process.env.PORT || 3000, function () {
     var host = http.address().address;
     var port = http.address().port;
-    console.log('running at http://' + host + ':' + port)
+    console.log('open at http://' + host + ':' + port)
     //console.log('listening on *:  ');
 });
 app.use(express.static('public'));
