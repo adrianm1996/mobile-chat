@@ -49,7 +49,7 @@ var express = require('express'),
 
 app.get('/', function (req, res) {
 
-    res.sendFile('registration.html', { root: './www' });
+    res.sendFile('index.html', { root: './www' });
     //res.sendFile('messages.js');
 });
 
@@ -74,9 +74,6 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
         io.sockets.on('connection', function (socket) {
             console.log("Socket connected.");
 
-            var email = window.document.getElementById('email');
-            var passwd = window.document.getElementById('password');
-            console.log(email + passwd);
 
             var users = db.db().collection('users');
 
