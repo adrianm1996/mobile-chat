@@ -1,7 +1,11 @@
 ﻿
 //var server = require('./server.js');
 
-import { express, app, http, io, mongo } from './server';
+import express from './server';
+import app from './server';
+import http from './server';
+import io from './server';
+import mongo from './server';
 
 app.get('/', function (req, res) {
 
