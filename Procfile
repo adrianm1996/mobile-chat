@@ -1,1 +1,1 @@
-web: node ./www/js/messages.js
+web: node ./www/js/server.js
