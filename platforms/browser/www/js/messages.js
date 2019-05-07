@@ -6,13 +6,7 @@ server.app.get('/', function (req, res) {
     res.sendFile('index.html', { root: './www' });
 });
 
-server.http.listen(process.env.PORT || 3000, function () {
-    var host = http.address().address;
-    var port = http.address().port;
-    console.log('open at http://' + host + ':' + port)
-    //console.log('listening on *:  ');
-});
-app.use(express.static('public'));
+
 
 server.mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app',
     { useNewUrlParser: true },
