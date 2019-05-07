@@ -1,16 +1,16 @@
 ﻿
 //var server = require('./server.js');
 
-import * as server from './server';
+import { express, app, http, io, mongo } from './server';
 
-server.app.get('/', function (req, res) {
+app.get('/', function (req, res) {
 
     res.sendFile('index.html', { root: './www' });
 });
 
 
 
-server.mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app',
+mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app',
     { useNewUrlParser: true },
     function (err, db) {
     
@@ -19,7 +19,7 @@ server.mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/m
         console.log(err);
     }
     else {
-        server.io.sockets.on('connection', function (socket) {
+        io.sockets.on('connection', function (socket) {
             console.log("Socket connected.");
 
             var col = db.db().collection('messages');
@@ -38,7 +38,7 @@ server.mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/m
                 }
                 else {
                     col.insert({ username: msg.username, message: msg.message })
-                    server.io.emit('message', {
+                    io.emit('message', {
                         message: msg.message,
                         username: msg.username
                     });

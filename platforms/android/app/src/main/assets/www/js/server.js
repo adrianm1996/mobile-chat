@@ -46,6 +46,7 @@ var express = require('express'),
     io = require('socket.io')(http),
     mongo = require('mongodb').MongoClient;
 
+export { express, app, http, io, mongo };
 
 app.get('/', function (req, res) {
 
