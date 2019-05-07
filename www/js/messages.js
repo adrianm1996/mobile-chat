@@ -1,5 +1,5 @@
 ﻿
-const server = require('server');
+const server = require('./server');
 
 server.app.get('/', function (req, res) {
 
