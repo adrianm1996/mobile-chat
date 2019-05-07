@@ -1,17 +1,22 @@
 ﻿
 const server = require('server');
 
-mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app',
+server.app.get('/', function (req, res) {
+
+    res.sendFile('index.html', { root: './www' });
+});
+
+
+server.mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app',
     { useNewUrlParser: true },
     function (err, db) {
-    //mongo.connect('mongodb://127.0.0.1/test', { useNewUrlParser: true }, function (err, db) {
     
     if (err) {
 
         console.log(err);
     }
     else {
-        io.sockets.on('connection', function (socket) {
+        server.io.sockets.on('connection', function (socket) {
             console.log("Socket connected.");
 
             var col = db.db().collection('messages');
@@ -30,7 +35,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 }
                 else {
                     col.insert({ username: msg.username, message: msg.message })
-                    io.emit('message', {
+                    server.io.emit('message', {
                         message: msg.message,
                         username: msg.username
                     });

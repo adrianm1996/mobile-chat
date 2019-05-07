@@ -1,10 +1,15 @@
 ﻿
 const server = require('server');
 
+server.app.get('/', function (req, res) {
+
+    res.sendFile('index.html', { root: './www' });
+});
+
+
 server.mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app',
     { useNewUrlParser: true },
     function (err, db) {
-    //mongo.connect('mongodb://127.0.0.1/test', { useNewUrlParser: true }, function (err, db) {
     
     if (err) {
 
