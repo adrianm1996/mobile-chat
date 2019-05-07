@@ -77,29 +77,44 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
             var users = db.db().collection('users');
 
-
-             var col = db.db().collection('messages');
-
-             col.find().toArray(function (err, res) {
-                 if (err)
-                     console.log(err);
-                 else
-                     socket.emit('output', res);
-             });
-             socket.on('message', function (msg) {
-                 var whiteSpacePattern = /^\s*$/;
-
-                 if (whiteSpacePattern.test(msg.username) || whiteSpacePattern.test(msg.message)) {
-                     socket.emit('er', "Wiadomo�� i nazwa u�ytkownika nie mo�e by� pusta.");
+            socket.on('users', function (usr) {
+                var whiteSpacePattern = /^\s*$/;
+                if (whiteSpacePattern.test(usr.email) || whiteSpacePattern.test(usr.password)) {
+                     socket.emit('er', "Wpisz cos.");
                  }
-                 else {
-                     col.insert({ username: msg.username, message: msg.message })
-                     io.emit('message', {
-                         message: msg.message,
-                         username: msg.username
+                else {
+                    col.insert({ users: usr.email, passwd: usr.password })
+                     io.emit('user', {
+                         user: usr.email,
+                         passwd: usr.password
                      });
                  }
              });
+
+
+
+             //var col = db.db().collection('messages');
+
+             //col.find().toArray(function (err, res) {
+             //    if (err)
+             //        console.log(err);
+             //    else
+             //        socket.emit('output', res);
+             //});
+             //socket.on('message', function (msg) {
+             //    var whiteSpacePattern = /^\s*$/;
+
+             //    if (whiteSpacePattern.test(msg.username) || whiteSpacePattern.test(msg.message)) {
+             //        socket.emit('er', "Wiadomo�� i nazwa u�ytkownika nie mo�e by� pusta.");
+             //    }
+             //    else {
+             //        col.insert({ username: msg.username, message: msg.message })
+             //        io.emit('message', {
+             //            message: msg.message,
+             //            username: msg.username
+             //        });
+             //    }
+             //});
 
          });
      }
