@@ -85,7 +85,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                  }
                 else {
                     console.log('ss');
-                    col.insert({ users: usr.email, passwd: usr.password })
+                    users.insert({ users: usr.email, passwd: usr.password })
                      io.emit('user', {
                          user: usr.email,
                          passwd: usr.password
