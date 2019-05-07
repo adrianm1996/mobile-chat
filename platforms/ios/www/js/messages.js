@@ -1,7 +1,7 @@
 ﻿
-var server = require('./server.js');
+//var server = require('./server.js');
 
-//import * as server from 'server';
+import * as server from './server';
 
 server.app.get('/', function (req, res) {
 
