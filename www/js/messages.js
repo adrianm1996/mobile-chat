@@ -1,7 +1,9 @@
 ﻿
-const server = require('./server');
+var server = require('server.js');
 
-app.get('/', function (req, res) {
+//import * as server from 'server';
+
+server.app.get('/', function (req, res) {
 
     res.sendFile('index.html', { root: './www' });
 });
