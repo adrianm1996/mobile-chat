@@ -26,7 +26,7 @@
 
 //app.get('/', function (req, res) {
 
-//    res.sendFile('index.html', { root: '../../www' });
+//    res.sendFile('registration.html', { root: '../../www' });
 //});
 
 //http.listen(process.env.PORT || 3000, '192.168.0.105', function () {
@@ -74,8 +74,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
         io.sockets.on('connection', function (socket) {
             console.log("Socket connected.");
 
-            var email = document.getElementById('email');
-            var passwd = document.getElementById('password');
+            var email = window.document.getElementById('email');
+            var passwd = window.document.getElementById('password');
             console.log(email + passwd);
 
             var users = db.db().collection('users');
