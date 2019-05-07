@@ -76,7 +76,13 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
 
             var users = db.db().collection('users');
-
+            users.find().toArray(function (err, res) {
+                console.log("user find");
+                 if (err)
+                     console.log(err);
+                 else
+                     socket.emit('output', res);
+             });
             socket.on('users', function (usr) {
                 console.log("user add");
                 var whiteSpacePattern = /^\s*$/;
