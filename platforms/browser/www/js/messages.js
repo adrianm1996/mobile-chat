@@ -1,5 +1,5 @@
 ﻿
-var server = require('server.js');
+var server = require('./server.js');
 
 //import * as server from 'server';
 
