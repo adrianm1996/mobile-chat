@@ -96,12 +96,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     }
                 });
 
-
-                app.get('/', function (req, res) {
-
-                    res.sendFile('registration.html', { root: './www' });
-                    //res.sendFile('messages.js');
-                });
+                console.log("redirect1");
+                
                 //var col = db.db().collection('messages');
 
                 //col.find().toArray(function (err, res) {
@@ -125,6 +121,11 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 //    }
                 //});
 
+            });
+            app.get('/', function (req, res) {
+                console.log("redirect2");
+                res.sendFile('registration.html', { root: './www' });
+                //res.sendFile('messages.js');
             });
         }
 
