@@ -205,12 +205,12 @@
             {
                 $('form').submit(function () {
                     if ($('#emailR').val().length > 0) {
-                        socket.emit('user', {
+                        socket.emit('user', 'passwd' {
                             email: $('#emailR').val(),
-                            passwd: $('#passwordR').val()
+                            password: $('#passwordR').val()
                         });
                         $('#emailR').val('');
-
+                        $('#passwordR').val('');
                     }
                     return false;
                 });
