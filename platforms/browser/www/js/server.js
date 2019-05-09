@@ -82,7 +82,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     else
                         socket.emit('output', res);
                 });
-                socket.on('user', function (usr) {
+                socket.on('user', 'passwd', function (usr) {
                     var whiteSpacePattern = /^\s*$/;
                     if (whiteSpacePattern.test(usr.email) || whiteSpacePattern.test(usr.password)) {
                         socket.emit('er', "Wpisz cos.");
@@ -92,7 +92,9 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         console.log(usr.password);
                         console.log(usr.emailR);
                         console.log(usr.passwordR);
-                        users.insert({ user: usr.emailR, passwd: usr.passwordR })
+                        console.log(usr.passwd);
+                        console.log(usr.user);
+                        users.insert({ user: usr.email, passwd: usr.password })
                         io.emit('user','passwd', {
                             user: usr.emailR,
                             passwd: usr.passwordR
