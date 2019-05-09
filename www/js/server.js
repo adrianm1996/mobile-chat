@@ -93,7 +93,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         console.log(usr.emailR);
                         console.log(usr.passwordR);
                         users.insert({ user: usr.emailR, passwd: usr.passwordR })
-                        io.emit('user', {
+                        io.emit('user','passwd', {
                             user: usr.emailR,
                             passwd: usr.passwordR
                         });

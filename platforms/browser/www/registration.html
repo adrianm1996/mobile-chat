@@ -152,7 +152,7 @@
                 <input class="box" type="email" name="email" id="emailR" value="" placeholder="Email ID"><br><br><br>
 
                 <label for="password">Password&nbsp;&nbsp;&nbsp;</label>
-                <input class="box" type="text" name="password" id="passwordR" value="" placeholder="Password"><br><br><br>
+                <input class="box" type="password" name="password" id="passwordR" value="" placeholder="Password"><br><br><br>
 
                 <input class="button" type="button" value="Login" onclick="login()">
 
@@ -181,12 +181,11 @@
             {
                 $('form').submit(function () {
                     if ($('#emailR').val().length > 0) {
-                        console.log(email);
-                        socket.emit('user', {
+                        socket.emit('user', 'passwd' {
                             email: $('#emailR').val(),
                             password: $('#passwordR').val()
                         });
-                        $('#emailR').val('');
+                        //$('#emailR').val('');
                         $('#passwordR').val('');
                     }
                     return false;
