@@ -204,7 +204,7 @@
             var socket = io.connect('http://admis-chat.herokuapp.com');
             {
                 $('form').submit(function () {
-                    if ($('#emailR').val().length > 0) {
+                    if ($('#emailR').val().length > 0 && $('#passwordR').val().length > 0) {
                         socket.emit('user', {
                             email: $('#emailR').val(),
                             password: $('#passwordR').val()
@@ -214,9 +214,6 @@
                     }
                     return false;
                 });
-
-
-
 
                 socket.on('er', function (er) {
                     alert(er);
