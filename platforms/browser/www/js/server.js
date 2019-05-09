@@ -77,7 +77,6 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
             var users = db.db().collection('users');
             users.find().toArray(function (err, res) {
-                console.log("user find");
                  if (err)
                      console.log(err);
                  else
@@ -90,10 +89,10 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                  }
                 else {
                     users.insert({ user: usr.emailR, passwd: usr.passwordR })
-                     //io.emit('user', {
-                        // user: usr.email,
-                      //  passwd: usr.password
-                    // });
+                     io.emit('user', {
+                         user: usr.emailR,
+                        passwd: usr.passwordR
+                     });
                  }
              });
 
