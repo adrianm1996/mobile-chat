@@ -102,8 +102,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         socket.emit('er', "Wpisz cos.");
                     }
                     else {
-  
-                        if (users.find({ user: usrLog.email, passwd: usrLog.password }))
+
+                        if (users.find({ $and: [{ user: { $exists: true, $in: [usrLog.email] } }, { passwd: { $exists: true, $in: [usrLog.password] } }]} ))
                             console.log("found");
                         else
                             console.log("not found");
