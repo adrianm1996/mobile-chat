@@ -26,7 +26,7 @@
 
 //app.get('/', function (req, res) {
 
-//    res.sendFile('index.html', { root: '../../www' });
+//    res.sendFile('registration.html', { root: '../../www' });
 //});
 
 //http.listen(process.env.PORT || 3000, '192.168.0.105', function () {
@@ -49,7 +49,7 @@ var express = require('express'),
 
 app.get('/', function (req, res) {
 
-    res.sendFile('registration.html', { root: './www' });
+    res.sendFile('index.html', { root: './www' });
     //res.sendFile('messages.js');
 });
 
@@ -74,35 +74,54 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
         io.sockets.on('connection', function (socket) {
             console.log("Socket connected.");
 
-            var email = document.getElementById('email');
-            var passwd = document.getElementById('password');
-            console.log(email + passwd);
 
             var users = db.db().collection('users');
-
-
-             var col = db.db().collection('messages');
-
-             col.find().toArray(function (err, res) {
+            users.find().toArray(function (err, res) {
+                console.log("user find");
                  if (err)
                      console.log(err);
                  else
                      socket.emit('output', res);
              });
-             socket.on('message', function (msg) {
-                 var whiteSpacePattern = /^\s*$/;
-
-                 if (whiteSpacePattern.test(msg.username) || whiteSpacePattern.test(msg.message)) {
-                     socket.emit('er', "Wiadomo�� i nazwa u�ytkownika nie mo�e by� pusta.");
+            socket.on('user', function (usr) {
+                console.log("user add");
+                var whiteSpacePattern = /^\s*$/;
+                if (whiteSpacePattern.test(usr.email) || whiteSpacePattern.test(usr.password)) {
+                     socket.emit('er', "Wpisz cos.");
                  }
-                 else {
-                     col.insert({ username: msg.username, message: msg.message })
-                     io.emit('message', {
-                         message: msg.message,
-                         username: msg.username
-                     });
+                else {
+                    users.insert({ user: usr.email, passwd: usr.password })
+                     //io.emit('user', {
+                        // user: usr.email,
+                      //  passwd: usr.password
+                    // });
                  }
              });
+
+
+
+             //var col = db.db().collection('messages');
+
+             //col.find().toArray(function (err, res) {
+             //    if (err)
+             //        console.log(err);
+             //    else
+             //        socket.emit('output', res);
+             //});
+             //socket.on('message', function (msg) {
+             //    var whiteSpacePattern = /^\s*$/;
+
+             //    if (whiteSpacePattern.test(msg.username) || whiteSpacePattern.test(msg.message)) {
+             //        socket.emit('er', "Wiadomo�� i nazwa u�ytkownika nie mo�e by� pusta.");
+             //    }
+             //    else {
+             //        col.insert({ username: msg.username, message: msg.message })
+             //        io.emit('message', {
+             //            message: msg.message,
+             //            username: msg.username
+             //        });
+             //    }
+             //});
 
          });
      }

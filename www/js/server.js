@@ -84,18 +84,16 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                      socket.emit('output', res);
              });
             socket.on('user', function (usr) {
-                console.log("user add");
                 var whiteSpacePattern = /^\s*$/;
                 if (whiteSpacePattern.test(usr.email) || whiteSpacePattern.test(usr.password)) {
                      socket.emit('er', "Wpisz cos.");
                  }
                 else {
-                    console.log('ss');
-                    users.insert({ users: usr.email, passwd: usr.password })
-                     io.emit('user', {
-                         user: usr.email,
-                         passwd: usr.password
-                     });
+                    users.insert({ user: usr.emailR, passwd: usr.passwordR })
+                     //io.emit('user', {
+                        // user: usr.email,
+                      //  passwd: usr.password
+                    // });
                  }
              });
 

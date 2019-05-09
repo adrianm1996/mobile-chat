@@ -148,22 +148,13 @@
 
             <form action="">
 
-                <label for="fname">First Name&nbsp;&nbsp;&nbsp;</label>
-                <input class="box" type="text" name="fname" id="fname" value="" placeholder="First Name"><br><br><br>
-
-                <label for-="lname">Last Name&nbsp;&nbsp;&nbsp;</label>
-                <input class="box" type="text" name="lname" id="lname" value="" placeholder="Last Name"><br><br><br>
-
                 <label for="email">Email ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                 <input class="box" type="email" name="email" id="emailR" value="" placeholder="Email ID"><br><br><br>
-
-                <label for="mob">Mobile No.&nbsp;&nbsp;</label>
-                <input class="box" type="text" name="mob" id="mob" value="" placeholder="Mobile No."><br><br><br>
 
                 <label for="password">Password&nbsp;&nbsp;&nbsp;</label>
                 <input class="box" type="text" name="password" id="passwordR" value="" placeholder="Password"><br><br><br>
 
-                <input class="button" type="button" value="Login" onclick="login()">
+                <input class="button" type="submit" value="Login" onclick="login()">
 
                 <button>Submit</button>
             </form>
@@ -189,13 +180,13 @@
             var socket = io.connect('http://admis-chat.herokuapp.com');
             {
                 $('form').submit(function () {
-                    if ($('#email').val().length > 0) {
+                    if ($('#emailR').val().length > 0) {
                         console.log(email);
                         socket.emit('user', {
-                            email: $('#email').val(),
-                            passwd: $('#password').val()
+                            email: $('#emailR').val(),
+                            passwd: $('#passwordR').val()
                         });
-                        $('#email').val('');
+                        $('#emailR').val('');
 
                     }
                     return false;
