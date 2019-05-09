@@ -184,10 +184,10 @@
                         console.log(email);
                         socket.emit('user', {
                             email: $('#emailR').val(),
-                            passwd: $('#passwordR').val()
+                            password: $('#passwordR').val()
                         });
                         $('#emailR').val('');
-
+                        $('#passwordR').val('');
                     }
                     return false;
                 });

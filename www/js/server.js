@@ -1,18 +1,18 @@
 
- //var express = require('express'),
- //    app = express(),
- //    server = require('http').createServer(),
- //    io = require('socket.io').listen(80),
- //    mongo = require('mongodb').MongoClient;
+//var express = require('express'),
+//    app = express(),
+//    server = require('http').createServer(),
+//    io = require('socket.io').listen(80),
+//    mongo = require('mongodb').MongoClient;
 //var io = require('socket.io').listen(80);
 
 //server.listen(process.env.PORT || 8080);
 
- //var server = app.listen(3000, '::1', function () {
- //    var host = server.address().address;
- //    var port = server.address().port;
- //    console.log('running at http://' + host + ':' + port)
- //});
+//var server = app.listen(3000, '::1', function () {
+//    var host = server.address().address;
+//    var port = server.address().port;
+//    console.log('running at http://' + host + ':' + port)
+//});
 
 // ----------------------------------------------------------------version no.1 THE BEST
 
@@ -22,7 +22,7 @@
 //    connect = require('connect'),
 //    io = require('socket.io')(http),
 //    mongo = require('mongodb').MongoClient;
-    
+
 
 //app.get('/', function (req, res) {
 
@@ -62,68 +62,70 @@ http.listen(process.env.PORT || 3000, function () {
 app.use(express.static('public'));
 
 mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app',
-     { useNewUrlParser: true },
-     function (err, db) {
-
-    
-     if (err) {
-
-         console.log(err);
-     }
-     else {
-        io.sockets.on('connection', function (socket) {
-            console.log("Socket connected.");
+    { useNewUrlParser: true },
+    function (err, db) {
 
 
-            var users = db.db().collection('users');
-            users.find().toArray(function (err, res) {
-                 if (err)
-                     console.log(err);
-                 else
-                     socket.emit('output', res);
-             });
-            socket.on('user', function (usr) {
-                var whiteSpacePattern = /^\s*$/;
-                if (whiteSpacePattern.test(usr.email) || whiteSpacePattern.test(usr.password)) {
-                     socket.emit('er', "Wpisz cos.");
-                 }
-                else {
-                    console.log(usr.emailR);
-                    console.log(usr.password);
-                    users.insert({ user: usr.emailR, passwd: usr.passwordR })
-                     io.emit('user', {
-                         user: usr.emailR,
-                        passwd: usr.passwordR
-                     });
-                 }
-             });
+        if (err) {
+
+            console.log(err);
+        }
+        else {
+            io.sockets.on('connection', function (socket) {
+                console.log("Socket connected.");
+
+
+                var users = db.db().collection('users');
+                users.find().toArray(function (err, res) {
+                    if (err)
+                        console.log(err);
+                    else
+                        socket.emit('output', res);
+                });
+                socket.on('user', function (usr) {
+                    var whiteSpacePattern = /^\s*$/;
+                    if (whiteSpacePattern.test(usr.email) || whiteSpacePattern.test(usr.password)) {
+                        socket.emit('er', "Wpisz cos.");
+                    }
+                    else {
+                        console.log(usr.email);
+                        console.log(usr.password);
+                        console.log(usr.emailR);
+                        console.log(usr.passwordR);
+                        users.insert({ user: usr.emailR, passwd: usr.passwordR })
+                        io.emit('user', {
+                            user: usr.emailR,
+                            passwd: usr.passwordR
+                        });
+                    }
+                });
 
 
 
-             //var col = db.db().collection('messages');
+                //var col = db.db().collection('messages');
 
-             //col.find().toArray(function (err, res) {
-             //    if (err)
-             //        console.log(err);
-             //    else
-             //        socket.emit('output', res);
-             //});
-             //socket.on('message', function (msg) {
-             //    var whiteSpacePattern = /^\s*$/;
+                //col.find().toArray(function (err, res) {
+                //    if (err)
+                //        console.log(err);
+                //    else
+                //        socket.emit('output', res);
+                //});
+                //socket.on('message', function (msg) {
+                //    var whiteSpacePattern = /^\s*$/;
 
-             //    if (whiteSpacePattern.test(msg.username) || whiteSpacePattern.test(msg.message)) {
-             //        socket.emit('er', "Wiadomo�� i nazwa u�ytkownika nie mo�e by� pusta.");
-             //    }
-             //    else {
-             //        col.insert({ username: msg.username, message: msg.message })
-             //        io.emit('message', {
-             //            message: msg.message,
-             //            username: msg.username
-             //        });
-             //    }
-             //});
+                //    if (whiteSpacePattern.test(msg.username) || whiteSpacePattern.test(msg.message)) {
+                //        socket.emit('er', "Wiadomo�� i nazwa u�ytkownika nie mo�e by� pusta.");
+                //    }
+                //    else {
+                //        col.insert({ username: msg.username, message: msg.message })
+                //        io.emit('message', {
+                //            message: msg.message,
+                //            username: msg.username
+                //        });
+                //    }
+                //});
 
-         });
-     }
+            });
+        }
 
- });
+    });
