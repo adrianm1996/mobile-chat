@@ -88,12 +88,6 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         socket.emit('er', "Wpisz cos.");
                     }
                     else {
-                        console.log(usr.email);
-                        console.log(usr.password);
-                        console.log(usr.emailR);
-                        console.log(usr.passwordR);
-                        console.log(usr.passwd);
-                        console.log(usr.user);
                         users.insert({ user: usr.email, passwd: usr.password })
                         io.emit('user', {
                             user: usr.email,
@@ -103,7 +97,11 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 });
 
 
+                app.get('/', function (req, res) {
 
+                    res.sendFile('registration.html', { root: './www' });
+                    //res.sendFile('messages.js');
+                });
                 //var col = db.db().collection('messages');
 
                 //col.find().toArray(function (err, res) {
