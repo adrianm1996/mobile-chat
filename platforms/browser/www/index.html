@@ -205,7 +205,7 @@
             {
                 $('form').submit(function () {
                     if ($('#emailR').val().length > 0) {
-                        socket.emit('user', 'passwd' {
+                        socket.emit('user', {
                             email: $('#emailR').val(),
                             password: $('#passwordR').val()
                         });
