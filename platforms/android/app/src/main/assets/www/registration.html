@@ -154,9 +154,9 @@
                 <label for="password">Password&nbsp;&nbsp;&nbsp;</label>
                 <input class="box" type="text" name="password" id="passwordR" value="" placeholder="Password"><br><br><br>
 
-                <input class="button" type="submit" value="Login" onclick="login()">
+                <input class="button" type="button" value="Login" onclick="login()">
 
-                <button>Submit</button>
+                <input type="submit" class="button" value="Submit">
             </form>
         </div>
 
@@ -186,7 +186,7 @@
                             email: $('#emailR').val(),
                             passwd: $('#passwordR').val()
                         });
-                        $('#email').val('');
+                        $('#emailR').val('');
 
                     }
                     return false;
