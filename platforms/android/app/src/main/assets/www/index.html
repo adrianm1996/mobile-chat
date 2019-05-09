@@ -201,6 +201,19 @@
                     }
                     return false;
                 });
+
+                $('form').submit(function () {
+                    if ($('#email').val().length > 0 && $('#password').val().length > 0) {
+                        socket.emit('userLogin', {
+                            email: $('#email').val(),
+                            password: $('#password').val()
+                        });
+                        $('#email').val('');
+                        $('#password').val('');
+                    }
+                    return false;
+                });
+
                 socket.on('redirect', function (destination) {
                     window.location.href = destination;
                 });

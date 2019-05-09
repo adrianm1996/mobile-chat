@@ -96,9 +96,29 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     }
                 });
 
-                console.log("redirect1");
-                var destination = './www/registration.html';
-                socket.emit('redirect', destination);
+                socket.on('userLogin', function (usrLog) {
+                    var whiteSpacePattern = /^\s*$/;
+                    if (whiteSpacePattern.test(usrLog.email) || whiteSpacePattern.test(usrLog.password)) {
+                        socket.emit('er', "Wpisz cos.");
+                    }
+                    else {
+  
+                        if (users.find({ user: usrLog.email, passwd: usrLog.password }))
+                            console.log("found");
+                        else
+                            console.log("not found");
+                        //io.emit('user', {
+                        //    user: usr.email,
+                        //    passwd: usr.password
+                        //});
+                    }
+                });
+
+                //REDIRECT
+
+                //console.log("redirect1");
+                //var destination = './www/registration.html';
+                //socket.emit('redirect', destination);
                 
                 //var col = db.db().collection('messages');
 
