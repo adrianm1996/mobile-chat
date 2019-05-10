@@ -103,18 +103,11 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     }
                     else {
 
-                        users.findOne({ user: usrLog.email }, function (err, result) {
-                            if (err)
+                        users.find({ user: usrLog.email }, function (err, result) {
+                            if (err == null)
                                 console.log("not found");
                             else
                                 console.log(result.user);
-
-                            //else
-                            //    console.log("not found");
-                            //io.emit('user', {
-                            //    user: usr.email,
-                            //    passwd: usr.password
-                            //});
                         });
                     }
                 });
