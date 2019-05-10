@@ -103,7 +103,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     }
                     else {
 
-                        users.find({ user: usrLog.email }, function (err, result) {
+                        users.findOne({
+                            user: { $exists:true, $eq: usrLog.email }, function (err, result) {
                             if (err)
                                 console.log("not found");
                             else
