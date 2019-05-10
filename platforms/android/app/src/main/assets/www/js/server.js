@@ -103,15 +103,17 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     }
                     else {
 
-                        var user = users.find({ user: usrLog.email }).limit(1);
-                        console.log(user);
-                        console.log("found");
-                        //else
-                        //    console.log("not found");
-                        //io.emit('user', {
-                        //    user: usr.email,
-                        //    passwd: usr.password
-                        //});
+                        users.findOne({}, function (err, result) {
+                            if (err) throw err;
+                            console.log(result.name);
+
+                            //else
+                            //    console.log("not found");
+                            //io.emit('user', {
+                            //    user: usr.email,
+                            //    passwd: usr.password
+                            //});
+                        });
                     }
                 });
 
@@ -120,7 +122,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 //console.log("redirect1");
                 //var destination = './www/registration.html';
                 //socket.emit('redirect', destination);
-                
+
                 //var col = db.db().collection('messages');
 
                 //col.find().toArray(function (err, res) {
@@ -145,7 +147,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 //});
 
             });
-            
+
         }
 
     });
