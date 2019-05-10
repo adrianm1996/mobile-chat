@@ -103,10 +103,10 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     }
                     else {
 
-                        console.log(users.find({ $and: [{ user: { $exists: true, $eq: usrLog.email } }, { passwd: { $exists: true, $eq: usrLog.password } }] }));
-                        //    console.log("found");
-                        //else
-                        //    console.log("not found");
+                        if (user.find({ user: usrLog.email }))
+                            console.log("found");
+                        else
+                            console.log("not found");
                         //io.emit('user', {
                         //    user: usr.email,
                         //    passwd: usr.password
