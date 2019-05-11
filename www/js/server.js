@@ -102,11 +102,15 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         socket.emit('er', "Wpisz cos.");
                     }
                     else {
-                        
+
                         users.findOne({ user: usrLog.email }, function (err, result) {
                             if (result == null) console.log("login invalid");
-                            else if (result.user == usrLog.email)
-                                console.log(result.user);
+                            else if (result.user == usrLog.email && result.passwd == usrLog.passwd)
+                            {
+                                //REDIRECT
+                                var destination = './www/registration.html';
+                                socket.emit('redirect', destination);
+                            }
                         });
                     }
                 });
