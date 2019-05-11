@@ -103,7 +103,9 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             var destination = './registration.html';
                             //socket.emit('redirect', destination);
                             //response.redirect(destination);
-                            Response.redirect(destination);
+                            app.get('/', function (req, res) {
+                                res.send('GET request to the homepage')
+                            })
                         }
                         else
                             console.log("user not found");
