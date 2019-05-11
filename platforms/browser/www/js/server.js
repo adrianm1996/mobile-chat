@@ -56,7 +56,7 @@ app.get('/', function (req, res) {
     //res.sendFile('messages.js');
 });
 
-app.post('/login', function (req, response) {
+console.log("dasd");
 mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app', { useNewUrlParser: true }, function (err, db) {
     if (err) {
 
@@ -163,7 +163,6 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
     }
 });
 
-});
 
 http.listen(process.env.PORT || 3000, function () {
     var host = http.address().address;
