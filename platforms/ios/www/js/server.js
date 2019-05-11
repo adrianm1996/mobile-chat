@@ -56,6 +56,14 @@ app.get('/', function (req, res) {
     //res.sendFile('messages.js');
 });
 
+http.listen(process.env.PORT || 3000, function () {
+    var host = http.address().address;
+    var port = http.address().port;
+    console.log('open at http://' + host + ':' + port)
+    //console.log('listening on *:  ');
+});
+app.use(express.static('public'));
+
 mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app', { useNewUrlParser: true }, function (err, db) {
     if (err) {
 
@@ -93,9 +101,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     socket.emit('er', "Wpisz cos.");
                 }
                 else {
-                    console.log("before");
 
-                    console.log("ok");
                     users.findOne({ user: usrLog.email }, function (err, result) {
                         if (result == null) console.log("login invalid");
                         else if (result.user == usrLog.email && result.passwd == usrLog.password) {
@@ -103,7 +109,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             //REDIRECT
                             //var destination = './registration.html';
                             //socket.emit('redirect', destination);
-                            response.rend('registration.html', { root: './www' });
+
                         }
                         else
                             console.log("user not found");
@@ -163,10 +169,3 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
         });
     }
 });
-http.listen(process.env.PORT || 3000, function () {
-    var host = http.address().address;
-    var port = http.address().port;
-    console.log('open at http://' + host + ':' + port)
-    //console.log('listening on *:  ');
-});
-app.use(express.static('public'));
