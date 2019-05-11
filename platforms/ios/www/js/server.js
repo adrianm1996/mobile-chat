@@ -98,7 +98,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         socket.emit('er', "Wpisz cos.");
                     }
                     else {
-                        app.get('/', function (req, res) {
+                        app.post('/', function (req, res) {
                             console.log("ok");
                             users.findOne({ user: usrLog.email }, function (err, result) {
                                 if (result == null) console.log("login invalid");
