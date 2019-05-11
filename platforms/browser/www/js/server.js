@@ -121,20 +121,20 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
                     }
 
-                    app.post('/demo', urlencodedParser, function (req, res) {
-                        MongoClient.connect(url, function (err, db) {
-                            db.collection('userprofile').findOne({ name: req.body.name }, function (err, user) {
-                                if (user === null) {
-                                    res.end("Login invalid");
-                                } else if (user.name === req.body.name && user.pass === req.body.pass) {
-                                    res.render('completeprofile', { profileData: user });
-                                } else {
-                                    console.log("Credentials wrong");
-                                    res.end("Login invalid");
-                                }
-                            });
-                        });
-                    });
+                    //app.post('/demo', urlencodedParser, function (req, res) {
+                    //    MongoClient.connect(url, function (err, db) {
+                    //        db.collection('userprofile').findOne({ name: req.body.name }, function (err, user) {
+                    //            if (user === null) {
+                    //                res.end("Login invalid");
+                    //            } else if (user.name === req.body.name && user.pass === req.body.pass) {
+                    //                res.render('completeprofile', { profileData: user });
+                    //            } else {
+                    //                console.log("Credentials wrong");
+                    //                res.end("Login invalid");
+                    //            }
+                    //        });
+                    //    });
+                    //});
 
 
                     //REDIRECT
