@@ -44,6 +44,7 @@ var express = require('express'),
     http = require('http').createServer(app),
     connect = require('connect'),
     io = require('socket.io')(http),
+    bodyParser = require('body-parser'),
     urlencodedParser = bodyParser.urlencoded({ extended: false }),
     mongo = require('mongodb').MongoClient;
 
