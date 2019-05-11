@@ -99,6 +99,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     }
                     else {
                         app.get('/', function (req, res) {
+                            console.log("ok");
                             users.findOne({ user: usrLog.email }, function (err, result) {
                                 if (result == null) console.log("login invalid");
                                 else if (result.user == usrLog.email && result.passwd == usrLog.password) {
