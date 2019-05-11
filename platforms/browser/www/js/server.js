@@ -41,6 +41,7 @@
 
 var express = require('express'),
     app = express(),
+    router = app.Router(),
     http = require('http').createServer(app),
     connect = require('connect'),
     io = require('socket.io')(http),
@@ -48,6 +49,7 @@ var express = require('express'),
     urlencodedParser = bodyParser.urlencoded({ extended: false }),
     mongo = require('mongodb').MongoClient;
 
+module.exports = router;
 
 app.get('/', function (req, res) {
 
@@ -63,111 +65,110 @@ http.listen(process.env.PORT || 3000, function () {
 });
 app.use(express.static('public'));
 
-mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app',{ useNewUrlParser: true }, function (err, db) {
-        if (err) {
+mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app', { useNewUrlParser: true }, function (err, db) {
+    if (err) {
 
-            console.log(err);
-        }
-        else {
-            io.sockets.on('connection', function (socket) {
-                console.log("Socket connected.");
+        console.log(err);
+    }
+    else {
+        io.sockets.on('connection', function (socket) {
+            console.log("Socket connected.");
 
 
-                var users = db.db().collection('users');
-                users.find().toArray(function (err, res) {
-                    if (err)
-                        console.log(err);
-                    else
-                        socket.emit('output', res);
-                });
-                socket.on('user', function (usr) {
-                    var whiteSpacePattern = /^\s*$/;
-                    if (whiteSpacePattern.test(usr.email) || whiteSpacePattern.test(usr.password)) {
-                        socket.emit('er', "Wpisz cos.");
-                    }
-                    else {
-                        users.insert({ user: usr.email, passwd: usr.password })
-                        io.emit('user', {
-                            user: usr.email,
-                            passwd: usr.password
-                        });
-                    }
-                });
+            var users = db.db().collection('users');
+            users.find().toArray(function (err, res) {
+                if (err)
+                    console.log(err);
+                else
+                    socket.emit('output', res);
+            });
+            socket.on('user', function (usr) {
+                var whiteSpacePattern = /^\s*$/;
+                if (whiteSpacePattern.test(usr.email) || whiteSpacePattern.test(usr.password)) {
+                    socket.emit('er', "Wpisz cos.");
+                }
+                else {
+                    users.insert({ user: usr.email, passwd: usr.password })
+                    io.emit('user', {
+                        user: usr.email,
+                        passwd: usr.password
+                    });
+                }
+            });
 
-                socket.on('userLogin', function (usrLog) {
-                    var whiteSpacePattern = /^\s*$/;
-                    if (whiteSpacePattern.test(usrLog.email) || whiteSpacePattern.test(usrLog.password)) {
-                        socket.emit('er', "Wpisz cos.");
-                    }
-                    else {
-                        console.log("before");
-                        app.post('/www', urlencodedParser, function (req, res) {
-                            console.log("ok");
-                            users.findOne({ user: usrLog.email }, function (err, result) {
-                                if (result == null) console.log("login invalid");
-                                else if (result.user == usrLog.email && result.passwd == usrLog.password) {
-                                    console.log("correct");
-                                    //REDIRECT
-                                    //var destination = './registration.html';
-                                    //socket.emit('redirect', destination);
-                                    res.render('registration.html', { root: './www' });
-                                }
-                                else
-                                    console.log("user not found");
-                            });
-
+            socket.on('userLogin', function (usrLog) {
+                var whiteSpacePattern = /^\s*$/;
+                if (whiteSpacePattern.test(usrLog.email) || whiteSpacePattern.test(usrLog.password)) {
+                    socket.emit('er', "Wpisz cos.");
+                }
+                else {
+                    console.log("before");
+                    router.get('/', function (req, res) {
+                        console.log("ok");
+                        users.findOne({ user: usrLog.email }, function (err, result) {
+                            if (result == null) console.log("login invalid");
+                            else if (result.user == usrLog.email && result.passwd == usrLog.password) {
+                                console.log("correct");
+                                //REDIRECT
+                                //var destination = './registration.html';
+                                //socket.emit('redirect', destination);
+                                res.send('registration.html', { root: './www' });
+                            }
+                            else
+                                console.log("user not found");
                         });
 
+                    });
 
-                    }
+                }
 
-                    //app.post('/demo', urlencodedParser, function (req, res) {
-                    //    MongoClient.connect(url, function (err, db) {
-                    //        db.collection('userprofile').findOne({ name: req.body.name }, function (err, user) {
-                    //            if (user === null) {
-                    //                res.end("Login invalid");
-                    //            } else if (user.name === req.body.name && user.pass === req.body.pass) {
-                    //                res.render('completeprofile', { profileData: user });
-                    //            } else {
-                    //                console.log("Credentials wrong");
-                    //                res.end("Login invalid");
-                    //            }
-                    //        });
-                    //    });
-                    //});
+                //app.post('/demo', urlencodedParser, function (req, res) {
+                //    MongoClient.connect(url, function (err, db) {
+                //        db.collection('userprofile').findOne({ name: req.body.name }, function (err, user) {
+                //            if (user === null) {
+                //                res.end("Login invalid");
+                //            } else if (user.name === req.body.name && user.pass === req.body.pass) {
+                //                res.render('completeprofile', { profileData: user });
+                //            } else {
+                //                console.log("Credentials wrong");
+                //                res.end("Login invalid");
+                //            }
+                //        });
+                //    });
+                //});
 
 
-                    //REDIRECT
+                //REDIRECT
 
-                    //console.log("redirect1");
-                    //var destination = './www/registration.html';
-                    //socket.emit('redirect', destination);
+                //console.log("redirect1");
+                //var destination = './www/registration.html';
+                //socket.emit('redirect', destination);
 
-                    //var col = db.db().collection('messages');
+                //var col = db.db().collection('messages');
 
-                    //col.find().toArray(function (err, res) {
-                    //    if (err)
-                    //        console.log(err);
-                    //    else
-                    //        socket.emit('output', res);
-                    //});
-                    //socket.on('message', function (msg) {
-                    //    var whiteSpacePattern = /^\s*$/;
+                //col.find().toArray(function (err, res) {
+                //    if (err)
+                //        console.log(err);
+                //    else
+                //        socket.emit('output', res);
+                //});
+                //socket.on('message', function (msg) {
+                //    var whiteSpacePattern = /^\s*$/;
 
-                    //    if (whiteSpacePattern.test(msg.username) || whiteSpacePattern.test(msg.message)) {
-                    //        socket.emit('er', "Wiadomo�� i nazwa u�ytkownika nie mo�e by� pusta.");
-                    //    }
-                    //    else {
-                    //        col.insert({ username: msg.username, message: msg.message })
-                    //        io.emit('message', {
-                    //            message: msg.message,
-                    //            username: msg.username
-                    //        });
-                    //    }
-                    //});
-
-                });
+                //    if (whiteSpacePattern.test(msg.username) || whiteSpacePattern.test(msg.message)) {
+                //        socket.emit('er', "Wiadomo�� i nazwa u�ytkownika nie mo�e by� pusta.");
+                //    }
+                //    else {
+                //        col.insert({ username: msg.username, message: msg.message })
+                //        io.emit('message', {
+                //            message: msg.message,
+                //            username: msg.username
+                //        });
+                //    }
+                //});
 
             });
-        }
+
+        });
+    }
 });
