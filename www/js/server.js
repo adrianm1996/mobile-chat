@@ -56,7 +56,6 @@ app.get('/', function (req, res) {
     //res.sendFile('messages.js');
 });
 
-consloe.log("test");
 mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app', { useNewUrlParser: true }, function (err, db) {
     if (err) {
 
