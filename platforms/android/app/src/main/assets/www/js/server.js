@@ -56,12 +56,12 @@ app.get('/', function (req, res) {
     //res.sendFile('messages.js');
 });
 
-http.listen(process.env.PORT || 3000, function () {
-    var host = http.address().address;
-    var port = http.address().port;
-    console.log('open at http://' + host + ':' + port)
-    //console.log('listening on *:  ');
+app.get('/login', function (req, res) {
+    console.log("login");
+    res.sendFile('registration.html', { root: './www' });
+    //res.sendFile('messages.js');
 });
+
 app.use(express.static('public'));
 
 mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app', { useNewUrlParser: true }, function (err, db) {
@@ -109,7 +109,11 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             //REDIRECT
                             //var destination = './registration.html';
                             //socket.emit('redirect', destination);
-
+                            app.post('/login', function (req, res) {
+                                console.log("login correct");
+                                res.redirect('registration.html', { root: './www' });
+                                //res.sendFile('messages.js');
+                            });
                         }
                         else
                             console.log("user not found");
@@ -168,4 +172,11 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
         });
     }
+});
+
+http.listen(process.env.PORT || 3000, function () {
+    var host = http.address().address;
+    var port = http.address().port;
+    console.log('open at http://' + host + ':' + port)
+    //console.log('listening on *:  ');
 });
