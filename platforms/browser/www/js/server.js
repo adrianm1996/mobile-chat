@@ -101,7 +101,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     }
                     else {
                         console.log("before");
-                        app.post('/', urlencodedParser, function (req, res) {
+                        app.post('/www', urlencodedParser, function (req, res) {
                             console.log("ok");
                             users.findOne({ user: usrLog.email }, function (err, result) {
                                 if (result == null) console.log("login invalid");
