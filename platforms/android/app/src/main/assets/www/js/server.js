@@ -41,7 +41,6 @@
 
 var express = require('express'),
     app = express(),
-    router = app.Router(),
     http = require('http').createServer(app),
     connect = require('connect'),
     io = require('socket.io')(http),
@@ -49,7 +48,6 @@ var express = require('express'),
     urlencodedParser = bodyParser.urlencoded({ extended: false }),
     mongo = require('mongodb').MongoClient;
 
-module.exports = router;
 
 app.get('/', function (req, res) {
 
@@ -103,7 +101,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 }
                 else {
                     console.log("before");
-                    router.get('/', function (req, res) {
+                    http.get('/', function (req, res) {
                         console.log("ok");
                         users.findOne({ user: usrLog.email }, function (err, result) {
                             if (result == null) console.log("login invalid");
