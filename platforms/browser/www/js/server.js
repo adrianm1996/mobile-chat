@@ -44,6 +44,7 @@ var express = require('express'),
     http = require('http').createServer(app),
     connect = require('connect'),
     io = require('socket.io')(http),
+    urlencodedParser = bodyParser.urlencoded({ extended: false }),
     mongo = require('mongodb').MongoClient;
 
 
@@ -98,7 +99,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         socket.emit('er', "Wpisz cos.");
                     }
                     else {
-                        app.post('/', function (req, res) {
+                        console.log("before");
+                        app.post('/', urlencodedParser, function (req, res) {
                             console.log("ok");
                             users.findOne({ user: usrLog.email }, function (err, result) {
                                 if (result == null) console.log("login invalid");
@@ -107,7 +109,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                     //REDIRECT
                                     //var destination = './registration.html';
                                     //socket.emit('redirect', destination);
-                                    res.sendFile('registration.html', { root: './www' });
+                                    res.render('registration.html', { root: './www' });
                                 }
                                 else
                                     console.log("user not found");
@@ -118,20 +120,20 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
                     }
 
-                    //app.post('/demo', urlencodedParser, function (req, res) {
-                    //    MongoClient.connect(url, function (err, db) {
-                    //        db.collection('userprofile').findOne({ name: req.body.name }, function (err, user) {
-                    //            if (user === null) {
-                    //                res.end("Login invalid");
-                    //            } else if (user.name === req.body.name && user.pass === req.body.pass) {
-                    //                res.render('completeprofile', { profileData: user });
-                    //            } else {
-                    //                console.log("Credentials wrong");
-                    //                res.end("Login invalid");
-                    //            }
-                    //        });
-                    //    });
-                    //});
+                    app.post('/demo', urlencodedParser, function (req, res) {
+                        MongoClient.connect(url, function (err, db) {
+                            db.collection('userprofile').findOne({ name: req.body.name }, function (err, user) {
+                                if (user === null) {
+                                    res.end("Login invalid");
+                                } else if (user.name === req.body.name && user.pass === req.body.pass) {
+                                    res.render('completeprofile', { profileData: user });
+                                } else {
+                                    console.log("Credentials wrong");
+                                    res.end("Login invalid");
+                                }
+                            });
+                        });
+                    });
 
 
                     //REDIRECT
