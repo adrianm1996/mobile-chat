@@ -56,12 +56,7 @@ app.get('/', function (req, res) {
     //res.sendFile('messages.js');
 });
 
-app.get('/', function (req, res) {
-    console.log("login");
-
-
-
-
+app.get('/', function (req, response) {
     mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app', { useNewUrlParser: true }, function (err, db) {
         if (err) {
 
@@ -105,9 +100,9 @@ app.get('/', function (req, res) {
                             else if (result.user == usrLog.email && result.passwd == usrLog.password) {
                                 console.log("correct");
                                 //REDIRECT
-                                //var destination = './registration.html';
+                                var destination = './registration.html';
                                 //socket.emit('redirect', destination);
-                 
+                                response.redirect(destination);
                             }
                             else
                                 console.log("user not found");
@@ -167,7 +162,8 @@ app.get('/', function (req, res) {
             });
         }
     });
-)};
+
+});
 
 http.listen(process.env.PORT || 3000, function () {
     var host = http.address().address;
@@ -175,3 +171,4 @@ http.listen(process.env.PORT || 3000, function () {
     console.log('open at http://' + host + ':' + port)
     //console.log('listening on *:  ');
 });
+    
