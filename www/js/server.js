@@ -40,7 +40,6 @@
 // ----------------------------------------------------------------version no.2 heroku version
 
 var express = require('express'),
-    redirect = require("express-redirect"),
     router = express.Router(),
     app = express(),
     http = require('http').createServer(app),
@@ -49,8 +48,6 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     urlencodedParser = bodyParser.urlencoded({ extended: false }),
     mongo = require('mongodb').MongoClient;
-
-redirect(app);
 
 app.use(express.static('public'));
 app.get('/', function (req, res) {
@@ -106,7 +103,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             var destination = './registration.html';
                             //socket.emit('redirect', destination);
                             //response.redirect(destination);
-                            app.redirect(destination);
+                            Response.redirect(destination);
                         }
                         else
                             console.log("user not found");
