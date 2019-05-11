@@ -50,11 +50,11 @@ var express = require('express'),
     mongo = require('mongodb').MongoClient;
 
 
-//app.get('/', function (req, res) {
+app.get('/', function (req, res) {
 
-//    res.sendFile('index.html', { root: './www' });
-//    //res.sendFile('messages.js');
-//});
+    res.sendFile('index.html', { root: './www' });
+    //res.sendFile('messages.js');
+});
 
 
 
