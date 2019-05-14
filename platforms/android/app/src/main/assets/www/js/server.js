@@ -57,7 +57,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     socket.emit('er', "Wpisz cos.");
                 }
                 else {
-                    users.insert({ user: usr.email, passwd: usr.password, name: usr.name, usr.surname })
+                    users.insert({ user: usr.email, passwd: usr.password, name: usr.name, surname: usr.surname })
                     io.emit('user', {
                         user: usr.email,
                         passwd: usr.password,
