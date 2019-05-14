@@ -65,56 +65,80 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
             console.log("Socket connected.");
 
 
-            var users = db.db().collection('users');
-            users.find().toArray(function (err, res) {
+            var col = db.db().collection('messages');
+
+            col.find().toArray(function (err, res) {
                 if (err)
                     console.log(err);
                 else
                     socket.emit('output', res);
             });
-            socket.on('user', function (usr) {
+            socket.on('message', function (msg) {
                 var whiteSpacePattern = /^\s*$/;
-                if (whiteSpacePattern.test(usr.email) || whiteSpacePattern.test(usr.password)) {
-                    socket.emit('er', "Wpisz cos.");
+
+                if (whiteSpacePattern.test(msg.username) || whiteSpacePattern.test(msg.message)) {
+                    socket.emit('er', "Wiadomo�� i nazwa u�ytkownika nie mo�e by� pusta.");
                 }
                 else {
-                    users.insert({ user: usr.email, passwd: usr.password })
-                    io.emit('user', {
-                        user: usr.email,
-                        passwd: usr.password
+                    col.insert({ username: msg.username, message: msg.message })
+                    io.emit('message', {
+                        message: msg.message,
+                        username: msg.username
                     });
                 }
             });
 
-            socket.on('userLogin', function (usrLog) {
-                var whiteSpacePattern = /^\s*$/;
-                if (whiteSpacePattern.test(usrLog.email) || whiteSpacePattern.test(usrLog.password)) {
-                    socket.emit('er', "Wpisz cos.");
-                }
-                else {
 
-                    users.findOne({ user: usrLog.email }, function (err, result) {
-                        if (result == null) console.log("login invalid");
-                        else if (result.user == usrLog.email && result.passwd == usrLog.password) {
-                            console.log("correct");
-                            //REDIRECT
-                            var destination = './registration.html';
+            //var users = db.db().collection('users');
+            //users.find().toArray(function (err, res) {
+            //    if (err)
+            //        console.log(err);
+            //    else
+            //        socket.emit('output', res);
+            //});
+            //socket.on('user', function (usr) {
+            //    var whiteSpacePattern = /^\s*$/;
+            //    if (whiteSpacePattern.test(usr.email) || whiteSpacePattern.test(usr.password)) {
+            //        socket.emit('er', "Wpisz cos.");
+            //    }
+            //    else {
+            //        users.insert({ user: usr.email, passwd: usr.password })
+            //        io.emit('user', {
+            //            user: usr.email,
+            //            passwd: usr.password
+            //        });
+            //    }
+            //});
 
-                            app.post('/login', function (req, res) {
-                                socket.emit('redirect', destination);
-                                res.redirect('/welcome');
-                                //res.sendFile('index.html', { root: './www' });
-                            });
-                            //response.redirect(destination);
+            //socket.on('userLogin', function (usrLog) {
+            //    var whiteSpacePattern = /^\s*$/;
+            //    if (whiteSpacePattern.test(usrLog.email) || whiteSpacePattern.test(usrLog.password)) {
+            //        socket.emit('er', "Wpisz cos.");
+            //    }
+            //    else {
 
-                        }
-                        else
-                            console.log("user not found");
-                    });
+            //        users.findOne({ user: usrLog.email }, function (err, result) {
+            //            if (result == null) console.log("login invalid");
+            //            else if (result.user == usrLog.email && result.passwd == usrLog.password) {
+            //                console.log("correct");
+            //                //REDIRECT
+            //                var destination = './registration.html';
+
+            //                app.post('/login', function (req, res) {
+            //                    socket.emit('redirect', destination);
+            //                    res.redirect('/welcome');
+            //                    //res.sendFile('index.html', { root: './www' });
+            //                });
+            //                //response.redirect(destination);
+
+            //            }
+            //            else
+            //                console.log("user not found");
+            //        });
 
 
 
-                }
+            //    }
 
                 //app.post('/demo', urlencodedParser, function (req, res) {
                 //    MongoClient.connect(url, function (err, db) {
@@ -138,28 +162,6 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 //var destination = './www/registration.html';
                 //socket.emit('redirect', destination);
 
-                var col = db.db().collection('messages');
-
-                col.find().toArray(function (err, res) {
-                    if (err)
-                        console.log(err);
-                    else
-                        socket.emit('output', res);
-                });
-                socket.on('message', function (msg) {
-                    var whiteSpacePattern = /^\s*$/;
-
-                    if (whiteSpacePattern.test(msg.username) || whiteSpacePattern.test(msg.message)) {
-                        socket.emit('er', "Wiadomo�� i nazwa u�ytkownika nie mo�e by� pusta.");
-                    }
-                    else {
-                        col.insert({ username: msg.username, message: msg.message })
-                        io.emit('message', {
-                            message: msg.message,
-                            username: msg.username
-                        });
-                    }
-                });
 
             });
 
