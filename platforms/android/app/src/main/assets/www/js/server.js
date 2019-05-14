@@ -108,5 +108,8 @@ http.listen(process.env.PORT || 3000, function () {
 
 window.onload = function () {
     perName();
-    document.getElementById("personName").innerHTML = usrLog.name + " " + usrLog.surname;
+    function perName() {
+        document.getElementById("personName").innerHTML = usrLog.name + " " + usrLog.surname;
+
+    }
 };
