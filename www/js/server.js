@@ -101,7 +101,11 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             console.log("correct");
                             //REDIRECT
                             var destination = './registration.html';
-                            app.post('/login', function (req, res) {
+                            router.get('/login', function (req, res, next) {
+                                console.log("correctly");
+                                res.render(destination);
+                            });
+                            router.post('/login', function (req, res) {
                                 console.log("correct2");
                                 res.redirect(destination);
                                 //res.sendFile('index.html', { root: './www' });
