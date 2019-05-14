@@ -102,7 +102,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             //REDIRECT
                             var destination = './registration.html';
                             socket.emit('redirect', app.get('/', function (req, res) {
-                                res.sendFile('registration.html', { root: './www' });
+                                res.render("test");
+                                //res.sendFile('index.html', { root: './www' });
                             }));
                             //response.redirect(destination);
 
