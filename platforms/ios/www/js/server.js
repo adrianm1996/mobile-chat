@@ -51,7 +51,7 @@ var express = require('express'),
 
 app.use(express.static('public'));
 app.get('/', function (req, res) {
-    res.sendFile('registration.html', { root: './www' });
+    res.sendFile('index.html', { root: './www' });
 });
 
 
@@ -89,56 +89,51 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
             });
 
 
-            //var users = db.db().collection('users');
-            //users.find().toArray(function (err, res) {
-            //    if (err)
-            //        console.log(err);
-            //    else
-            //        socket.emit('output', res);
-            //});
-            //socket.on('user', function (usr) {
-            //    var whiteSpacePattern = /^\s*$/;
-            //    if (whiteSpacePattern.test(usr.email) || whiteSpacePattern.test(usr.password)) {
-            //        socket.emit('er', "Wpisz cos.");
-            //    }
-            //    else {
-            //        users.insert({ user: usr.email, passwd: usr.password })
-            //        io.emit('user', {
-            //            user: usr.email,
-            //            passwd: usr.password
-            //        });
-            //    }
-            //});
+            var users = db.db().collection('users');
+            users.find().toArray(function (err, res) {
+                if (err)
+                    console.log(err);
+                else
+                    socket.emit('output', res);
+            });
+            socket.on('user', function (usr) {
+                var whiteSpacePattern = /^\s*$/;
+                if (whiteSpacePattern.test(usr.email) || whiteSpacePattern.test(usr.password)) {
+                    socket.emit('er', "Wpisz cos.");
+                }
+                else {
+                    users.insert({ user: usr.email, passwd: usr.password })
+                    io.emit('user', {
+                        user: usr.email,
+                        passwd: usr.password
+                    });
+                }
+            });
 
-            //socket.on('userLogin', function (usrLog) {
-            //    var whiteSpacePattern = /^\s*$/;
-            //    if (whiteSpacePattern.test(usrLog.email) || whiteSpacePattern.test(usrLog.password)) {
-            //        socket.emit('er', "Wpisz cos.");
-            //    }
-            //    else {
+            socket.on('userLogin', function (usrLog) {
+                var whiteSpacePattern = /^\s*$/;
+                if (whiteSpacePattern.test(usrLog.email) || whiteSpacePattern.test(usrLog.password)) {
+                    socket.emit('er', "Wpisz cos.");
+                }
+                else {
 
-            //        users.findOne({ user: usrLog.email }, function (err, result) {
-            //            if (result == null) console.log("login invalid");
-            //            else if (result.user == usrLog.email && result.passwd == usrLog.password) {
-            //                console.log("correct");
-            //                //REDIRECT
-            //                var destination = './registration.html';
+                    users.findOne({ user: usrLog.email }, function (err, result) {
+                        if (result == null) console.log("login invalid");
+                        else if (result.user == usrLog.email && result.passwd == usrLog.password) {
+                            console.log("correct");
+                            //REDIRECT
+                            var destination = './registration.html';
 
-            //                app.post('/login', function (req, res) {
-            //                    socket.emit('redirect', destination);
-            //                    res.redirect('/welcome');
-            //                    //res.sendFile('index.html', { root: './www' });
-            //                });
-            //                //response.redirect(destination);
+                            socket.emit('redirect', destination);
 
-            //            }
-            //            else
-            //                console.log("user not found");
-            //        });
+                        }
+                        else
+                            console.log("user not found");
+                    });
 
 
 
-            //    }
+                }
 
                 //app.post('/demo', urlencodedParser, function (req, res) {
                 //    MongoClient.connect(url, function (err, db) {
@@ -163,7 +158,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 //socket.emit('redirect', destination);
 
 
-            //});
+            });
 
         });
     }
