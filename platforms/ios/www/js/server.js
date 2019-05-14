@@ -57,7 +57,12 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     socket.emit('er', "Wpisz cos.");
                 }
                 else {
-                    users.insert({ user: usr.email, passwd: usr.password, name: usr.name, surname: usr.surname })
+                    users.insert({
+                        user: usr.email,
+                        passwd: usr.password,
+                        name: usr.name,
+                        surname: usr.surname
+                    })
                     io.emit('user', {
                         user: usr.email,
                         passwd: usr.password,
@@ -79,7 +84,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         else if (result.user == usrLog.email && result.passwd == usrLog.password) {
                             var destination = './registration.html';
 
-                            document.getElementById("personName").innerHTML = usrLog.name + " " +usrLog.surname;
+                            window.document.getElementById("personName").innerHTML = usrLog.name + " " +usrLog.surname;
                             socket.emit('redirect', destination);
                         }
                         else
