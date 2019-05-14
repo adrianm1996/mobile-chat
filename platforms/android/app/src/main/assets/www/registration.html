@@ -100,6 +100,7 @@
                 }
                 return false;
             });
+
             socket.on('message', function (msg) {
                 $('#messages').append($('<li>').text(msg.username + ": " + msg.message));
                 $('#messages').animate({ scrollTop: $('#messages').prop("scrollHeight") }, 500);
@@ -109,6 +110,7 @@
             socket.on('er', function (er) {
                 alert(er);
             });
+            perName();
         });
     </script>
 </body>
