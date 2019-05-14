@@ -86,8 +86,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         else if (result.user == usrLog.email && result.passwd == usrLog.password) {
                             var destination = './registration.html';
 
-
-                            window.onload = function perName(){
+                            
+                            global.window.onload = function perName(){
                                 global.document = new JSDOM(destination).window.document.getElementById("personName").innerHTML = usrLog.name + " " + usrLog.surname;
                             };
 
