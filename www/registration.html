@@ -56,7 +56,7 @@
         <div id="typing">
             <!--<ul id="messages"></ul>-->
             <form action="" id="form1">
-                <input id="msg" autocomplete="off" placeholder="Napisz co�..." />
+                <input id="msg" autocomplete="off" placeholder="Napisz coś..." />
                 <button>Wyslij</button>
                 <!--<input id="send" type="submit" value="Wy�lij" />-->
             </form>
@@ -88,25 +88,24 @@
                     }
                 }
             });
-            var username = prompt("Nazwa");
-            if (username) {
-                $('form').submit(function () {
-                    if ($('#msg').val().length > 0) {
-                        console.log(msg);
-                        socket.emit('message', {
-                            message: $('#msg').val(),
-                            username: username
-                        });
-                        $('#msg').val('');
-                    }
-                    return false;
-                });
-                socket.on('message', function (msg) {
-                    $('#messages').append($('<li>').text(msg.username + ": " + msg.message));
-                    $('#messages').animate({ scrollTop: $('#messages').prop("scrollHeight") }, 500);
-                    $("html, body").scrollTop($(document).height());
-                });
-            }
+            username = "test";
+            $('form').submit(function () {
+                if ($('#msg').val().length > 0) {
+                    console.log(msg);
+                    socket.emit('message', {
+                        message: $('#msg').val(),
+                        username: username
+                    });
+                    $('#msg').val('');
+                }
+                return false;
+            });
+            socket.on('message', function (msg) {
+                $('#messages').append($('<li>').text(msg.username + ": " + msg.message));
+                $('#messages').animate({ scrollTop: $('#messages').prop("scrollHeight") }, 500);
+                $("html, body").scrollTop($(document).height());
+            });
+
             socket.on('er', function (er) {
                 alert(er);
             });
