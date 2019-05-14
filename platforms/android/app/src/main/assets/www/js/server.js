@@ -87,7 +87,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             var destination = './registration.html';
 
                             socket.emit('redirect', destination);
-                            global.document = new JSDOM(destination).window.document.getElementById("personName").innerHTML = usrLog.name + " " + usrLog.surname;
+                            //global.document = new JSDOM(destination).window.document.getElementById("personName").innerHTML = usrLog.name + " " + usrLog.surname;
                             
                         }
                         else
@@ -105,3 +105,8 @@ http.listen(process.env.PORT || 3000, function () {
     var port = http.address().port;
     console.log('open at http://' + host + ':' + port)
 });
+
+window.onload = function () {
+    perName();
+    document.getElementById("personName").innerHTML = usrLog.name + " " + usrLog.surname;
+};
