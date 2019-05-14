@@ -8,7 +8,9 @@ var express = require('express'),
     io = require('socket.io')(http),
     bodyParser = require('body-parser'),
     urlencodedParser = bodyParser.urlencoded({ extended: false }),
-    mongo = require('mongodb').MongoClient;
+    mongo = require('mongodb').MongoClient,
+    jsdom = require('jsdom'),
+    JSDOM = jsdom.JSDOM;
 
 app.use(express.static('public'));
 app.get('/', function (req, res) {
@@ -84,7 +86,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         else if (result.user == usrLog.email && result.passwd == usrLog.password) {
                             var destination = './registration.html';
 
-                            window.document.getElementById("personName").innerHTML = usrLog.name + " " +usrLog.surname;
+                            global.document = new JSDOM(destination).window.document.getElementById("personName").innerHTML = usrLog.name + " " + usrLog.surname;
                             socket.emit('redirect', destination);
                         }
                         else
