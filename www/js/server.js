@@ -90,12 +90,12 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
 
             var users = db.db().collection('users');
-            users.find().toArray(function (err, res) {
-                if (err)
-                    console.log(err);
-                else
-                    socket.emit('output', res);
-            });
+            //users.find().toArray(function (err, res) {
+            //    if (err)
+            //        console.log(err);
+            //    else
+            //        socket.emit('output', res);
+            //});
             socket.on('user', function (usr) {
                 var whiteSpacePattern = /^\s*$/;
                 if (whiteSpacePattern.test(usr.email) || whiteSpacePattern.test(usr.password)) {
