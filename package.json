@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Devcorner chat",
   "dependencies": {
+    "alert-node": "^1.2.4",
     "connect-phonegap": "^0.25.0",
     "cordova-android": "^8.0.0",
     "cordova-ios": "^5.0.1",

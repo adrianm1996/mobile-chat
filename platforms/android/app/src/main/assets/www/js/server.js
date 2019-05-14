@@ -33,15 +33,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
             col.find().toArray(function (err, res) {
                 if (err)
                     console.log(err);
-                else {
-                    var destination = './registration.html';
-
-                    var perName = new JSDOM(destination).window.document.getElementById("personName");
-                    if (perName) {
-                        perName.innerHTML = usrLog.name + " " + usrLog.surname;
-                    }
+                else
                     socket.emit('output', res);
-                }
             });
             socket.on('message', function (msg) {
                 var whiteSpacePattern = /^\s*$/;
@@ -92,9 +85,13 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         if (result == null) console.log("login invalid");
                         else if (result.user == usrLog.email && result.passwd == usrLog.password) {
                             var destination = './registration.html';
-
+                            const window = (new JSDOM(``, { runScripts: onload })).window;
+                      
                             socket.emit('redirect', destination);
-
+                            global.document = new JSDOM(destination).window.document.getElementById("personName").innerHTML = usrLog.name + " " + usrLog.surname;
+                            //if (perName) {
+                            //   perName
+                            //}
                         }
                         else
                             console.log("user not found");
