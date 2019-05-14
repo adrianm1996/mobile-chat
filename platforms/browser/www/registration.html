@@ -78,16 +78,16 @@
     <script>
         $(function () {
             var socket = io.connect('http://admis-chat.herokuapp.com');
-            socket.on('output', function (data) {
-                if (data.length) {
-                    for (var x = 0; x < data.length; x++) {
-                        $('#messages').append($('<li>').text(data[x].username + ": " + data[x].message));
-                        //$('#messages').animate({scrollTop: $('#messages').prop("scrollHeight")}, 100);
-                        $('#messages').scrollTop($('#messages')[0].scrollHeight);
-                        //$("#messages").scrollTop(bottom);
-                    }
-                }
-            });
+            //socket.on('output', function (data) {
+            //    if (data.length) {
+            //        for (var x = 0; x < data.length; x++) {
+            //            $('#messages').append($('<li>').text(data[x].username + ": " + data[x].message));
+            //            //$('#messages').animate({scrollTop: $('#messages').prop("scrollHeight")}, 100);
+            //            $('#messages').scrollTop($('#messages')[0].scrollHeight);
+            //            //$("#messages").scrollTop(bottom);
+            //        }
+            //    }
+            //});
             username = "test";
             $('form').submit(function () {
                 if ($('#msg').val().length > 0) {
