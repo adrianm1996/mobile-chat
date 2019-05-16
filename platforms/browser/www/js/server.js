@@ -11,16 +11,12 @@ var express = require('express'),
     jsdom = require('jsdom'),
     JSDOM = jsdom.JSDOM;
 
-app.use(express.static('public'));
+//app.use(express.static('public'));
 app.get('/', function (req, res) {
     res.sendFile('index.html', { root: './www' });
 });
 
-http.listen(process.env.PORT || 3000, function () {
-    var host = http.address().address;
-    var port = http.address().port;
-    console.log('open at http://' + host + ':' + port)
-});
+
 mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app',
     { useNewUrlParser: true },
     function (err, db) {
@@ -104,4 +100,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 });
 
 
-
+http.listen(process.env.PORT || 3000, function () {
+    var host = http.address().address;
+    var port = http.address().port;
+    console.log('open at http://' + host + ':' + port)
+});
