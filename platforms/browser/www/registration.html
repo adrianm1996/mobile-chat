@@ -75,7 +75,7 @@
     </script>
     <script>
         $(function () {
-            var socket = io.connect('http://admis-chat.herokuapp.com');
+            var socket = io.connect('https://admis-chat.herokuapp.com');
             socket.on('output', function (data) {
                 if (data.length) {
                     for (var x = 0; x < data.length; x++) {
@@ -86,7 +86,7 @@
                     }
                 }
             });
-            username = "test"; //document.getElementById("personName").innerHTML;
+            username = "xxx"; //document.getElementById("personName").innerHTML;
 
             $('form').submit(function () {
                 if ($('#msg').val().length > 0) {

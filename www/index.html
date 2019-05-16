@@ -64,11 +64,10 @@
 
     </div>
     <script src="/path/to/angular.js"></script>
-    <!--<script src="/socket.io/socket.io.js"></script>-->
     <script src="/socket.io/socket.io.js"></script>
-    <!--<script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>-->
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/server.js"></script>
     <script type="text/javascript" src="js/registration.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
@@ -79,45 +78,45 @@
     <script>
         $(function () {
             var socket = io.connect('http://admis-chat.herokuapp.com');
-            {
-                $('form').submit(function () {
-                    if ($('#emailR').val().length > 0 && $('#passwordR').val().length > 0 &&
-                        $('#nameR').val().length > 0 && $('#surnameR').val().length > 0) {
-                        socket.emit('user', {
-                            email: $('#emailR').val(),
-                            password: $('#passwordR').val(),
-                            name: $('#nameR').val(),
-                            surname: $('#surnameR').val()
-                        });
-                        $('#nameR').val('');
-                        $('#surnameR').val('');
-                        $('#emailR').val('');
-                        $('#passwordR').val('');
-                    }
-                    return false;
-                });
 
-                $('form').submit(function () {
-                    if ($('#email').val().length > 0 && $('#password').val().length > 0) {
-                        socket.emit('userLogin', {
-                            email: $('#email').val(),
-                            password: $('#password').val()
-                            
-                        });
-                        $('#email').val('');
-                        $('#password').val('');
-                    }
-                    return false;
-                });
+            $('form').submit(function () {
+                if ($('#emailR').val().length > 0 && $('#passwordR').val().length > 0 &&
+                    $('#nameR').val().length > 0 && $('#surnameR').val().length > 0) {
+                    socket.emit('user', {
+                        email: $('#emailR').val(),
+                        password: $('#passwordR').val(),
+                        name: $('#nameR').val(),
+                        surname: $('#surnameR').val()
+                    });
+                    $('#nameR').val('');
+                    $('#surnameR').val('');
+                    $('#emailR').val('');
+                    $('#passwordR').val('');
+                }
+                return false;
+            });
 
-                socket.on('redirect', function (destination) {
-                    window.location.href = destination;
-                });
+            $('form').submit(function () {
+                if ($('#email').val().length > 0 && $('#password').val().length > 0) {
+                    socket.emit('userLogin', {
+                        email: $('#email').val(),
+                        password: $('#password').val()
 
-                socket.on('er', function (er) {
-                    alert(er);
-                });
-            }
+                    });
+                    $('#email').val('');
+                    $('#password').val('');
+                }
+                return false;
+            });
+
+            socket.on('redirect', function (destination) {
+                window.location.href = destination;
+            });
+
+            socket.on('er', function (er) {
+                alert(er);
+            });
+
         });
     </script>
 </body>

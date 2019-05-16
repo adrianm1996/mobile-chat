@@ -11,7 +11,7 @@ var express = require('express'),
     jsdom = require('jsdom'),
     JSDOM = jsdom.JSDOM;
 
-//app.use(express.static('public'));
+app.use(express.static('public'));
 app.get('/', function (req, res) {
     res.sendFile('index.html', { root: './www' });
 });
