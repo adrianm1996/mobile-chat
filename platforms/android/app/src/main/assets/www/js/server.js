@@ -1,7 +1,6 @@
 
 
 var express = require('express'),
-    router = express.Router(),
     app = express(),
     http = require('http').createServer(app),
     connect = require('connect'),
@@ -18,7 +17,9 @@ app.get('/', function (req, res) {
 });
 
 
-mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app', { useNewUrlParser: true }, function (err, db) {
+mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app',
+    { useNewUrlParser: true },
+    function (err, db) {
     if (err) {
 
         console.log(err);
@@ -64,7 +65,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         passwd: usr.password,
                         name: usr.name,
                         surname: usr.surname
-                    })
+                    });
                     io.emit('user', {
                         user: usr.email,
                         passwd: usr.password,
