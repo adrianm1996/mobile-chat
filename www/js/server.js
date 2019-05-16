@@ -13,7 +13,7 @@ var express = require('express'),
 
 app.use(express.static('public'));
 app.get('/', function (req, res) {
-    res.sendFile('index.html', { root: '../www' });
+    res.sendFile('index.html', { root: './www' });
 });
 
 
@@ -30,6 +30,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
 
             var col = db.db().collection('messages');
+            var userName;
 
             col.find().toArray(function (err, res) {
                 if (err)
@@ -87,7 +88,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         else if (result.user == usrLog.email && result.passwd == usrLog.password) {
                             var destination = './registration.html';
                             socket.emit('redirect', destination);
-             
+                            userName = usrLog.name + " " + usrLog.surname;
                         }
                         else
                             console.log("user not found");
