@@ -18,7 +18,9 @@ app.get('/', function (req, res) {
 });
 
 
-mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app', { useNewUrlParser: true }, function (err, db) {
+mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app',
+    { useNewUrlParser: true },
+    function (err, db) {
     if (err) {
 
         console.log(err);
@@ -85,7 +87,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         if (result == null) console.log("login invalid");
                         else if (result.user == usrLog.email && result.passwd == usrLog.password) {
                             var destination = './registration.html';
-                            socket.emit('redirect', destination);
+                            //socket.emit('redirect', destination);
              
                         }
                         else
