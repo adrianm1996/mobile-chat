@@ -89,10 +89,10 @@
                             name: $('#nameR').val(),
                             surname: $('#surnameR').val()
                         });
-                        $('#emailR').val('');
-                        $('#passwordR').val('');
                         $('#nameR').val('');
                         $('#surnameR').val('');
+                        $('#emailR').val('');
+                        $('#passwordR').val('');
                     }
                     return false;
                 });
@@ -102,6 +102,7 @@
                         socket.emit('userLogin', {
                             email: $('#email').val(),
                             password: $('#password').val()
+                            
                         });
                         $('#email').val('');
                         $('#password').val('');
