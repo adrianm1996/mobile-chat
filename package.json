@@ -11,6 +11,7 @@
     "jsdom": "^15.1.0",
     "mongodb": "^3.2.2",
     "phonegap": "^8.2.2",
+    "requirejs": "^2.3.6",
     "scripts": {
       "start": "node www/js/server.js"
     },
