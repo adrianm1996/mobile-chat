@@ -1,7 +1,6 @@
 
 
 var express = require('express'),
-    router = express.Router(),
     app = express(),
     http = require('http').createServer(app),
     connect = require('connect'),
@@ -87,7 +86,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         if (result == null) console.log("login invalid");
                         else if (result.user == usrLog.email && result.passwd == usrLog.password) {
                             var destination = './registration.html';
-                            //socket.emit('redirect', destination);
+                            socket.emit('redirect', destination);
              
                         }
                         else
