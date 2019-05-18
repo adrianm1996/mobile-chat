@@ -79,7 +79,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 });
             });
 
-           io.of('/registration.html').on('connection', function (socket) {
+            io.of('/registration.html').sockets.on('connection', function (socket) {
                 console.log("messages connect");
 
                 var col = db.db().collection('messages');
@@ -91,7 +91,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     socket.emit('output', res);
                 });
                 socket.on('message', function (msg) {
-
+                    console.log("send");
                     var whiteSpacePattern = /^\s*$/;
 
                     if (whiteSpacePattern.test(msg.username) || whiteSpacePattern.test(msg.message)) {
