@@ -79,6 +79,8 @@
     <script>
         $(function () {
             var socket = io.connect('https://admis-chat.herokuapp.com');
+            var username = prompt("Nazwa");
+            if (username)    
             {
                 $('form').submit(function () {
                     if ($('#emailR').val().length > 0 && $('#passwordR').val().length > 0 &&
