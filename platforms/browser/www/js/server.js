@@ -79,7 +79,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 var destination = './registration.html';
                                 socket.emit('redirect', destination);
                                 direct = true;
-                                loggedUsr = resul.email;
+                                loggedUsr = result.email;
                             }
                             else
                                 console.log("user not found");
