@@ -120,8 +120,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 });
 
 
-                var col = db.db().collection('users');
-                col.find().toArray(function (err, res) {
+                var regUser = db.db().collection('users');
+                regUser.find().toArray(function (err, res) {
                     if (err)
                         console.log(err);
                     else
