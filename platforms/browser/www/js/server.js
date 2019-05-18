@@ -93,7 +93,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 console.log("messages connect");
 
                 var col = db.db().collection('messages');
-                col.find().toarray(function (err, res) {
+                col.find().toArray(function (err, res) {
                     if (err)
                         console.log(err);
                     else
