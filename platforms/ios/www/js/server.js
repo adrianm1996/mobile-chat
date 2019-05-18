@@ -82,9 +82,6 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         });
                     }
                 });
-
-
-
             });
 
             app.get('/', function (req, res) {
@@ -93,7 +90,6 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
 
             io.of('/registration.html').on('connection', function (socket) {
-                //io.sockets.on('connection', function (socket) {
                 console.log("messages connect");
 
                 var col = db.db().collection('messages');
@@ -101,12 +97,9 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     if (err)
                         console.log(err);
                     else
-                        console.log('output');
-                    socket.emit('output', res);
+                        socket.emit('output', res);
                 });
                 socket.on('message', function (msg) {
-                    
-                    console.log("send");
                     var whitespacepattern = /^\s*$/;
 
                     if (whitespacepattern.test(msg.username) || whitespacepattern.test(msg.message)) {
@@ -114,12 +107,23 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     }
                     else {
                         col.insert({ username: msg.username, message: msg.message })
-                        io.of('registration.html').emit('message', {
+                        //io.of('registration.html').emit('message', {
+                        io.emit('message', {
                             message: msg.message,
                             username: msg.username
                         });
                     }
                 });
+
+
+                var col = db.db().collection('users');
+                col.find().toArray(function (err, res) {
+                    if (err)
+                        console.log(err);
+                    else
+                        socket.emit('peopleOutput', res);
+                });
+              
 
             });
         }

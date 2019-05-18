@@ -46,7 +46,9 @@
             <div id="friends_content">
                 <div id="friends_submit">Friends</div>
                 <div id="friends_text">
-                    pi�tkowe piwo smakuje najlepiej hehe
+                    <ul id="people">
+                        <!--<li>test</li>-->
+                    </ul>
                 </div>
             </div>
         </div>
@@ -80,9 +82,16 @@
                 if (data.length) {
                     for (var x = 0; x < data.length; x++) {
                         $('#messages').append($('<li>').text(data[x].username + ": " + data[x].message));
-                        //$('#messages').animate({scrollTop: $('#messages').prop("scrollHeight")}, 100);
                         $('#messages').scrollTop($('#messages')[0].scrollHeight);
-                        //$("#messages").scrollTop(bottom);
+                    }
+                }
+            });
+
+            socket.on('peopleOutput', function (data) {
+                if (data.length) {
+                    for (var x = 0; x < data.length; x++) {
+                        $('#people').append($('<li>').text(data[x].name + " " + data[x].surname));
+                        $('#people').scrollTop($('#people')[0].scrollHeight);
                     }
                 }
             });
@@ -104,6 +113,8 @@
                 $('#messages').animate({ scrollTop: $('#messages').prop("scrollHeight") }, 500);
                 $("html, body").scrollTop($(document).height());
             });
+
+
 
             socket.on('er', function (er) {
                 alert(er);
