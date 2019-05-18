@@ -77,11 +77,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 var destination = './registration.html';
                                 socket.emit('redirect', destination);
                                 direct = true;
-                                userName = result.name + " " + result.surname;
-                                console.log(userName);
-                                window.onload = function() {
-                                    document.getElementById('personName').innerHTML = userName;
-                                }
+ 
                                 
                             }
                             else
