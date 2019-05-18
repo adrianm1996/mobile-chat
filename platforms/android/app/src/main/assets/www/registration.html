@@ -75,7 +75,7 @@
     </script>
     <script>
         $(function () {
-            var socket = io.connect('http://admis-chat.herokuapp.com');
+            var socket = io.connect('http://admis-chat.herokuapp.com/registration.html');
             socket.on('output', function (data) {
                 if (data.length) {
                     for (var x = 0; x < data.length; x++) {
@@ -86,26 +86,25 @@
                     }
                 }
             });
-            username = "kkasd"; //document.getElementById("personName").innerHTML;
-            if (username) {
-                $('form').submit(function () {
-                    if ($('#msg').val().length > 0) {
-                        console.log(msg);
-                        socket.emit('message', {
-                            message: $('#msg').val(),
-                            username: username
-                        });
-                        $('#msg').val('');
-                    }
-                    return false;
-                });
 
-                socket.on('message', function (msg) {
-                    $('#messages').append($('<li>').text(msg.username + ": " + msg.message));
-                    $('#messages').animate({ scrollTop: $('#messages').prop("scrollHeight") }, 500);
-                    $("html, body").scrollTop($(document).height());
-                });
-            }
+            $('form').submit(function () {
+                if ($('#msg').val().length > 0) {
+                    console.log(msg);
+                    socket.emit('message', {
+                        message: $('#msg').val(),
+                        username: username
+                    });
+                    $('#msg').val('');
+                }
+                return false;
+            });
+
+            socket.on('message', function (msg) {
+                $('#messages').append($('<li>').text(msg.username + ": " + msg.message));
+                $('#messages').animate({ scrollTop: $('#messages').prop("scrollHeight") }, 500);
+                $("html, body").scrollTop($(document).height());
+            });
+
             socket.on('er', function (er) {
                 alert(er);
             });
