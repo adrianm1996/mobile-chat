@@ -1,4 +1,4 @@
-﻿
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>Business Cards || Login</title>
@@ -113,14 +113,15 @@
                     return false;
                 });
 
-                socket.on('redirect', function (destination) {
+                
+            }
+            socket.on('redirect', function (destination) {
                     window.location.href = destination;
                 });
 
-                socket.on('er', function (er) {
+             socket.on('er', function (er) {
                     alert(er);
                 });
-            }
         });
     </script>
 </body>
