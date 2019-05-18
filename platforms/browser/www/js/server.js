@@ -97,13 +97,15 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 console.log("messages connect");
 
                 var col = db.db().collection('messages');
-                col.find().toArray(function (err, res) {
-                    if (err)
-                        console.log(err);
-                    else
-                        socket.emit('output', res);
-                });
+
                 socket.on('message', function (msg) {
+                    col.find().toArray(function (err, res) {
+                        if (err)
+                            console.log(err);
+                        else
+                            console.log('output');
+                        socket.emit('output', res);
+                    });
                     console.log("send");
                     var whitespacepattern = /^\s*$/;
 
