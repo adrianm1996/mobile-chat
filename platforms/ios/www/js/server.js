@@ -112,7 +112,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     }
                     else {
                         col.insert({ username: msg.username, message: msg.message })
-                        io.sockets.emit('message', {
+                        io.emit('message', {
                             message: msg.message,
                             username: msg.username
                         });
