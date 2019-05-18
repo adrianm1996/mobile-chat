@@ -15,7 +15,7 @@ GLOBAL.document = new JSDOM('./registration.html').window.document;
 GLOBAL.window = new JSDOM('./registration.html').window;
 var direct = false;
 var loggedUsr;
-var $ = jQuery = require('jquery')(window);
+var $ = require('jquery')(window);
 
 http.listen(process.env.PORT || 3000, function () {
     var host = http.address().address;
