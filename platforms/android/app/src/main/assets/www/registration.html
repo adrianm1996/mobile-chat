@@ -77,6 +77,7 @@
     </script>
     <script>
         $(function () {
+            // Wyświetlanie wiadomości
             var socket = io.connect('http://admis-chat.herokuapp.com/registration.html');
             socket.on('output', function (data) {
                 if (data.length) {
@@ -87,14 +88,19 @@
                 }
             });
 
+            // Wyświetlanie zarejestrowanych osób
             socket.on('peopleOutput', function (data) {
                 if (data.length) {
                     for (var x = 0; x < data.length; x++) {
-                        $('#people').append($('<li>').text(data[x].name + " " + data[x].surname));
+                        $('#people').append(
+                            $('<li>').append(
+                                $('<a>').attr('href', '#').text(data[x].name + " " + data[x].surname)));
                         $('#people').scrollTop($('#people')[0].scrollHeight);
                     }
                 }
             });
+
+
             var username = "test";
             $('form').submit(function () {
                 if ($('#msg').val().length > 0) {
