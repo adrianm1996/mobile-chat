@@ -30,7 +30,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
         else {
 
 
-            io.sockets.on('connection', function (socket) {
+            var login = io.of('/').on('connection', function (socket) {
                 console.log("Socket connected.");
 
 
@@ -78,13 +78,12 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     }
                 });
 
-                
+
 
             });
 
-
-            io.of('/registration.html').on('connection', function (socket) {
-            //io.sockets.on('connection', function (socket) {
+            var chat = io.of('/registration.html').on('connection', function (socket) {
+                //io.sockets.on('connection', function (socket) {
                 console.log("messages connect");
 
                 var col = db.db().collection('messages');
@@ -112,8 +111,6 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 });
 
             });
-
-
         }
     });
 
