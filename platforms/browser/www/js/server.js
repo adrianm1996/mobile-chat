@@ -13,7 +13,11 @@ var express = require('express'),
 
 var direct = false;
 
-
+http.listen(process.env.PORT || 3000, function () {
+    var host = http.address().address;
+    var port = http.address().port;
+    console.log('open at http://' + host + ':' + port)
+});
 
 app.use(express.static('public'));
 
@@ -108,7 +112,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     }
                     else {
                         col.insert({ username: msg.username, message: msg.message })
-                        io.emit('message', {
+                        io.sockets.emit('message', {
                             message: msg.message,
                             username: msg.username
                         });
@@ -120,8 +124,4 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
     });
 
 
-http.listen(process.env.PORT || 3000, function () {
-    var host = http.address().address;
-    var port = http.address().port;
-    console.log('open at http://' + host + ':' + port)
-});
+
