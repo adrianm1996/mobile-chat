@@ -27,7 +27,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
             console.log(err);
         }
         else {
-            
+
 
 
             io.sockets.on('connection', function (socket) {
@@ -77,6 +77,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         });
                     }
                 });
+                
             });
 
             io.of('/registration.html').on('connection', function (socket) {
@@ -87,10 +88,9 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     if (err)
                         console.log(err);
                     else
-
-                    socket.emit('output', res);
+                        socket.emit('output', res);
                 });
-                socket.on('message', function (msg) {
+                socket.emit('message', function (msg) {
                     console.log("send");
                     var whiteSpacePattern = /^\s*$/;
 
@@ -98,6 +98,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         socket.emit('er', "Wiadomość i nazwa użytkownika nie może być pusta.");
                     }
                     else {
+                        console.log("message");
                         col.insert({ username: msg.username, message: msg.message })
                         io.emit('message', {
                             message: msg.message,
@@ -105,6 +106,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         });
                     }
                 });
+
             });
 
 
