@@ -11,6 +11,7 @@ var express = require('express'),
     jsdom = require('jsdom'),
     JSDOM = jsdom.JSDOM;
 
+GLOBAL.document = new JSDOM('./registration.html').window.document;
 var direct = false;
 
 http.listen(process.env.PORT || 3000, function () {
