@@ -2,7 +2,7 @@
 
 var express = require('express'),
     app = express(),
-    http = require('http').createServer(app),
+    http = require('http').Server(app),
     connect = require('connect'),
     io = require('socket.io')(http),
     bodyParser = require('body-parser'),
