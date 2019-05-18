@@ -75,7 +75,11 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         });
                     }
                 });
+            });
 
+            if (direct) {
+                io.sockets.on('connection', function (socket) {
+                    console.log("messages connect");
 
                     var col = db.db().collection('messages');
                     col.find().toArray(function (err, res) {
@@ -83,7 +87,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             console.log(err);
                         else
                             console.log("testtt");
-                            //socket.emit('output', res);
+                        //socket.emit('output', res);
                     });
                     socket.on('message', function (msg) {
 
@@ -100,8 +104,9 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             });
                         }
                     });
-                
-            });
+                });
+            }
+
         }
     });
 
