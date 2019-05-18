@@ -130,7 +130,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     if (err)
                         console.log(err);
                     else {
-                        var tmpPerson = $('#email').value();
+                        var tmpPerson = $('#email').text();
                         var person = $('#logged').text(tmpPerson);
                         socket.emit('peopleOutput', res);
                     }
