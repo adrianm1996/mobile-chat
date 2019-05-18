@@ -30,7 +30,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
             
 
 
-            io.on('connection', function (socket) {
+            io.sockets.on('connection', function (socket) {
                 console.log("Socket connected.");
 
 
