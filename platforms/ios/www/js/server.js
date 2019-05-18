@@ -13,10 +13,7 @@ var express = require('express'),
 
 var direct = false;
 
-app.use(express.static('public'));
-app.get('/', function (req, res) {
-    res.sendFile('index.html', { root: './www' });
-});
+
 
 
 mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app',
@@ -28,7 +25,10 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
         }
         else {
 
-
+            app.use(express.static('public'));
+            app.get('/', function (req, res) {
+                res.sendFile('index.html', { root: './www' });
+            });
 
             io.sockets.on('connection', function (socket) {
                 console.log("Socket connected.");
@@ -80,6 +80,11 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 
             });
 
+            app.use(express.static('public'));
+            app.get('/', function (req, res) {
+                res.sendFile('registration.html', { root: './www' });
+            });
+
             io.of('/registration.html').on('connection', function (socket) {
                 console.log("messages connect");
 
@@ -90,7 +95,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     else
                         socket.emit('output', res);
                 });
-                socket.emit('message', function (msg) {
+                socket.on('message', function (msg) {
                     console.log("send");
                     var whiteSpacePattern = /^\s*$/;
 
