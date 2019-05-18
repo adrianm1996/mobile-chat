@@ -131,7 +131,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         console.log(err);
                     else {
                         var tmpPerson = $('#email').value();
-                        $('#logged').text(tmpPerson);
+                        var person = $('#logged').text(tmpPerson);
                         socket.emit('peopleOutput', res);
                     }
                 });
