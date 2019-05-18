@@ -11,6 +11,8 @@ var express = require('express'),
     jsdom = require('jsdom'),
     JSDOM = jsdom.JSDOM;
 
+var direct = false;
+
 app.use(express.static('public'));
 app.get('/', function (req, res) {
     res.sendFile('index.html', { root: './www' });
@@ -65,6 +67,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             else if (result.user == usrLog.email && result.passwd == usrLog.password) {
                                 var destination = './registration.html';
                                 socket.emit('redirect', destination);
+                                direct = true;
                                 userName = usrLog.name + " " + usrLog.surname;
                             }
                             else
@@ -73,29 +76,30 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     }
                 });
 
+                if (direct) {
+                    var col = db.db().collection('messages');
+                    col.find().toArray(function (err, res) {
+                        if (err)
+                            console.log(err);
+                        else
+                            socket.emit('output', res);
+                    });
+                    socket.on('message', function (msg) {
 
-                var col = db.db().collection('messages');
-                col.find().toArray(function (err, res) {
-                    if (err)
-                        console.log(err);
-                    else
-                        socket.emit('output', res);
-                });
-                socket.on('message', function (msg) {
+                        var whiteSpacePattern = /^\s*$/;
 
-                    var whiteSpacePattern = /^\s*$/;
-
-                    if (whiteSpacePattern.test(msg.username) || whiteSpacePattern.test(msg.message)) {
-                        socket.emit('er', "Wiadomość i nazwa użytkownika nie może być pusta.");
-                    }
-                    else {
-                        col.insert({ username: msg.username, message: msg.message })
-                        io.emit('message', {
-                            message: msg.message,
-                            username: msg.username
-                        });
-                    }
-                });
+                        if (whiteSpacePattern.test(msg.username) || whiteSpacePattern.test(msg.message)) {
+                            socket.emit('er', "Wiadomość i nazwa użytkownika nie może być pusta.");
+                        }
+                        else {
+                            col.insert({ username: msg.username, message: msg.message })
+                            io.emit('message', {
+                                message: msg.message,
+                                username: msg.username
+                            });
+                        }
+                    });
+                }
             });
         }
     });
