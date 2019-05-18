@@ -77,7 +77,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 socket.emit('redirect', destination);
                                 direct = true;
                                 userName = usrLog.name + " " + usrLog.surname;
-                                document.getElementById('personName').textContent = userName;
+                                console.log(userName);
+                                document.getElementById('personName').innerHTML = userName;
                             }
                             else
                                 console.log("user not found");
