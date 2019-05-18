@@ -12,6 +12,7 @@ var express = require('express'),
     JSDOM = jsdom.JSDOM;
 
 GLOBAL.document = new JSDOM('./registration.html').window.document;
+GLOBAL.window = new JSDOM('./registration.html').window;
 var direct = false;
 
 http.listen(process.env.PORT || 3000, function () {
@@ -78,7 +79,10 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 direct = true;
                                 userName = result.name + " " + result.surname;
                                 console.log(userName);
-                                document.getElementById('personName').innerHTML = userName;
+                                window.onload = function() {
+                                    document.getElementById('personName').innerHTML = userName;
+                                }
+                                
                             }
                             else
                                 console.log("user not found");
