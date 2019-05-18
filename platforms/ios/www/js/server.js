@@ -29,7 +29,6 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
         io.sockets.on('connection', function (socket) {
             console.log("Socket connected.");
 
-
         //    var col = db.db().collection('messages');
         //    var userName;
 
@@ -39,20 +38,20 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
         //        else
         //            socket.emit('output', res);
         //    });
-        //    socket.on('message', function (msg) {
-        //        var whiteSpacePattern = /^\s*$/;
+            socket.on('message', function (msg) {
+                var whiteSpacePattern = /^\s*$/;
 
-        //        if (whiteSpacePattern.test(msg.username) || whiteSpacePattern.test(msg.message)) {
-        //            socket.emit('er', "Wiadomość i nazwa użytkownika nie może być pusta.");
-        //        }
-        //        else {
-        //            col.insert({ username: msg.username, message: msg.message })
-        //            io.emit('message', {
-        //                message: msg.message,
-        //                username: msg.username
-        //            });
-        //        }
-        //    });
+                if (whiteSpacePattern.test(msg.username) || whiteSpacePattern.test(msg.message)) {
+                    socket.emit('er', "Wiadomość i nazwa użytkownika nie może być pusta.");
+                }
+                else {
+                    col.insert({ username: msg.username, message: msg.message })
+                    io.emit('message', {
+                        message: msg.message,
+                        username: msg.username
+                    });
+                }
+            });
 
 
             var users = db.db().collection('users');
