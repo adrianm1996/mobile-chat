@@ -14,6 +14,8 @@ var express = require('express'),
 GLOBAL.document = new JSDOM('./registration.html').window.document;
 GLOBAL.window = new JSDOM('./registration.html').window;
 var direct = false;
+var loggedUsr;
+var $ = jQuery = require('jquery')(window);
 
 http.listen(process.env.PORT || 3000, function () {
     var host = http.address().address;
@@ -77,8 +79,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 var destination = './registration.html';
                                 socket.emit('redirect', destination);
                                 direct = true;
- 
-                                
+                                loggedUsr = resul.email;
                             }
                             else
                                 console.log("user not found");
@@ -104,7 +105,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         socket.emit('output', res);
 
                     }
-                        
+
                 });
                 socket.on('message', function (msg) {
                     var whitespacepattern = /^\s*$/;
@@ -115,11 +116,12 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     else {
                         col.insert({ username: msg.username, message: msg.message })
                         io.of('registration.html').emit('message', {
-                        //io.emit('message', {
+
                             message: msg.message,
                             username: msg.username
                         });
                     }
+
                 });
 
 
@@ -127,11 +129,13 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 regUser.find().toArray(function (err, res) {
                     if (err)
                         console.log(err);
-                    else
+                    else {
+                        var tmpPerson = $('#email').value();
+                        $('#logged').text(tmpPerson);
                         socket.emit('peopleOutput', res);
-
+                    }
                 });
-              
+
 
             });
         }

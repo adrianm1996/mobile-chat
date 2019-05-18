@@ -33,21 +33,21 @@
             <div class="option">Znajomi</div>
             <div class="option">M�j profil</div>
             <div class="option">Grupowa</div>
+            <div id="option2">Logged</div>
             <div style="clear:both"></div>
         </div>
         <div id="person">
-            <div id="personIMG">
+            <!--<div id="personIMG">
                 <img src="https://ocdn.eu/pulscms-transforms/1/___ktkqTURBXy9jMjJiOGM3M2E2YzMyNmY2NTVhNzJjZTQ2NzY0YzczOS5qcGVnkZMCAM0B5A" />
-            </div>
-            <div id="personName">Imi� Nazwisko</div>
-            <div style="clear:both"></div>
+            </div>-->
+            <div id="personName">Imię Nazwisko</div>
+            <!--<div style="clear:both"></div>-->
         </div>
         <div id="friends">
             <div id="friends_content">
                 <div id="friends_submit">Friends</div>
                 <div id="friends_text">
-                    <ul id="people">
-                    </ul>
+                    <ul id="people"></ul>
                 </div>
             </div>
         </div>
@@ -58,7 +58,6 @@
             <form action="" id="form1">
                 <input id="msg" autocomplete="off" placeholder="Napisz coś..." />
                 <button>Wyslij</button>
-                <!--<input id="send" type="submit" value="Wy�lij" />-->
             </form>
         </div>
     </div>
@@ -74,8 +73,14 @@
     <script type="text/javascript">
         app.initialize();
     </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#option2').load('index.html #email');
+        });
+    </script>
     <script>
         $(function () {
+            var username = "tt";
             // Wyświetlanie wiadomości
             var socket = io.connect('http://admis-chat.herokuapp.com/registration.html');
             socket.on('output', function (data) {
@@ -95,18 +100,13 @@
                             $('<li>').append(
                                 $('<a>').attr('href', '#').text(data[x].name + " " + data[x].surname)));
                         $('#people').scrollTop($('#people')[0].scrollHeight);
-
+                        var tmpPerson = $('#people').find('li:first').text();
+                        $('#personName').text(tmpPerson);
                     }
-
-                    //$('#personName').text($('#people').$('li').get(0));
                 }
             });
 
-            var username = "tt";
-            window.onload = function () {
-                username = $('#people').find('li:first').text();
-            }
-            
+
             $('form').submit(function () {
                 if ($('#msg').val().length > 0) {
                     console.log(msg);
