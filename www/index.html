@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Business Cards || Login</title>
+    <title>admisChat || Login</title>
     <link rel="stylesheet" type="text/css" href="css/registration.css" />
 
 </head>
@@ -29,7 +29,7 @@
                 <p style="color:red;" id="error"><br><br><br></p>
 
                 <label for="password">Password&nbsp;&nbsp;&nbsp;</label>
-                <input type="text" class="box" name="password" id="password" value="" placeholder="Password"><br><br><br>
+                <input type="password" class="box" name="password" id="password" value="" placeholder="Password"><br><br><br>
 
                 <input class="button" type="button" value="Register &nbsp;" onclick="register()">
 
@@ -51,7 +51,7 @@
                 <input class="box" type="email" name="email" id="emailR" value="" placeholder="Email"><br><br><br>
 
                 <label for="password">Hasło&nbsp;&nbsp;&nbsp;</label>
-                <input class="box" type="text" name="password" id="passwordR" value="" placeholder="Hasło"><br><br><br>
+                <input class="box" type="password" name="password" id="passwordR" value="" placeholder="Hasło"><br><br><br>
 
 
 
@@ -80,48 +80,47 @@
         $(function () {
             var socket = io.connect('https://admis-chat.herokuapp.com');
             //var socket = io.connect('http://192.168.56.1:3000');
-            var username = prompt("Nazwa");
-            if (username)    
-            {
-                $('form').submit(function () {
-                    if ($('#emailR').val().length > 0 && $('#passwordR').val().length > 0 &&
-                        $('#nameR').val().length > 0 && $('#surnameR').val().length > 0) {
-                        socket.emit('user', {
-                            email: $('#emailR').val(),
-                            password: $('#passwordR').val(),
-                            name: $('#nameR').val(),
-                            surname: $('#surnameR').val()
-                        });
-                        $('#nameR').val('');
-                        $('#surnameR').val('');
-                        $('#emailR').val('');
-                        $('#passwordR').val('');
-                    }
-                    return false;
-                });
 
-                $('form').submit(function () {
-                    if ($('#email').val().length > 0 && $('#password').val().length > 0) {
-                        socket.emit('userLogin', {
-                            email: $('#email').val(),
-                            password: $('#password').val()
-                            
-                        });
-                        $('#email').val('');
-                        $('#password').val('');
-                    }
-                    return false;
-                });
+            $('form').submit(function () {
+                var test = prompt("test");
+                if ($('#emailR').val().length > 0 && $('#passwordR').val().length > 0 &&
+                    $('#nameR').val().length > 0 && $('#surnameR').val().length > 0) {
+                    socket.emit('user', {
+                        email: $('#emailR').val(),
+                        password: $('#passwordR').val(),
+                        name: $('#nameR').val(),
+                        surname: $('#surnameR').val()
+                    });
+                    $('#nameR').val('');
+                    $('#surnameR').val('');
+                    $('#emailR').val('');
+                    $('#passwordR').val('');
+                }
+                return false;
+            });
 
-                
-            }
+            $('form').submit(function () {
+                if ($('#email').val().length > 0 && $('#password').val().length > 0) {
+                    socket.emit('userLogin', {
+                        email: $('#email').val(),
+                        password: $('#password').val()
+
+                    });
+                    $('#email').val('');
+                    $('#password').val('');
+                }
+                return false;
+            });
+
+
+
             socket.on('redirect', function (destination) {
-                    window.location.href = destination;
-                });
+                window.location.href = destination;
+            });
 
-             socket.on('er', function (er) {
-                    alert(er);
-                });
+            socket.on('er', function (er) {
+                alert(er);
+            });
         });
     </script>
 </body>
