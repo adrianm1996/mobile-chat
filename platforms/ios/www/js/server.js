@@ -16,9 +16,7 @@ var direct = false;
 
 
 app.use(express.static('public'));
-app.get('/', function (req, res) {
-    res.sendFile('index.html', { root: './www' });
-});
+
 
 mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app',
     { useNewUrlParser: true },
@@ -29,8 +27,11 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
         }
         else {
 
+            app.get('/', function (req, res) {
+                res.sendFile('index.html', { root: './www' });
+            });
 
-            var login = io.of('/').on('connection', function (socket) {
+            io.of('/').on('connection', function (socket) {
                 console.log("Socket connected.");
 
 
@@ -82,12 +83,15 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
             });
 
-            var chat = io.of('/registration.html').on('connection', function (socket) {
-                //io.sockets.on('connection', function (socket) {
+            app.get('/', function (req, res) {
+                res.sendFile('registration.html', { root: './www' });
+            });
+            io.of('/registration.html').on('connection', function (socket) {
+                io.sockets.on('connection', function (socket) {
                 console.log("messages connect");
 
                 var col = db.db().collection('messages');
-                col.find().toArray(function (err, res) {
+                col.find().toarray(function (err, res) {
                     if (err)
                         console.log(err);
                     else
@@ -95,10 +99,10 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 });
                 socket.on('message', function (msg) {
                     console.log("send");
-                    var whiteSpacePattern = /^\s*$/;
+                    var whitespacepattern = /^\s*$/;
 
-                    if (whiteSpacePattern.test(msg.username) || whiteSpacePattern.test(msg.message)) {
-                        socket.emit('er', "Wiadomość i nazwa użytkownika nie może być pusta.");
+                    if (whitespacepattern.test(msg.username) || whitespacepattern.test(msg.message)) {
+                        socket.emit('er', "wiadomość i nazwa użytkownika nie może być pusta.");
                     }
                     else {
                         console.log("message");
