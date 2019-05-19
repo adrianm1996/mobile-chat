@@ -76,7 +76,11 @@
     </script>
     <script>
         $(function () {
-            var username = "tt";
+            var username = "tomasz";
+
+            socket.on('userLogin', function (usr) {
+                $('#option2').text(usr.email);
+            });
 
             // Wyświetlanie zarejestrowanych osób
             socket.on('peopleOutput', function (data) {
@@ -123,9 +127,7 @@
                 $("html, body").scrollTop($(document).height());
             });
 
-            socket.on('userLogin', function (usr) {
-                $('#option2').text(usr.email);
-            });
+            
 
             $("#logout").click(function () {
                 var destination = './index.html';
