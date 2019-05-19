@@ -132,9 +132,9 @@
                 });
             });
 
-            $('#logout').click(socket.on('redirect', function (destination) {
-                window.location.href = destination;
-            }));
+            //$('#logout').click(socket.on('redirect', function (destination) {
+            //    window.location.href = destination;
+            //}));
 
             socket.on('er', function (er) {
                 alert(er);
