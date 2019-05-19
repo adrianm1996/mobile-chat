@@ -19,7 +19,7 @@ var express = require('express'),
 GLOBAL.document = new JSDOM('./registration.html').window.document;
 GLOBAL.window = new JSDOM('./registration.html').window;
 var direct = false;
-var loggedUsr;
+var loggedUsr = "loggedUser";
 var $ = require('jquery');
 var sess;
 
@@ -82,8 +82,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             if (result == null) console.log("login invalid");
                             else if (result.user == usrLog.email && result.passwd == usrLog.password) {
                                 var destination = './registration.html';
-                                console.log(result.email);
-                                loggedUsr = result.email;
+                                console.log(result.user);
+                                loggedUsr = result.user;
                                 console.log(loggedUsr);
                                 socket.emit('redirect', destination);
                                 direct = true;
