@@ -13,6 +13,7 @@
     "express-socket.io-session": "^1.3.5",
     "jquery": "^3.4.1",
     "jsdom": "^15.1.0",
+    "memcached": "^2.2.2",
     "mongodb": "^3.2.2",
     "phonegap": "^8.2.2",
     "requirejs": "^2.3.6",
