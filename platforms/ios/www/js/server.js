@@ -106,7 +106,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
                 socket.on('createChat', function (usr) {
                     var dbName = usr.loggedUsr + usr.withUser + 'CHAT';
-                    db.dbName.insert({ message: "test" });
+                    db.db().collection(dbName).insert({ message: "test" });
                 });
             
 
