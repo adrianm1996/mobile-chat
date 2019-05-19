@@ -125,16 +125,9 @@
             });
 
             $("#logout").click(function () {
-                $(this).data('clicked', true);
+                var destination = './index.html';
+                window.location.href = destination;
             });
-
-
-            if ($("#logout").data('clicked')) {
-                socket.on('logout', function (destination) {
-                     window.location.href = destination;
-                });
-            }
-
 
             socket.on('er', function (er) {
                 alert(er);
