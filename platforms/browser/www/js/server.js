@@ -98,8 +98,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
             io.of('/registration.html').on('connection', function (socket) {
                 console.log("messages connect");
 
-                //socket.handshake.session.userdata = loggedUsr;
-                //socket.handshake.session.save();
+                socket.handshake.session.userdata = loggedUsr;
+                socket.handshake.session.save();
 
 
                 var col = db.db().collection('messages');
