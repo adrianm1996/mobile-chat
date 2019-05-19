@@ -82,10 +82,10 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             if (result == null) console.log("login invalid");
                             else if (result.user == usrLog.email && result.passwd == usrLog.password) {
                                 var destination = './registration.html';
-
+                                loggedUsr = result.email;
                                 socket.emit('redirect', destination);
                                 direct = true;
-                                loggedUsr = result.email;
+                                
                             }
                             else
                                 console.log("user not found");
@@ -103,8 +103,9 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 //if (loggedUsr)
                     io.of('registration.html').emit('userLogin', {
                         email: "test1"
+
                         //email: loggedUsr
-                   // });
+                    });
                // });
                 
                 //socket.emit("userLog", function (userdata) {
