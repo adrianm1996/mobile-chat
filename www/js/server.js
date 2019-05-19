@@ -1,7 +1,11 @@
 
 
 var express = require('express'),
-    session = require('express-session'),
+    session = require('express-session')({
+        secret: 'my-secret',
+        saveUninitialized: true,
+        resave: true
+    }),
     app = express(),
     http = require('http').Server(app),
     io = require('socket.io')(http),
@@ -20,11 +24,7 @@ var $ = require('jquery');
 var sess;
 
 
-app.use(session({
-    secret: 'my-secret',
-    saveUninitialized: true,
-    resave: true
-}));
+app.use(session);
 app.use(bodyParser.json());
 app.use(urlencodedParser);
 app.use(express.static('public'));
