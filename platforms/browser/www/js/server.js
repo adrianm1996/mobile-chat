@@ -42,7 +42,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
         }
         else {
 
-            
+
 
             io.of('/').on('connection', function (socket) {
                 console.log("Socket connected.");
@@ -97,21 +97,19 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
             io.of('/registration.html').on('connection', function (socket) {
                 console.log("messages connect");
-                socket.on('userLogin', function (usr) {
-                    io.of('registration.html').emit('userLogin', {
-                        email: "test"
-                        //email: loggedUsr
-                    });
+
+
+
+                io.of('registration.html').emit('userLogin', {
+                    email: "test"
+                    //email: loggedUsr
                 });
-                
-                
+
 
                 //socket.emit("userLog", function (userdata) {
                 //    socket.handshake.session.userdata = userdata;
                 //    socket.handshake.session.save();
                 //});
-
-                
 
 
                 var col = db.db().collection('messages');
@@ -159,7 +157,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         delete socket.handshake.session.userdata;
                         socket.handshake.session.save();
                     }
-                });    
+                });
             });
         }
     });
