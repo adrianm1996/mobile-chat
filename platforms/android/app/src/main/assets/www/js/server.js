@@ -138,8 +138,6 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             username: msg.username
                         });
                         io.of('registration.html').emit('userLogin', {
-                            //email: "test1"
-
                             email: loggedUsr
                         });
                     }
