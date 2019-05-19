@@ -104,7 +104,11 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 //socket.on('userLogin', function (usr) {
                 //if (loggedUsr)
 
-                    
+                    io.of('registration.html').emit('userLogin', {
+                        //email: "test1"
+
+                        email: loggedUsr
+                    });
                 //});
                 
                 //socket.emit("userLog", function (userdata) {
@@ -136,9 +140,6 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
                             message: msg.message,
                             username: msg.username
-                        });
-                        io.of('registration.html').emit('userLogin', {
-                            email: loggedUsr
                         });
                     }
 
