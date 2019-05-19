@@ -101,12 +101,12 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 console.log("messages connect");
 
 
-                socket.on('userLogin', function (usr) {
+                socket.on('userLogin', function () {
                     io.of('registration.html').emit('userLogin', {
 
                         email: loggedUsr
                     });
-                    socket.handshake.session.userdata = usr;
+                    socket.handshake.session.userdata = loggedUsr;
                     socket.handshake.session.save();
                 });
 
@@ -161,7 +161,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         delete socket.handshake.session.userdata;
                         socket.handshake.session.save();
                         var destination = './index.html';
-                        socket.emit('logut', destination);
+                        socket.emit('logout', destination);
                     }
                 });
             });
