@@ -146,8 +146,8 @@
 
 
             $("#logout").click(function () {
-                var destination = './';
-                window.location.href = destination;
+                var destination = '/';
+                window.history.back();
             });
 
             socket.on('er', function (er) {
