@@ -33,8 +33,8 @@
             <div class="option">Znajomi</div>
             <div class="option">M�j profil</div>
             <div class="option">Grupowa</div>
-            <div class="option2">Logged</div>
-            <div class="option2"><form action="" id="logout"><button>Logout</button></form></div>
+            <div id="option2">Logged</div>
+            <div id="divLogout"><form action="" id="logout"><button>Logout</button></form></div>
             <div style="clear:both"></div>
         </div>
         <div id="person">
@@ -73,11 +73,6 @@
     <script src="jquery-3.3.1.min.js"></script>
     <script type="text/javascript">
         app.initialize();
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#option2').load('index.html #email');
-        });
     </script>
     <script>
         $(function () {
@@ -125,8 +120,11 @@
                 $("html, body").scrollTop($(document).height());
             });
 
-            socket.on('user', function (usr) {
-                socket.emit('login', usr);
+            socket.on('userLogin', function (usr) {
+               //var tmpPerson = $('#people').find('li:first').text();
+                alert("teter");
+                $('#option2').text("tedst");
+                
             });
 
             $('#logout').click(function () {
