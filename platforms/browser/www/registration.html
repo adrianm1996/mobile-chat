@@ -77,16 +77,6 @@
     <script>
         $(function () {
             var username = "tt";
-            // Wyświetlanie wiadomości
-            var socket = io.connect('http://admis-chat.herokuapp.com/registration.html');
-            socket.on('output', function (data) {
-                if (data.length) {
-                    for (var x = 0; x < data.length; x++) {
-                        $('#messages').append($('<li>').text(data[x].username + ": " + data[x].message));
-                        $('#messages').scrollTop($('#messages')[0].scrollHeight);
-                    }
-                }
-            });
 
             // Wyświetlanie zarejestrowanych osób
             socket.on('peopleOutput', function (data) {
@@ -101,6 +91,19 @@
                     }
                 }
             });
+
+            // Wyświetlanie wiadomości
+            var socket = io.connect('http://admis-chat.herokuapp.com/registration.html');
+            socket.on('output', function (data) {
+                if (data.length) {
+                    for (var x = 0; x < data.length; x++) {
+                        $('#messages').append($('<li>').text(data[x].username + ": " + data[x].message));
+                        $('#messages').scrollTop($('#messages')[0].scrollHeight);
+                    }
+                }
+            });
+
+            
 
 
             $('form').submit(function () {
