@@ -42,7 +42,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
         }
         else {
 
-            
+
 
             io.of('/').on('connection', function (socket) {
                 console.log("Socket connected.");
@@ -87,7 +87,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 console.log(loggedUsr);
                                 socket.emit('redirect', destination);
                                 direct = true;
-                                
+
                             }
                             else
                                 console.log("user not found");
@@ -101,22 +101,21 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 console.log("messages connect");
 
 
-                //socket.on('userLogin', function (usr) {
-                //if (loggedUsr)
-
+                socket.on('userLogin', function (usr) {
                     io.of('registration.html').emit('userLogin', {
-                        //email: "test1"
 
                         email: loggedUsr
                     });
-                //});
-                
+                    socket.handshake.session.userdata = usr;
+                    socket.handshake.session.save();
+                });
+
                 //socket.emit("userLog", function (userdata) {
                 //    socket.handshake.session.userdata = userdata;
                 //    socket.handshake.session.save();
                 //});
 
-       
+
                 var col = db.db().collection('messages');
                 col.find().toArray(function (err, res) {
                     if (err)
@@ -161,8 +160,10 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     if (socket.handshake.session.userdata) {
                         delete socket.handshake.session.userdata;
                         socket.handshake.session.save();
+                        var destination = './index.html';
+                        socket.emit('logut', destination);
                     }
-                });    
+                });
             });
         }
     });

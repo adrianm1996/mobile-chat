@@ -124,8 +124,8 @@
                 $('#option2').text(usr.email);
             });
 
-            $('#logout').click(function () {
-                alert("logout");
+            $('#logout').click(function (destination) {
+                window.location.href = destination;
             });
 
             socket.on('er', function (er) {
