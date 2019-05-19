@@ -183,7 +183,7 @@ input[type=submit] {
     opacity: 0.8;
 }
 
-#option2 {
+.option2 {
     float: right;
     min-width: 50px;
     height: 25px;

@@ -33,7 +33,8 @@
             <div class="option">Znajomi</div>
             <div class="option">M�j profil</div>
             <div class="option">Grupowa</div>
-            <div id="option2">Logged</div>
+            <div class="option2">Logged</div>
+            <div class="option2"><form action="" id="logout"><button>Logout</button></form></div>
             <div style="clear:both"></div>
         </div>
         <div id="person">
@@ -109,7 +110,6 @@
 
             $('form').submit(function () {
                 if ($('#msg').val().length > 0) {
-                    console.log(msg);
                     socket.emit('message', {
                         message: $('#msg').val(),
                         username: username
@@ -126,6 +126,9 @@
             });
 
 
+            $('#logout').click(function () {
+                alert("logout");
+            });
 
             socket.on('er', function (er) {
                 alert(er);

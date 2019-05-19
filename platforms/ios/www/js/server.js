@@ -1,12 +1,13 @@
 
 
 var express = require('express'),
+    session = require('express-session'),
     app = express(),
     http = require('http').Server(app),
-    connect = require('connect'),
     io = require('socket.io')(http),
+    sharedsession = require("express-socket.io-session"),
     bodyParser = require('body-parser'),
-    urlencodedParser = bodyParser.urlencoded({ extended: false }),
+    urlencodedParser = bodyParser.urlencoded({ extended: true }),
     mongo = require('mongodb').MongoClient,
     jsdom = require('jsdom'),
     JSDOM = jsdom.JSDOM;
@@ -16,16 +17,22 @@ GLOBAL.window = new JSDOM('./registration.html').window;
 var direct = false;
 var loggedUsr;
 var $ = require('jquery');
+var sess;
 
-http.listen(process.env.PORT || 3000, function () {
-    var host = http.address().address;
-    var port = http.address().port;
-    console.log('open at http://' + host + ':' + port)
+
+app.use(session({
+    secret: 'my-secret',
+    saveUninitialized: true,
+    resave: true
+}));
+app.use(bodyParser.json());
+app.use(urlencodedParser);
+app.use(express.static('public'));
+app.get('/', function (req, res) {
+    res.sendFile('index.html', { root: './www' });
 });
 
-app.use(express.static('public'));
-
-
+io.use(sharedsession(session));
 mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app',
     { useNewUrlParser: true },
     function (err, db) {
@@ -35,9 +42,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
         }
         else {
 
-            app.get('/', function (req, res) {
-                res.sendFile('index.html', { root: './www' });
-            });
+            
 
             io.of('/').on('connection', function (socket) {
                 console.log("Socket connected.");
@@ -77,6 +82,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             if (result == null) console.log("login invalid");
                             else if (result.user == usrLog.email && result.passwd == usrLog.password) {
                                 var destination = './registration.html';
+
                                 socket.emit('redirect', destination);
                                 direct = true;
                                 loggedUsr = result.email;
@@ -88,13 +94,13 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 });
             });
 
-            app.get('/', function (req, res) {
-                res.sendFile('registration.html', { root: './www' });
-            });
-
 
             io.of('/registration.html').on('connection', function (socket) {
                 console.log("messages connect");
+
+                socket.handshake.session.userdata = loggedUsr;
+                socket.handshake.session.save();
+
 
                 var col = db.db().collection('messages');
                 col.find().toArray(function (err, res) {
@@ -136,10 +142,20 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     }
                 });
 
-
+                socket.on("logout", function (userdata) {
+                    if (socket.handshake.session.userdata) {
+                        delete socket.handshake.session.userdata;
+                        socket.handshake.session.save();
+                    }
+                });    
             });
         }
     });
 
 
 
+http.listen(process.env.PORT || 3000, function () {
+    var host = http.address().address;
+    var port = http.address().port;
+    console.log('open at http://' + host + ':' + port)
+});
