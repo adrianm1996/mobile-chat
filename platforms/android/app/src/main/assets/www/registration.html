@@ -93,10 +93,8 @@
                 if (data.length) {
                     for (var x = 0; x < data.length; x++) {
                         $('#people').append(
-                            $('<li>').append(
-                                $('<a>').attr('href',
-                                    '#'
-                                ).text(data[x].name + " " + data[x].surname)));
+                            $('<li>').attr('id',x).append(
+                                $('<a>').attr('href','#').text(x + " " + data[x].name + " " + data[x].surname)));
                         $('#people').scrollTop($('#people')[0].scrollHeight);
                         var tmpPerson = $('#people').find('li:first').text();
                         $('#personName').text(tmpPerson);
@@ -105,6 +103,7 @@
             });
 
             for (var x = 0; x < $('#people').length; x++) {
+                alert($('#people')[1].text())
                 //socket.on('createChat', function (user) {
                     socket.emit('createChat', {
                         loggedUser: logged,
