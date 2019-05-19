@@ -124,17 +124,17 @@
                 $('#option2').text(usr.email);
             });
 
-
-            socket.on('logout', function (destination) {
-                $('#logout').click(function () {
-
-                    window.location.href = destination;
-                });
+            $("#logout").click(function () {
+                $(this).data('clicked', true);
             });
 
-            //$('#logout').click(socket.on('redirect', function (destination) {
-            //    window.location.href = destination;
-            //}));
+
+            if ($("#logout").data('clicked')) {
+                socket.on('logout', function (destination) {
+                     window.location.href = destination;
+                });
+            }
+
 
             socket.on('er', function (er) {
                 alert(er);

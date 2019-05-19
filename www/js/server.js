@@ -152,7 +152,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     }
                 });
 
-                socket.on("logout", function () {
+                socket.on("logout", function (dest) {
                     //if (socket.handshake.session.userdata) {
                     //    delete socket.handshake.session.userdata;
                     //    socket.handshake.session.save();
