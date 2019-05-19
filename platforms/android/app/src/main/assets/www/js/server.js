@@ -99,15 +99,15 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 console.log("messages connect");
 
 
-                socket.on('userLogin', function (usr) {
+                //socket.on('userLogin', function (usr) {
                 //if (loggedUsr)
 
                     io.of('registration.html').emit('userLogin', {
-                        email: "test1"
+                        //email: "test1"
 
-                        //email: loggedUsr
+                        email: loggedUsr
                     });
-                });
+                //});
                 
                 //socket.emit("userLog", function (userdata) {
                 //    socket.handshake.session.userdata = userdata;
