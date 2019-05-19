@@ -78,10 +78,15 @@
         $(function () {
             var socket = io.connect('http://admis-chat.herokuapp.com/registration.html');
             var username = "tomasz";
+            var logged;
 
             socket.on('userLogin', function (usr) {
+                logged = usr.name + " " + usr.surname;
                 $('#option2').text(usr.email);
             });
+
+            
+            
 
             // Wyświetlanie zarejestrowanych osób
             socket.on('peopleOutput', function (data) {
@@ -89,7 +94,9 @@
                     for (var x = 0; x < data.length; x++) {
                         $('#people').append(
                             $('<li>').append(
-                                $('<a>').attr('href', '#').text(data[x].name + " " + data[x].surname)));
+                                $('<a>').attr('href',
+                                    '#'
+                                ).text(data[x].name + " " + data[x].surname)));
                         $('#people').scrollTop($('#people')[0].scrollHeight);
                         var tmpPerson = $('#people').find('li:first').text();
                         $('#personName').text(tmpPerson);
@@ -97,8 +104,17 @@
                 }
             });
 
+            for (var x = 0; x < $('#people').length; x++) {
+                //socket.on('createChat', function (user) {
+                    socket.emit('createChat', {
+                        loggedUser: logged,
+                        withUser: $('#people').eq(x).text()
+                    });
+                //});
+            }
+
             // Wyświetlanie wiadomości
-            
+
             socket.on('output', function (data) {
                 if (data.length) {
                     for (var x = 0; x < data.length; x++) {
@@ -108,7 +124,7 @@
                 }
             });
 
-            
+
 
 
             $('form').submit(function () {
@@ -128,7 +144,7 @@
                 $("html, body").scrollTop($(document).height());
             });
 
-            
+
 
             $("#logout").click(function () {
                 var destination = './index.html';

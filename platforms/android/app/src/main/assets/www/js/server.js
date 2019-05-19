@@ -99,17 +99,16 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 console.log("messages connect");
 
 
-                //socket.on('userLogin', function () {
-                    io.of('registration.html').emit('userLogin', {
+                io.of('registration.html').emit('userLogin', {
 
-                        email: loggedUsr
-                    });
-                //});
+                    email: loggedUsr
+                });
 
-                //socket.emit("userLog", function (userdata) {
-                //    socket.handshake.session.userdata = userdata;
-                //    socket.handshake.session.save();
-                //});
+                socket.on('createChat', function (usr) {
+                    var dbName = usr.loggedUsr + usr.withUser + 'CHAT';
+                    db.db().dbName.insert({ message: "test" });
+                });
+            
 
 
                 var col = db.db().collection('messages');
