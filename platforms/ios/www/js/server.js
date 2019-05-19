@@ -82,9 +82,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             if (result == null) console.log("login invalid");
                             else if (result.user == usrLog.email && result.passwd == usrLog.password) {
                                 var destination = './registration.html';
-                                console.log(result.user);
                                 loggedUsr = result.user;
-                                console.log(loggedUsr);
                                 socket.emit('redirect', destination);
                                 direct = true;
 
@@ -101,14 +99,12 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 console.log("messages connect");
 
 
-                socket.on('userLogin', function () {
+                //socket.on('userLogin', function () {
                     io.of('registration.html').emit('userLogin', {
 
                         email: loggedUsr
                     });
-                    socket.handshake.session.userdata = loggedUsr;
-                    socket.handshake.session.save();
-                });
+                //});
 
                 //socket.emit("userLog", function (userdata) {
                 //    socket.handshake.session.userdata = userdata;
@@ -157,12 +153,12 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 });
 
                 socket.on("logout", function () {
-                    if (socket.handshake.session.userdata) {
-                        delete socket.handshake.session.userdata;
-                        socket.handshake.session.save();
+                    //if (socket.handshake.session.userdata) {
+                    //    delete socket.handshake.session.userdata;
+                    //    socket.handshake.session.save();
                         var destination = './index.html';
                         socket.emit('logout', destination);
-                    }
+                    //}
                 });
             });
         }
