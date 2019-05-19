@@ -82,7 +82,9 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             if (result == null) console.log("login invalid");
                             else if (result.user == usrLog.email && result.passwd == usrLog.password) {
                                 var destination = './registration.html';
+                                console.log(result.email);
                                 loggedUsr = result.email;
+                                console.log(loggedUsr);
                                 socket.emit('redirect', destination);
                                 direct = true;
                                 
