@@ -81,12 +81,12 @@
             var logged;
 
             socket.on('userLogin', function (usr) {
-                logged = usr.name + " " + usr.surname;
+                logged = usr.email;
                 $('#option2').text(usr.email);
             });
 
-            
-            
+
+
 
             // Wyświetlanie zarejestrowanych osób
             socket.on('peopleOutput', function (data) {
@@ -94,23 +94,32 @@
                     for (var x = 0; x < data.length; x++) {
                         $('#people').append(
                             $('<li>').append(
-                                $('<a>').attr('href','#').text(x + " " + data[x].name + " " + data[x].surname)));
+                                $('<a>').attr('href', '#').text(x + " " + data[x].name + " " + data[x].surname)));
                         $('#people').scrollTop($('#people')[0].scrollHeight);
                         var tmpPerson = $('#people').find('li:first').text();
                         $('#personName').text(tmpPerson);
+                        //$("#people").each(function (index) {
+                        //    alert(index + ": " + $(this).text());
+                        //});
+                        socket.emit('createChat', {
+                            loggedUser: logged,
+                            withUser: $('#people').find('li:first').text()
+                        });
+
                     }
                 }
             });
 
-            for (var x = 0; x < $('#people').length; x++) {
-                alert($('#people')[1].text())
-                //socket.on('createChat', function (user) {
-                    socket.emit('createChat', {
-                        loggedUser: logged,
-                        withUser: $('#people').eq(x).text()
-                    });
-                //});
-            }
+            //for (var x = 0; x < $('#people').length; x++) {
+            //    var tmp = $('#people').find('li:first').text();
+            //    alert($('#people li').length);
+            //socket.on('createChat', function (user) {
+            //socket.emit('createChat', {
+            //            loggedUser: logged,
+            //            withUser: $('#people').find('li:first').text()
+            //        });
+            //});
+            //}
 
             // Wyświetlanie wiadomości
 
