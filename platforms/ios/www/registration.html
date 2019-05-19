@@ -76,6 +76,7 @@
     </script>
     <script>
         $(function () {
+            var socket = io.connect('http://admis-chat.herokuapp.com/registration.html');
             var username = "tomasz";
 
             socket.on('userLogin', function (usr) {
@@ -97,7 +98,7 @@
             });
 
             // Wyświetlanie wiadomości
-            var socket = io.connect('http://admis-chat.herokuapp.com/registration.html');
+            
             socket.on('output', function (data) {
                 if (data.length) {
                     for (var x = 0; x < data.length; x++) {
