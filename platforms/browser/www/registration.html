@@ -94,17 +94,10 @@
                     for (var x = 0; x < data.length; x++) {
                         $('#people').append(
                             $('<li>').append(
-                                $('<a>').attr('href', '#').text(x + " " + data[x].name + " " + data[x].surname)));
+                                $('<a>').attr('href', '#').attr('class', 'person').text(x + " " + data[x].name + " " + data[x].surname)));
                         $('#people').scrollTop($('#people')[0].scrollHeight);
                         var tmpPerson = $('#people').find('li:first').text();
                         $('#personName').text(tmpPerson);
-                        //$("#people").each(function (index) {
-                        //    alert(index + ": " + $(this).text());
-                        //});
-                        socket.emit('createChat', {
-                            loggedUser: logged,
-                            withUser: $('#people').find('li:first').text()
-                        });
 
                     }
                 }
