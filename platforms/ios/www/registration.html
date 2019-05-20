@@ -80,10 +80,7 @@
             var username = "tomasz";
             var logged = "testoet";
 
-            socket.on('userLogin', function (usr) {
-                logged = usr.email;
-                $('#option2').text(usr.email);
-            });
+            
 
 
 
@@ -145,7 +142,10 @@
                 $("html, body").scrollTop($(document).height());
             });
 
-
+            socket.on('userLogin', function (usr) {
+                logged = usr.email;
+                $('#option2').text(usr.email);
+            });
 
             //$("#logout").click(function () {
             //    var destination = './index.html';
