@@ -164,6 +164,7 @@
                 var clickUser = value.replace(' ', '');
                 //var tmpPerson = $('#people').find('li:first').text();
                 $('#personName').text(value);
+                $('#messages').empty();
                 socket.emit('createChat', {
                     loggedUser: $('#option2').text(),
                     withUser: clickUser
