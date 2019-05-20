@@ -80,11 +80,6 @@
             var username = "tomasz";
             var logged = "testoet";
 
-
-
-
-
-
             // Wyświetlanie zarejestrowanych osób
             socket.on('peopleOutput', function (data) {
                 if (data.length) {
@@ -95,7 +90,6 @@
                         $('#people').scrollTop($('#people')[0].scrollHeight);
                         var tmpPerson = $('#people').find('li:first').text();
                         $('#personName').text(tmpPerson);
-
                     }
                 }
             });
