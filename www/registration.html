@@ -151,7 +151,8 @@
                 var location = window.location.hostname;
                 var port = window.location.port;
                 var destination = location.replace('/registration.html', '/');
-                // alert(destination + port);
+                var web = destination + ":" + port;
+                alert(web);
                 window.location.assign(destination + ":" + port);
             });
 
