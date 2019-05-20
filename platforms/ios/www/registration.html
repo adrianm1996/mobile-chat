@@ -147,11 +147,11 @@
                 $('#option2').text(usr.email);
             });
 
-            //$("#logout").click(function () {
-            //    var destination = './index.html';
-            //    //alert('logour');
-            //    window.history.back();
-            //});
+            $("#logout").click(function () {
+                var destination = './index.html';
+                //alert('logour');
+                window.history.back();
+            });
 
             socket.on('er', function (er) {
                 alert(er);
