@@ -158,8 +158,9 @@
 
 
             //$(document).ready(function () {
-                $("#people").on('click', 'li', function (event) {
-                    alert('href click');
+            $("#people").on('click', 'li', function (event) {
+                var value = $(this).val();
+                    alert(value);
                 });
             //});
 
