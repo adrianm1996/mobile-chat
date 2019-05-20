@@ -91,7 +91,7 @@
                     for (var x = 0; x < data.length; x++) {
                         $('#people').append(
                             $('<li>').append(
-                                $('<a>').attr('href', '#').attr('class', 'person').text(x + " " + data[x].name + " " + data[x].surname)));
+                                $('<a>').attr('href', '#').text(x + " " + data[x].name + " " + data[x].surname)));
                         $('#people').scrollTop($('#people')[0].scrollHeight);
                         var tmpPerson = $('#people').find('li:first').text();
                         $('#personName').text(tmpPerson);
@@ -145,16 +145,24 @@
                 var web = "http://" + destination + ":" + port;
                 window.location.assign(web);
             });
-            for (var x = 0; x < $('#people').length; x++) {
-                var tmp = $('#people').find('li:first').text();
-                alert($('#people li').length);
-                socket.on('createChat', function (user) {
-                    socket.emit('createChat', {
-                        loggedUser: logged,
-                        withUser: $('#people').find('li:first').text()
-                    });
+            //for (var x = 0; x < $('#people').length; x++) {
+            //    var tmp = $('#people').find('li:first').text();
+            //    alert($('#people li').length);
+            //    socket.on('createChat', function (user) {
+            //        socket.emit('createChat', {
+            //            loggedUser: logged,
+            //            withUser: $('#people').find('li:first').text()
+            //        });
+            //    });
+            //}
+
+
+            //$(document).ready(function () {
+                $("#person").on('click',  function (event) {
+                    alert('href click');
                 });
-            }
+            //});
+
 
             socket.on('er', function (er) {
                 alert(er);
