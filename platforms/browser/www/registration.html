@@ -78,7 +78,7 @@
         $(function () {
             var socket = io.connect('http://admis-chat.herokuapp.com/registration.html');
             var username = "tomasz";
-            var logged;
+            var logged = "testoet";
 
             socket.on('userLogin', function (usr) {
                 logged = usr.email;
