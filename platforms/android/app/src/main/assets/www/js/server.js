@@ -113,7 +113,6 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         if (err)
                             console.log(err);
                         else {
-                            console.log('outputSuccess');
                             socket.emit('output', res);
                         }
                     });
@@ -124,7 +123,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             socket.emit('er', "wiadomość nie może być pusta.");
                         }
                         else {
-                            db.dbName.insert({ username: usr.loggedUser, message: msg.message })
+                            db.db().collection(dbName).insert({ username: usr.loggedUser, message: msg.message })
                             io.of('registration.html').emit('message', {
 
                                 message: msg.message,
