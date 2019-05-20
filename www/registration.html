@@ -148,9 +148,10 @@
             });
 
             $("#logout").click(function () {
-                var destination = './index.html';
+                var location = window.location.hostname;
+                var destination = location.replace('/registration.html', '/');
                 //alert('logour');
-                window.history.back();
+                window.location.href(destination);
             });
 
             socket.on('er', function (er) {
