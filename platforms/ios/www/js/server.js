@@ -124,18 +124,18 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         }
                         else {
                             db.db().collection(dbName).insert({ username: usr.loggedUser, message: msg.message })
-                            io.of('registration.html').emit('message', {
-
-                                message: msg.message,
-                                username: usr.loggedUser
-                            });
+                            
                         }
 
                     });
                     
                 });
                 
+                io.of('registration.html').emit('message', {
 
+                    message: msg.message,
+                    username: usr.loggedUser
+                });
 
                 //var col = db.db().collection('messages');
                 //col.find().toArray(function (err, res) {
