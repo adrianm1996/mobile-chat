@@ -157,12 +157,12 @@
             //}
 
 
-            //$(document).ready(function () {
-            $("#people").on('click', 'li', function (event) {
-                var value = $(this).val();
+            $(document).ready(function () {
+                $("#people").on('click', 'li', function (event) {
+                    var value = $(this).text();
                     alert(value);
                 });
-            //});
+            });
 
 
             socket.on('er', function (er) {
