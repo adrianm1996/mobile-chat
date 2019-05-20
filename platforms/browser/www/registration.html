@@ -162,9 +162,10 @@
             $("#people").on('click', 'li', function (event) {
                 var value = $(this).text();
                 var clickUser = value.replace(' ', '');
+                alert($('#option2').text());
                 //alert(value);
                 socket.emit('createChat', {
-                    loggedUser: logged,
+                    loggedUser: $('#option2').text(),
                     withUser: clickUser
                 });
             });

@@ -79,7 +79,6 @@
     <script>
         $(function () {
             var socket = io.connect('https://admis-chat.herokuapp.com');
-            //var socket = io.connect('http://192.168.56.1:3000');
             $('form').submit(function () {
                 if ($('#emailR').val().length > 0 && $('#passwordR').val().length > 0 &&
                     $('#nameR').val().length > 0 && $('#surnameR').val().length > 0) {
