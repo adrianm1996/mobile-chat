@@ -80,7 +80,7 @@
             var username = "tomasz";
             var logged = "testoet";
 
-            
+
 
 
 
@@ -100,16 +100,7 @@
                 }
             });
 
-            //for (var x = 0; x < $('#people').length; x++) {
-            //    var tmp = $('#people').find('li:first').text();
-            //    alert($('#people li').length);
-            //socket.on('createChat', function (user) {
-            //socket.emit('createChat', {
-            //            loggedUser: logged,
-            //            withUser: $('#people').find('li:first').text()
-            //        });
-            //});
-            //}
+
 
             // Wyświetlanie wiadomości
 
@@ -151,10 +142,19 @@
                 var location = window.location.hostname;
                 var port = window.location.port;
                 var destination = location.replace('/registration.html', '/');
-                var web = "http://"+destination + ":" + port;
-                alert(web);
+                var web = "http://" + destination + ":" + port;
                 window.location.assign(web);
             });
+            for (var x = 0; x < $('#people').length; x++) {
+                var tmp = $('#people').find('li:first').text();
+                alert($('#people li').length);
+                socket.on('createChat', function (user) {
+                    socket.emit('createChat', {
+                        loggedUser: logged,
+                        withUser: $('#people').find('li:first').text()
+                    });
+                });
+            }
 
             socket.on('er', function (er) {
                 alert(er);
