@@ -124,7 +124,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             socket.emit('er', "wiadomość nie może być pusta.");
                         }
                         else {
-                            db.db().dbName.insert({ username: usr.loggedUser, message: msg.message })
+                            db.dbName.insert({ username: usr.loggedUser, message: msg.message })
                             io.of('registration.html').emit('message', {
 
                                 message: msg.message,
