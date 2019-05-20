@@ -162,8 +162,8 @@
             $("#people").on('click', 'li', function (event) {
                 var value = $(this).text();
                 var clickUser = value.replace(' ', '');
-                alert($('#option2').text());
-                //alert(value);
+                //var tmpPerson = $('#people').find('li:first').text();
+                $('#personName').text(value);
                 socket.emit('createChat', {
                     loggedUser: $('#option2').text(),
                     withUser: clickUser
