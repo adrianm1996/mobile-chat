@@ -151,9 +151,9 @@
                 var location = window.location.hostname;
                 var port = window.location.port;
                 var destination = location.replace('/registration.html', '/');
-                var web = destination + ":" + port;
+                var web = "http://"+destination + ":" + port;
                 alert(web);
-                window.location.assign(destination + ":" + port);
+                window.location.assign(web);
             });
 
             socket.on('er', function (er) {
