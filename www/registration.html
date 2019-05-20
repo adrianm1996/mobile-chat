@@ -119,8 +119,7 @@
             $('form').submit(function () {
                 if ($('#msg').val().length > 0) {
                     socket.emit('message', {
-                        message: $('#msg').val(),
-                        username: username
+                        message: $('#msg').val()
                     });
                     $('#msg').val('');
                 }
