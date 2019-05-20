@@ -149,9 +149,10 @@
 
             $("#logout").click(function () {
                 var location = window.location.hostname;
+                var port = window.location.port;
                 var destination = location.replace('/registration.html', '/');
-                //alert('logour');
-                window.location.href(destination);
+                // alert(destination + port);
+                window.location.assign(destination + ":" + port);
             });
 
             socket.on('er', function (er) {
