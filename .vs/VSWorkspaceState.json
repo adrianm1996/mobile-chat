@@ -1,10 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\www",
-    "\\www\\css",
-    "\\www\\js"
+    "\\platforms",
+    "\\platforms\\android",
+    "\\platforms\\android\\app",
+    "\\platforms\\android\\app\\src",
+    "\\platforms\\android\\app\\src\\main",
+    "\\platforms\\android\\app\\src\\main\\assets",
+    "\\platforms\\android\\app\\src\\main\\assets\\www",
+    "\\platforms\\android\\app\\src\\main\\assets\\www\\js",
+    "\\www"
   ],
-  "SelectedNode": "\\www\\js\\server.js",
+  "SelectedNode": "\\platforms\\android\\app\\src\\main\\assets\\www\\js\\server.js",
   "PreviewInSolutionExplorer": false
 }
