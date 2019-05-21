@@ -109,14 +109,25 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 socket.on('createChat', function (usr) {
                     var dbName = usr.loggedUser +"&"+ usr.withUser + 'CHAT';
                     var userChat = db.db().collection(dbName);
-                    userChat.find().toArray(function (err, res) {
-                        if (err)
-                            console.log(err);
-                        else {
-                            socket.emit('output', res);
-                        }
-                    });
+                    //userChat.find().toArray(function (err, res) {
+                    //    if (err)
+                    //        console.log(err);
+                    //    else {
+                    //        socket.emit('output', res);
+                    //    }
+                    //});
                     socket.on('message', function (msg) {
+
+                        var dbName = usr.loggedUser + "&" + usr.withUser + 'CHAT';
+                        var userChat = db.db().collection(dbName);
+                        userChat.find().toArray(function (err, res) {
+                            if (err)
+                                console.log(err);
+                            else {
+                                socket.emit('output', res);
+                            }
+                        });
+
                         var whitespacepattern = /^\s*$/;
 
                         if (whitespacepattern.test(msg.message)) {
