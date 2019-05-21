@@ -109,30 +109,30 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 socket.on('createChat', function (usr) {
                     var dbName = usr.loggedUser +"&"+ usr.withUser + 'CHAT';
                     var userChat = db.db().collection(dbName);
-                    //userChat.find().toArray(function (err, res) {
-                    //    if (err)
-                    //        console.log(err);
-                    //    else {
-                    //        socket.emit('output', res);
-                    //    }
-                    //});
-                    socket.on('message', function (msg) {
-                        var whitespacepattern = /^\s*$/;
-
-                        if (whitespacepattern.test(msg.message)) {
-                            socket.emit('er', "wiadomość nie może być pusta.");
-                        }
+                    userChat.find().toArray(function (err, res) {
+                        if (err)
+                            console.log(err);
                         else {
-                            userChat.insert({ username: usr.loggedUser, message: msg.message })
-                            io.of('registration.html').emit('message', {
-
-                                message: msg.message,
-                                username: usr.loggedUser
-                            });
+                            socket.emit('output', res);
                         }
-
                     });
-                    
+                });
+
+                socket.on('message', function (msg) {
+                    var whitespacepattern = /^\s*$/;
+
+                    if (whitespacepattern.test(msg.message)) {
+                        socket.emit('er', "wiadomość nie może być pusta.");
+                    }
+                    else {
+                        userChat.insert({ username: msg.username, message: msg.message })
+                        io.of('registration.html').emit('message', {
+
+                            message: msg.message,
+                            username: usr.loggedUser
+                        });
+                    }
+
                 });
                 
 
