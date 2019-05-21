@@ -22,6 +22,8 @@ var direct = false;
 var loggedUsr = "loggedUser";
 var $ = require('jquery');
 var sess;
+var userChat;
+var dbName;
 
 
 app.use(session);
@@ -107,8 +109,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
          
                 socket.on('createChat', function (usr) {
-                    var dbName = usr.loggedUser +"&"+ usr.withUser + 'CHAT';
-                    var userChat = db.db().collection(dbName);
+                    dbName = usr.loggedUser +"&"+ usr.withUser + 'CHAT';
+                    userChat = db.db().collection(dbName);
                     userChat.find().toArray(function (err, res) {
                         if (err)
                             console.log(err);
@@ -135,35 +137,6 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
                 });
                 
-
-
-                //var col = db.db().collection('messages');
-                //col.find().toArray(function (err, res) {
-                //    if (err)
-                //        console.log(err);
-                //    else {
-                //        console.log('output');
-                //        socket.emit('output', res);
-
-                //    }
-
-                //});
-                //socket.on('message', function (msg) {
-                //    var whitespacepattern = /^\s*$/;
-
-                //    if (whitespacepattern.test(msg.username) || whitespacepattern.test(msg.message)) {
-                //        socket.emit('er', "wiadomość i nazwa użytkownika nie może być pusta.");
-                //    }
-                //    else {
-                //        col.insert({ username: msg.username, message: msg.message })
-                //        io.of('registration.html').emit('message', {
-
-                //            message: msg.message,
-                //            username: msg.username
-                //        });
-                //    }
-
-                //});
 
 
                 var regUser = db.db().collection('users');
