@@ -131,7 +131,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 dbName = dbName1;
                             }
 
-                            if (db.db().listCollections({ name: dbName2 }).hasNext()) {
+                            else if (db.db().listCollections({ name: dbName2 }).hasNext()) {
                                 console.log('ok2');
                                 dbName = dbName2;
                             }
