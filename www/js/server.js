@@ -125,12 +125,12 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             dbName1 = usr.loggedUser + "&" + useremail + 'CHAT';
                             dbName2 = useremail + "&" + usr.loggedUser + 'CHAT';
 
-                            if (db.db().listCollections().toArray().indexOf(dbName1 > -1)) {
+                            if (db.db().listCollections().toArray().indexOf(dbName1)> -1) {
                                 console.log('ok1');
                                 dbName = dbName1;
                             }
 
-                            else if (db.db().listCollections().toArray().indexOf(dbName2 > -1)) {
+                            else if (db.db().listCollections().toArray().indexOf(dbName2) > -1) {
                                 console.log('ok2');
                                 dbName = dbName2;
                             }
