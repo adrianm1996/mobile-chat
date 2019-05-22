@@ -131,7 +131,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 dbName = dbName1;
                             }
 
-                            else if (db.db().listCollections({ name: dbName2 }).hasNext()) {
+                            if (db.db().listCollections({ name: dbName2 }).hasNext()) {
                                 console.log('ok2');
                                 dbName = dbName2;
                             }
@@ -141,8 +141,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 dbName = usr.loggedUser + "&" + useremail + 'CHAT';
                             }
 
-                            console.log("WYNIK1: " + db.db().collection(dbName1));
-                            console.log("WYNIK2: " + db.db().collection(dbName2));
+                            console.log("WYNIK1: " + db.db().listCollections({ name: dbName1 }).hasNext());
+                            console.log("WYNIK2: " + db.db().listCollections({ name: dbName2 }).hasNext());
 
 
                             userChat = db.db().collection(dbName);
