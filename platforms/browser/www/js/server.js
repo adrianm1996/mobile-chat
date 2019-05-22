@@ -115,7 +115,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     console.log(userName);
                     console.log(userSurname);
                     var findEmail = db.db().collection('users');
-                    findEmail.findOne({ name: userName, surname: userSurname }, function (err, result) {
+                    findEmail.findOne({ name: userName }, {surname: userSurname }, function (err, result) {
                         if (result == null) console.log("login invalid");
                         else if (result.name == userName && result.surname == userSurname) {
                             console.log("tst");
