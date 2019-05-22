@@ -139,6 +139,9 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 console.log('ok3');
                                 dbName = usr.loggedUser + "&" + useremail + 'CHAT';
                             }
+
+                            console.log("WYNIK1: " + db.db().databaseName.indexOf(dbName1));
+                            console.log("WYNIK2: " + db.db().databaseName.indexOf(dbName2));
                                 
 
                             userChat = db.db().collection(dbName);
