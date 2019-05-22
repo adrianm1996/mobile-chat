@@ -115,7 +115,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
                     if (db.db().getMongo().getDBNames().indexOf(dbName1))
                         dbName = dbName1;
-                    else if (db.db().getMongo().getDBNames().indexOf(dbName2))
+                    else if (db.getMongo().getDBNames().indexOf(dbName2))
                         dbName = dbName2;
                     else
                         dbName = usr.loggedUser + "&" + usr.withUser + 'CHAT';
