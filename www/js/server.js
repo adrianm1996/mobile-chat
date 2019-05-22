@@ -125,24 +125,43 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             dbName1 = usr.loggedUser + "&" + useremail + 'CHAT';
                             dbName2 = useremail + "&" + usr.loggedUser + 'CHAT';
 
-                            if (db.db().databaseName.indexOf(dbName1) != -1) {
-                                console.log('ok1');
-                                dbName = dbName1;
-                            }
-                                
-                            else if (db.db().databaseName.indexOf(dbName2) != -1) {
-                                console.log('ok2');
-                                dbName = dbName2;
-                            }
-                            else
-                            {
-                                console.log('ok3');
-                                dbName = usr.loggedUser + "&" + useremail + 'CHAT';
-                            }
+                            //if (db.db().databaseName.indexOf(dbName1) != -1) {
+                            //    console.log('ok1');
+                            //    dbName = dbName1;
+                            //}
+
+                            //else if (db.db().databaseName.indexOf(dbName2) != -1) {
+                            //    console.log('ok2');
+                            //    dbName = dbName2;
+                            //}
+                            //else
+                            //{
+                            //    console.log('ok3');
+                            //    dbName = usr.loggedUser + "&" + useremail + 'CHAT';
+                            //}
+
+                            db.db().listCollections({ name: dbName1 })
+                                .next(function (err, collinfo) {
+                                    if (collinfo) {
+                                        console.log('ok1');
+                                        dbName = dbName1;
+                                    }
+                                    else
+                                        dbName = usr.loggedUser + "&" + useremail + 'CHAT'; 
+                                });
+                            db.db().listCollections({ name: dbName2 })
+                                .next(function (err, collinfo) {
+                                    if (collinfo) {
+                                        console.log('ok2');
+                                        dbName = dbName1;
+                                    }
+                                    else
+                                        dbName = usr.loggedUser + "&" + useremail + 'CHAT';
+                                });
 
                             console.log("WYNIK1: " + db.db().databaseName.indexOf(dbName1));
                             console.log("WYNIK2: " + db.db().databaseName.indexOf(dbName2));
-                                
+
 
                             userChat = db.db().collection(dbName);
                             userChat.find().toArray(function (err, res) {
