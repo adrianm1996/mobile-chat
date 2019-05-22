@@ -110,8 +110,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
          
                 socket.on('createChat', function (usr) {
                     //db.getMongo().getDBNames().indexOf("mydb");
-                    var userName = usr.userName;
-                    var userSurname = usr.userSurname;
+                    var userName = usr.withUserName;
+                    var userSurname = usr.withUserSurname;
                     var findEmail = db.db().collection('users');
                     findEmail.findOne({ name: userName, surname: userSurname }, function (err, result) {
                         if (result == null) console.log("login invalid");
