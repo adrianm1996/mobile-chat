@@ -99,7 +99,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
             io.of('/registration.html').on('connection', function (socket) {
                 console.log("messages connect");
-
+                var email;
 
                 io.of('registration.html').emit('userLogin', {
 
@@ -110,8 +110,21 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
          
                 socket.on('createChat', function (usr) {
                     //db.getMongo().getDBNames().indexOf("mydb");
-                    dbName1 = usr.loggedUser + "&" + usr.withUser + 'CHAT';
-                    dbName2 = usr.withUser + "&" + usr.loggedUser + 'CHAT';
+                    var userName = usr.userName;
+                    var userSurname = usr.userSurname;
+                    var findEmail = db.db().collection('users');
+                    findEmail.findOne({ name: userName, surname: userSurname }, function (err, result) {
+                        if (result == null) console.log("login invalid");
+                        else if (result.name == userName && result.surname == userSurname) {
+                            email = result.user;
+                        }
+                        else
+                            console.log("user not found");
+                    });
+
+
+                    dbName1 = usr.loggedUser + "&" + email + 'CHAT';
+                    dbName2 = email + "&" + usr.loggedUser + 'CHAT';
 
                     if (db.db().databaseName.indexOf(dbName1) != -1)
                         dbName = dbName1;

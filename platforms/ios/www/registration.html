@@ -147,7 +147,8 @@
                 $('#messages').empty();
                 socket.emit('createChat', {
                     loggedUser: $('#option2').text(),
-                    withUser: clickUser
+                    withUserName: value.substring(0, value.indexOf(" ")),
+                    withUserSurame: value.substring(value.indexOf(" "))
                 });
             });
 
