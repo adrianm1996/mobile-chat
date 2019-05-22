@@ -99,7 +99,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
             io.of('/registration.html').on('connection', function (socket) {
                 console.log("messages connect");
-                var email;
+                var useremail;
 
                 io.of('registration.html').emit('userLogin', {
 
@@ -119,16 +119,16 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         if (result == null) console.log("login invalid");
                         else if (result.name == userName && result.surname == userSurname) {
                             console.log("tst");
-                            email = result.user;
+                            useremail = result.user;
                             
                         }
                         else
                             console.log("user not found");
                     });
 
-                    console.log(email);
-                    dbName1 = usr.loggedUser + "&" + email + 'CHAT';
-                    dbName2 = email + "&" + usr.loggedUser + 'CHAT';
+                    console.log(useremail);
+                    dbName1 = usr.loggedUser + "&" + useremail + 'CHAT';
+                    dbName2 = useremail + "&" + usr.loggedUser + 'CHAT';
 
                     if (db.db().databaseName.indexOf(dbName1) != -1)
                         dbName = dbName1;
