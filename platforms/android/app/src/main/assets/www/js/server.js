@@ -125,12 +125,12 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             dbName1 = usr.loggedUser + "&" + useremail + 'CHAT';
                             dbName2 = useremail + "&" + usr.loggedUser + 'CHAT';
 
-                            if (db.db().collections.toArray().indexOf(dbName1) > -1) {
+                            if (db.db().collection(dbName1)) {
                                 console.log('ok1');
                                 dbName = dbName1;
                             }
 
-                            else if (db.db().collections.toArray().indexOf(dbName2) > -1) {
+                            else if (db.db().collections.indexOf(dbName2) > -1) {
                                 console.log('ok2');
                                 dbName = dbName2;
                             }
@@ -140,8 +140,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 dbName = usr.loggedUser + "&" + useremail + 'CHAT';
                             }
 
-                            console.log("WYNIK1: " + db.db().databaseName.indexOf(dbName1));
-                            console.log("WYNIK2: " + db.db().databaseName.indexOf(dbName2));
+                            console.log("WYNIK1: " + db.db().collection(dbName1));
+                            console.log("WYNIK2: " + db.db().collection(dbName2));
 
 
                             userChat = db.db().collection(dbName);
