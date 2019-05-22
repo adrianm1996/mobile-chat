@@ -135,7 +135,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     else if (db.db().databaseName.indexOf(dbName2) != -1) 
                         dbName = dbName2;
                     else
-                        dbName = usr.loggedUser + "&" + usr.withUser + 'CHAT';
+                        dbName = usr.loggedUser + "&" + email + 'CHAT';
  
                     userChat = db.db().collection(dbName);
                     userChat.find().toArray(function (err, res) {
