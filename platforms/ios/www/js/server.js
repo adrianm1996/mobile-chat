@@ -113,13 +113,13 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     dbName1 = usr.loggedUser + "&" + usr.withUser + 'CHAT';
                     dbName2 = usr.withUser + "&" + usr.loggedUser + 'CHAT';
 
-                    if (db.db().getMongo().getDBNames().indexOf(dbName1) != -1)
+                    if (db.db().databaseName.indexOf(dbName1) != -1)
                         dbName = dbName1;
-                    else if (db.db().getMongo.getDBNames().indexOf(dbName2) != -1) 
+                    else if (db.db().databaseName.indexOf(dbName2) != -1) 
                         dbName = dbName2;
                     else
                         dbName = usr.loggedUser + "&" + usr.withUser + 'CHAT';
-
+ 
                     userChat = db.db().collection(dbName);
                     userChat.find().toArray(function (err, res) {
                         if (err)
