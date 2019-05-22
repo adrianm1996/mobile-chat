@@ -23,7 +23,7 @@ var loggedUsr = "loggedUser";
 var $ = require('jquery');
 var sess;
 var userChat;
-var dbName;
+var dbName1, dbName2, dbName;
 
 
 app.use(session);
@@ -109,7 +109,17 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
          
                 socket.on('createChat', function (usr) {
-                    dbName = usr.loggedUser +"&"+ usr.withUser + 'CHAT';
+                    //db.getMongo().getDBNames().indexOf("mydb");
+                    dbName1 = usr.loggedUser + "&" + usr.withUser + 'CHAT';
+                    dbName2 = usr.withUser + "&" + usr.loggedUser + 'CHAT';
+
+                    if (db.db().getMongo().getDBNames().indexOf(dbName1))
+                        dbName = dbName1;
+                    else if (db.db().getMongo().getDBNames().indexOf(dbName2))
+                        dbName = dbName2;
+                    else
+                        dbName = usr.loggedUser + "&" + usr.withUser + 'CHAT';
+
                     userChat = db.db().collection(dbName);
                     userChat.find().toArray(function (err, res) {
                         if (err)
@@ -137,7 +147,6 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
                 });
                 
-
 
                 var regUser = db.db().collection('users');
                 regUser.find().toArray(function (err, res) {
