@@ -127,9 +127,9 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             dbName = useremail + '&' + usr.loggedUser + 'CHAT';
 
                             var newDB = db.db();
-                            newDB.collection(function (err, collectionList) {
+                            newDB.collections(function (err, collectionList) {
                                 
-                                console.log(collectionList({ name }));
+                                console.log(collectionList)
                             });
     
 
