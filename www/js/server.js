@@ -122,8 +122,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             console.log("tst");
                             useremail = result.user;
                             console.log(useremail);
-                            dbName1 = usr.loggedUser + "&" + useremail + 'CHAT';
-                            dbName2 = useremail + "&" + usr.loggedUser + 'CHAT';
+                            dbName1 = usr.loggedUser + '&' + useremail + 'CHAT';
+                            dbName2 = useremail + '&' + usr.loggedUser + 'CHAT';
                             
                             console.log(db.db().createCollection(dbName1));
                             console.log(db.db().createCollection(dbName2));
