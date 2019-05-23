@@ -133,8 +133,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             });
 
                             newDB.listCollections().toArray((error, collections) => {
-                                console.log('error: ', err)
-                                console.log('collections: ', collections)
+                                console.log('error: ', err);
+                                console.log('collections: ', collections.findIndex({ name: dbName1 }));
                                 db.close()
                             })
     
