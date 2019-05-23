@@ -9,8 +9,9 @@
     "\\platforms\\android\\app\\src\\main\\assets",
     "\\platforms\\android\\app\\src\\main\\assets\\www",
     "\\platforms\\android\\app\\src\\main\\assets\\www\\js",
-    "\\www"
+    "\\www",
+    "\\www\\js"
   ],
-  "SelectedNode": "\\platforms\\android\\app\\src\\main\\assets\\www\\js\\server.js",
+  "SelectedNode": "\\www\\js\\server.js",
   "PreviewInSolutionExplorer": false
 }
