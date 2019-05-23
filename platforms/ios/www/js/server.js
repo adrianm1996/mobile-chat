@@ -126,14 +126,12 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             dbName2 = useremail + "&" + usr.loggedUser + 'CHAT';
                             var collections = db.db().collection('xxx');
                             console.log(collections);
-                            db.db().listCollections().toArray(function (err, dbName1) {
-                                if (err) {
-                                    console.log(err);
-                                    return;
-                                }
-                                console.log(dbName1);
-                                conn.close();
-                            });
+                            db.db().listCollections({ name: dbName1 })
+                                .next(function (err, collinfo) {
+                                    if (collinfo) {
+                                        console.log('sadddddd');
+                                    }
+                                });
                             console.log("WYNIK1: " + db.db().listCollections({ name: dbName }).hasNext());
                             console.log("WYNIK2: " + db.db().listCollections({ name: dbName2 }).hasNext());
 
