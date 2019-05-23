@@ -122,26 +122,26 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             console.log("tst");
                             useremail = result.user;
                             console.log(useremail);
-                            dbName = usr.loggedUser + "&" + useremail + 'CHAT';
-                            //dbName2 = useremail + "&" + usr.loggedUser + 'CHAT';
-                            //var collections = db.db().listCollections();
+                            dbName1 = usr.loggedUser + "&" + useremail + 'CHAT';
+                            dbName2 = useremail + "&" + usr.loggedUser + 'CHAT';
+                            var collections = db.db().listCollections();
 
-                            //if (db.db().listCollections({ name: dbName1 }).hasNext()) {
-                            //    console.log('ok1');
-                            //    dbName = dbName1;
-                            //}
+                            if (db.db().listCollections({ name: dbName1 }).hasNext()) {
+                                console.log('ok1');
+                                dbName = dbName1;
+                            }
 
-                            //else if (db.db().listCollections({ name: dbName2 }).hasNext()) {
-                            //    console.log('ok2');
-                            //    dbName = dbName2;
-                            //}
-                            //else
-                            //{
-                            //    console.log('ok3');
-                            //    dbName = usr.loggedUser + "&" + useremail + 'CHAT';
-                            //}
+                            else if (db.db().listCollections({ name: dbName2 }).hasNext()) {
+                                console.log('ok2');
+                                dbName = dbName2;
+                            }
+                            else
+                            {
+                                console.log('ok3');
+                                dbName = usr.loggedUser + "&" + useremail + 'CHAT';
+                            }
 
-                            console.log("WYNIK1: " + db.db().listCollections({ name: dbName1 }).hasNext());
+                            console.log("WYNIK1: " + db.db().listCollections({ name: dbName }).hasNext());
                             console.log("WYNIK2: " + db.db().listCollections({ name: dbName2 }).hasNext());
 
 
