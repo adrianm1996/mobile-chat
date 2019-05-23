@@ -125,10 +125,14 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             dbName1 = usr.loggedUser + '&' + useremail + 'CHAT';
                             dbName2 = useremail + '&' + usr.loggedUser + 'CHAT';
                             
-                            console.log(dbName1);
-                            console.log(dbName2);
+                            if (db.db().createCollection(dbName1))
+                                dbName = dbName1;
+                            if (db.db().createCollection(dbName2))
+                                dbName = dbName2;
+                            else
+                                dbName = dbName1;
 
-                            console.log("WYNIK1: " + db.db().listCollections({ name: dbName }).hasNext());
+                            console.log("WYNIK1: " + db.db().listCollections({ name: dbName1 }).hasNext());
                             console.log("WYNIK2: " + db.db().listCollections({ name: dbName2 }).hasNext());
 
 
