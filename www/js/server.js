@@ -127,7 +127,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             
                             if (db.db().createCollection(dbName1))
                                 dbName = dbName1;
-                            if (db.db().createCollection(dbName2))
+                            else if (db.db().createCollection(dbName2))
                                 dbName = dbName2;
                             else
                                 dbName = dbName1;
