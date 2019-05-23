@@ -132,8 +132,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 console.log(collectionList)
                             });
 
-                            newDB.listCollections().toArray((err, collections) => {
-                                console.log('error: ', eror)
+                            newDB.listCollections().toArray((error, collections) => {
+                                console.log('error: ', err)
                                 console.log('collections: ', collections)
                                 db.close()
                             })
@@ -144,7 +144,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
 
                             userChat = db.db().collection(dbName);
-                            userChat.find().toArray(function (error, res) {
+                            userChat.find().toArray(function (err, res) {
                                 if (err)
                                     console.log(err);
                                 else {
