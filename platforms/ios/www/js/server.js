@@ -126,29 +126,34 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             dbName2 = useremail + '&' + usr.loggedUser + 'CHAT';
                             dbName = useremail + '&' + usr.loggedUser + 'CHAT';
 
-                            db1Chat = db.db().collection(dbName1);
-                            db2Chat = db.db().collection(dbName2);
-                            //console.log(db1Chat.collectionName);
-                            //console.log(db2Chat.collectionName);
+                            var db1Chat = db.db().collection(dbName1);
+                            var db2Chat = db.db().collection(dbName2);
+                            console.log(db1Chat.collectionName);
+                            console.log(db2Chat.collectionName);
 
-                            var databasa = db.db().listCollections();
-                            if (dbName1 in databasa) {
-                                console.log(dbName1)
-                            }
-                            if (dbName2 in databasa) {
-                                console.log(dbName2)
-                            }
+                            //var databasa = db.db().listCollections().toArray();
+                            //if (dbName1 in databasa) {
+                            //    console.log(dbName1)
+                            //}
+                            //if (dbName2 in databasa) {
+                            //    console.log(dbName2)
+                            //}
                             //var newDB = db.db();
                             //newDB.collections(function (err, collectionList) {
                                 
                             //    console.log(collectionList)
                             //});
 
-                            //newDB.listCollections().toArray((error, collections) => {
-                            //    console.log('error: ', err);
-                            //    console.log('collections: ', collections.findIndex({ name: dbName1 }));
-                            //    db.close()
-                            //})
+                            newDB.listCollections().toArray((error, collections) => {
+                                console.log('error: ', err);
+                                console.log('collections: ', collections);
+                                console.log("-----------------------------------------------");
+                                if (collections["name"] == dbName1)
+                                    console.log("TAK 1");
+                                if (collections["name"] == dbName2)
+                                    console.log("TAK 2");
+
+                            })
 
                            
 
