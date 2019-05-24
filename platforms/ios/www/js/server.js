@@ -138,7 +138,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             //if (dbName2 in databasa) {
                             //    console.log(dbName2)
                             //}
-                            //var newDB = db.db();
+                            var newDB = db.db();
                             //newDB.collections(function (err, collectionList) {
                                 
                             //    console.log(collectionList)
