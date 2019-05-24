@@ -126,24 +126,26 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             dbName2 = useremail + '&' + usr.loggedUser + 'CHAT';
                             dbName = useremail + '&' + usr.loggedUser + 'CHAT';
 
-                            var newDB = db.db();
-                            newDB.collections(function (err, collectionList) {
+                            db1Chat = db.db().collection(dbName1);
+                            db2Chat = db.db().collection(dbName2);
+                            console.log(db1Chat.collectionName);
+                            console.log(db2Chat.collectionName);
+                            //var newDB = db.db();
+                            //newDB.collections(function (err, collectionList) {
                                 
-                                console.log(collectionList)
-                            });
+                            //    console.log(collectionList)
+                            //});
 
                             //newDB.listCollections().toArray((error, collections) => {
                             //    console.log('error: ', err);
                             //    console.log('collections: ', collections.findIndex({ name: dbName1 }));
                             //    db.close()
                             //})
-    
 
-                            console.log("WYNIK1: " + db.db().listCollections({ name: dbName1 }).hasNext());
-                            console.log("WYNIK2: " + db.db().listCollections({ name: dbName2 }).hasNext());
-
+                           
 
                             userChat = db.db().collection(dbName);
+                            
                             userChat.find().toArray(function (err, res) {
                                 if (err)
                                     console.log(err);
