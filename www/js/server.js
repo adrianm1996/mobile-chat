@@ -175,7 +175,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 console.log('error: ', err);
                                 console.log('collections: ', collections);
                                 console.log("-----------------------------------------------");
-                                console.log(collections.findIndex(x => x.name === 'messages').name);
+                                var item = collections.find(x => x.name === 'messages');
+                                console.log(item.type);
                       
 
                             })
