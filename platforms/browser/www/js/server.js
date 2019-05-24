@@ -147,7 +147,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 
                                 console.log(collectionList);
                                 console.log("-----------------------------------------------");
-                                console.log("NAME : " + collectionList["name");
+                                console.log("NAME : " + collectionList["name"]);
 
                                 if (collectionList["name"] == dbName1)
                                     console.log("TAK 1");
