@@ -128,8 +128,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
                             var db1Chat = db.db().collection(dbName1);
                             var db2Chat = db.db().collection(dbName2);
-                            console.log(db1Chat.collectionName);
-                            console.log(db2Chat.collectionName);
+                            console.log(db1Chat);
+                            console.log(db2Chat);
 
                             //var databasa = db.db().listCollections().toArray();
                             //if (dbName1 in databasa) {
