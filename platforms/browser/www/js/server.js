@@ -132,11 +132,11 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 console.log(collectionList)
                             });
 
-                            newDB.listCollections().toArray((error, collections) => {
-                                console.log('error: ', err);
-                                console.log('collections: ', collections.findIndex({ name: dbName1 }));
-                                db.close()
-                            })
+                            //newDB.listCollections().toArray((error, collections) => {
+                            //    console.log('error: ', err);
+                            //    console.log('collections: ', collections.findIndex({ name: dbName1 }));
+                            //    db.close()
+                            //})
     
 
                             console.log("WYNIK1: " + db.db().listCollections({ name: dbName1 }).hasNext());
