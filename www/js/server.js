@@ -130,9 +130,9 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             var db2Chat = db.db().collection(dbName2);
                             console.log("DBCHAT1 : " + db1Chat);
                             console.log("DBCHAT2 : " + db2Chat);
-                            if (collections["name"] == dbName1)
+                            if (db1Chat["name"] == dbName1)
                                 console.log("TAK 1");
-                            if (collections["name"] == dbName2)
+                            if (db2Chat["name"] == dbName2)
                                 console.log("TAK 2");
 
                             //var databasa = db.db().listCollections().toArray();
@@ -143,10 +143,17 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             //    console.log(dbName2)
                             //}
                             var newDB = db.db();
-                            //newDB.collections(function (err, collectionList) {
+                            newDB.collections(function (err, collectionList) {
                                 
-                            //    console.log(collectionList)
-                            //});
+                                console.log(collectionList);
+                                console.log("-----------------------------------------------");
+                                console.log("NAME : " + collectionList["name");
+
+                                if (collectionList["name"] == dbName1)
+                                    console.log("TAK 1");
+                                if (collectionList["name"] == dbName2)
+                                    console.log("TAK 2");
+                            });
 
                             //newDB.listCollections().toArray((error, collections) => {
                             //    console.log('error: ', err);
