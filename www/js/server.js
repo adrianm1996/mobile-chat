@@ -128,8 +128,12 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
                             var db1Chat = db.db().collection(dbName1);
                             var db2Chat = db.db().collection(dbName2);
-                            console.log(db1Chat);
-                            console.log(db2Chat);
+                            console.log("DBCHAT1 : " + db1Chat);
+                            console.log("DBCHAT2 : " + db2Chat);
+                            if (collections["name"] == dbName1)
+                                console.log("TAK 1");
+                            if (collections["name"] == dbName2)
+                                console.log("TAK 2");
 
                             //var databasa = db.db().listCollections().toArray();
                             //if (dbName1 in databasa) {
@@ -144,16 +148,16 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             //    console.log(collectionList)
                             //});
 
-                            newDB.listCollections().toArray((error, collections) => {
-                                console.log('error: ', err);
-                                console.log('collections: ', collections);
-                                console.log("-----------------------------------------------");
-                                if (collections["name"] == dbName1)
-                                    console.log("TAK 1");
-                                if (collections["name"] == dbName2)
-                                    console.log("TAK 2");
+                            //newDB.listCollections().toArray((error, collections) => {
+                            //    console.log('error: ', err);
+                            //    console.log('collections: ', collections);
+                            //    console.log("-----------------------------------------------");
+                            //    if (collections["name"] == dbName1)
+                            //        console.log("TAK 1");
+                            //    if (collections["name"] == dbName2)
+                            //        console.log("TAK 2");
 
-                            })
+                            //})
 
                            
 
