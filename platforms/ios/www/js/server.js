@@ -149,14 +149,27 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 console.log("-----------------------------------------------");
                                 console.log("NAME : " + collectionList["name"]);
                                 console.log("NAME2 : " + collectionList[1]["name"]);
-                                console.log("NAME2 : " + collectionList(1)["name"]);
                                 console.log("NAME3 : " + collectionList["s"]);
+                                console.log("NAME4 : " + collectionList.find({}, { name: dbName }));
 
                                 if (collectionList["name"] == dbName1)
                                     console.log("TAK 1");
                                 if (collectionList["name"] == dbName2)
                                     console.log("TAK 2");
+
+
+                                var keys = [];
+                                collectionList.find().forEach(function (doc) {
+                                    for (var key in doc) {
+                                        if (keys.indexOf(key) < 0) {
+                                            keys.push(key);
+                                        }
+                                    }
+                                });
                             });
+
+                            
+                            
 
                             //newDB.listCollections().toArray((error, collections) => {
                             //    console.log('error: ', err);
