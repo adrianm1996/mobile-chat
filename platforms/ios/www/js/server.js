@@ -124,15 +124,18 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             console.log(useremail);
                             dbName1 = usr.loggedUser + '&' + useremail + 'CHAT';
                             dbName2 = useremail + '&' + usr.loggedUser + 'CHAT';
-                            //dbName = useremail + '&' + usr.loggedUser + 'CHAT';
+                            dbName = useremail + '&' + usr.loggedUser + 'CHAT';
 
                             var newDB = db.db();
+                            console.log('test 1');
 
                             newDB.listCollections().toArray((error, collections) => {
                                 console.log('error: ', err);
                                 console.log('collections: ', collections);
                                 console.log("-----------------------------------------------");
+                                console.log("test 3");
                                 if (collections.find(x => x.name === dbName1)) {
+                                    console.log('test 4');
                                     console.log(collections.find(x => x.name === dbName1).name);
                                     dbName = dbName1;
                                     userChat = db.db().collection(dbName);
@@ -140,6 +143,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 else
                                     console.error('brak 1');
                                 if (collections.find(x => x.name === dbName2)) {
+                                    console.log('test 4');
                                     console.log(collections.find(x => x.name === dbName2).name)
                                     dbName = dbName2;
                                     userChat = db.db().collection(dbName);
@@ -149,9 +153,9 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
                             });
 
-                           
+                            console.log('test 2');
 
-                            //userChat = db.db().collection(dbName);
+                            userChat = db.db().collection(dbName);
                             
                             userChat.find().toArray(function (err, res) {
                                 if (err)
