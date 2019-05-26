@@ -133,9 +133,9 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 console.log('error: ', err);
                                 console.log('collections: ', collections);
                                 console.log("-----------------------------------------------");
-                                console.log("test 3");
+                                console.log("test 2");
                                 if (collections.find(x => x.name === dbName1)) {
-                                    console.log('test 4');
+                                    console.log('test 3');
                                     console.log(collections.find(x => x.name === dbName1).name);
                                     dbName = dbName1;
                                     userChat = db.db().collection(dbName);
@@ -143,7 +143,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 else
                                     console.error('brak 1');
                                 if (collections.find(x => x.name === dbName2)) {
-                                    console.log('test 4');
+                                    console.log('test 3');
                                     console.log(collections.find(x => x.name === dbName2).name)
                                     dbName = dbName2;
                                     userChat = db.db().collection(dbName);
@@ -151,19 +151,22 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 else
                                     console.error('brak 2');
 
+
+                                console.log('test 4');
+
+                                userChat = db.db().collection(dbName);
+
+                                userChat.find().toArray(function (err, res) {
+                                    if (err)
+                                        console.log(err);
+                                    else {
+                                        socket.emit('output', res);
+                                    }
+                                });
+
                             });
 
-                            console.log('test 2');
-
-                            userChat = db.db().collection(dbName);
                             
-                            userChat.find().toArray(function (err, res) {
-                                if (err)
-                                    console.log(err);
-                                else {
-                                    socket.emit('output', res);
-                                }
-                            });
                         }
                         else
                             console.log("user not found");
