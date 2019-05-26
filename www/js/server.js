@@ -132,8 +132,10 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 console.log('error: ', err);
                                 console.log('collections: ', collections);
                                 console.log("-----------------------------------------------");
-                                var item = collections.find(x => x.name === 'asdasd');
-                                console.log(item.name);
+                                if (collections.find(x => x.name === 'asdasd'))
+                                    console.error('brak');
+                                else
+                                    console.log(collections.find(x => x.name === 'asdasd').name);
                       
 
                             })
