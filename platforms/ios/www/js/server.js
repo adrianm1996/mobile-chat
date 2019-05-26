@@ -136,10 +136,14 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                     console.log(collections.find(x => x.name === dbName1).name);
                                     dbName = dbName1;
                                 }
+                                else
+                                    console.error(brak);
                                 if (collections.find(x => x.name === dbName2)) {
                                     console.log(collections.find(x => x.name === dbName2).name)
                                     dbName = dbName2;
                                 }
+                                else
+                                    console.error(brak);
 
                             })
 
