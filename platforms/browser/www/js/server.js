@@ -136,7 +136,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                     //console.log(collections.find(x => x.name === 'asdasd').name);
                                     dbName = dbName1;
                                 }
-                                else if (collections.find(x => x.name === dbName2)) {
+                                if (collections.find(x => x.name === dbName2)) {
                                     dbName = dbName2;
                                 }
                                 else {
