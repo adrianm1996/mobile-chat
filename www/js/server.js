@@ -132,12 +132,17 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 console.log('error: ', err);
                                 console.log('collections: ', collections);
                                 console.log("-----------------------------------------------");
-                                if (collections.find(x => x.name === 'asdasd'))
-                                    console.log(collections.find(x => x.name === 'asdasd').name);
-                                else
-                                    console.error('brak');
-                      
-
+                                if (collections.find(x => x.name === dbName1)) {
+                                    //console.log(collections.find(x => x.name === 'asdasd').name);
+                                    dbName = dbName1;
+                                }
+                                else if (collections.find(x => x.name === dbName2)) {
+                                    dbName = dbName2;
+                                }
+                                else {
+                                    console.error('Nie znaleziono');
+                                    dbName = useremail + '&' + usr.loggedUser + 'CHAT';
+                                }
                             })
 
                            
