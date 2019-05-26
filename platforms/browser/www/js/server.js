@@ -124,58 +124,15 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             console.log(useremail);
                             dbName1 = usr.loggedUser + '&' + useremail + 'CHAT';
                             dbName2 = useremail + '&' + usr.loggedUser + 'CHAT';
-                            dbName = useremail + '&' + usr.loggedUser + 'CHAT';
+                           // dbName = useremail + '&' + usr.loggedUser + 'CHAT';
 
-                            var db1Chat = db.db().collection(dbName1);
-                            var db2Chat = db.db().collection(dbName2);
-                            console.log("DBCHAT1 : " + db1Chat);
-                            console.log("DBCHAT2 : " + db2Chat);
-                            if (db1Chat["name"] == dbName1)
-                                console.log("TAK 1");
-                            if (db2Chat["name"] == dbName2)
-                                console.log("TAK 2");
-
-                            //var databasa = db.db().listCollections().toArray();
-                            //if (dbName1 in databasa) {
-                            //    console.log(dbName1)
-                            //}
-                            //if (dbName2 in databasa) {
-                            //    console.log(dbName2)
-                            //}
                             var newDB = db.db();
-                            newDB.collections(function (err, collectionList) {
-                                
-                                console.log(collectionList);
-                                console.log("-----------------------------------------------");
-                                console.log("NAME : " + collectionList["name"]);
-                                //console.log("NAME2 : " + collectionList[1]["name"]);
-                                //console.log("NAME3 : " + collectionList["s"]);
-                                //console.log("NAME4 : " + collectionList.find({}, { name: dbName }));
-
-                                //if (collectionList["name"] == dbName1)
-                                //    console.log("TAK 1");
-                                //if (collectionList["name"] == dbName2)
-                                //    console.log("TAK 2");
-
-
-                                //var keys = [];
-                                //collectionList.find().forEach(function (doc) {
-                                //    for (var key in doc) {
-                                //        if (keys.indexOf(key) < 0) {
-                                //            keys.push(key);
-                                //        }
-                                //    }
-                                //});
-                            });
-
-                            
-                            
 
                             newDB.listCollections().toArray((error, collections) => {
                                 console.log('error: ', err);
                                 console.log('collections: ', collections);
                                 console.log("-----------------------------------------------");
-                                var item = collections.find(x => x.name === 'messages');
+                                var item = collections.find(x => x.name === 'asdasd');
                                 console.log(item.name);
                       
 
