@@ -6,18 +6,45 @@ body {
     height: 100%;
 }
 
+#logo {
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -80px;
+    margin-bottom: -75px;
+    z-index: -1;
+}
+
 .boxx {
     position: relative;
-    margin: -7% 10% 10% 10%;
-    background-color: white;
-    width: 70%;
+    margin: -7% 10% 5% 5%;
+    /*background-color: #6CFFFB;*/
+    background-image: linear-gradient(141deg, #6CFFFB 0%, #1fc8db 51%, #2cb5e8 75%);
+    width: 80%;
     height: 100%;
     z-index: 10;
-    border-radius: 2px;
+    border-radius: 5px;
     box-shadow: 10px 8px 16px 0px rgba(0, 0, 0, 0.5);
     padding: 5%;
     text-align: center;
-    border-bottom: 10px solid black;
+    /*border: 1px solid black;*/
+    -webkit-animation: mymove 5s infinite; /* Safari 4.0 - 8.0 */
+    animation: mymove 5s infinite;
+    /*border-bottom: 10px solid black;*/
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes mymove {
+    50% {
+        border-radius: 50px;
+    }
+}
+
+@keyframes mymove {
+    50% {
+        border-radius: 50px;
+    }
 }
 
 .outer {
@@ -28,8 +55,9 @@ body {
 .header {
     height: 40%;
     width: 100%;
-    background: black;
+    background: #56E8BA;
     box-shadow: 10px 8px 16px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 0 0 0 70%/100px;
 }
 
 .brand {
@@ -37,8 +65,9 @@ body {
     color: white;
     text-decoration: none;
     padding: 20px;
-    float: left;
+    position: center;
 }
+
 
 .left {
     float: right;
@@ -47,10 +76,10 @@ body {
 
 ul > li {
     display: inline-block;
-    padding: 20px;
+    padding-top: 80px;
     font-size: 30px;
     list-style: none;
-    margin-right: 30px;
+    margin-right: 10px;
 }
 
 li > a {
@@ -72,14 +101,20 @@ li > a {
     font-size: 15px;
     width: 120px;
     height: 30px;
-    border-radius: 2px;
+    border-radius: 15px;
     box-shadow: 4px 5px 8px 0px rgba(0, 0, 0, 0.5);
     margin: 20px;
+    background-image: linear-gradient(to right, #00ffff, #33cccc);
 }
 
 .btn {
     border: none;
-    background-color: black;
-    font-size: 30px;
-    color: white;
+    background-color: #5EFF9F;
+    font-size: 35px;
+    color: lightslategray;
+    height: 60px;
+    border-radius: 10px;
+    box-shadow: 10px 8px 16px 0px rgba(0, 0, 0, 0.5);
+    font-style: inherit;
+    font-family: 'Book Antiqua';
 }

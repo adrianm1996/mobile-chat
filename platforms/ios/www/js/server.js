@@ -119,7 +119,6 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     findEmail.findOne({ name: userName, surname: userSurname }, function (err, result) {
                         if (result == null) console.log("login invalid");
                         else if (result.name == userName && result.surname == userSurname) {
-                            console.log("tst");
                             useremail = result.user;
                             console.log(useremail);
                             dbName1 = usr.loggedUser + '&' + useremail + 'CHAT';
@@ -127,15 +126,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             dbName = useremail + '&' + usr.loggedUser + 'CHAT';
 
                             var newDB = db.db();
-                            console.log('test 1');
-
                             newDB.listCollections().toArray((error, collections) => {
-                                console.log('error: ', err);
-                                console.log('collections: ', collections);
-                                console.log("-----------------------------------------------");
-                                console.log("test 2");
                                 if (collections.find(x => x.name === dbName1)) {
-                                    console.log('test 3');
                                     console.log(collections.find(x => x.name === dbName1).name);
                                     dbName = dbName1;
                                     userChat = db.db().collection(dbName);
@@ -143,16 +135,12 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 else
                                     console.error('brak 1');
                                 if (collections.find(x => x.name === dbName2)) {
-                                    console.log('test 3');
                                     console.log(collections.find(x => x.name === dbName2).name)
                                     dbName = dbName2;
                                     userChat = db.db().collection(dbName);
                                 }
                                 else
                                     console.error('brak 2');
-
-
-                                console.log('test 4');
 
                                 userChat = db.db().collection(dbName);
 

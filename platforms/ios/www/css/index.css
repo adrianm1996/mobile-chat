@@ -18,14 +18,27 @@
  */
 
 body {
-    background-color: #d5d68d;
+    /*background-color: #56E8BA;*/
+    background: #5EFF9F;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#header {
+    background-color: #56E8BA;
+    width: 100%;
+    top: 0;
+    margin-left: -10px;
+    margin-top: -10px;
 }
 
 #container {
     width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    /*margin-left: auto;
+    margin-right: auto;*/
     font-family: 'Lato', sans-serif;
+    /*margin:0;*/
 }
 
 #logo {
@@ -36,23 +49,101 @@ body {
     font-family: 'Pacifico', cursive;
     font-weight: 900;
     text-align: center;
+    width: 100%;
+}
+
+#logo2 {
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -50px;
+    margin-bottom: -45px;
+    z-index: -1;
+    padding-bottom: 20px;
 }
 
 #menu {
-    background-color: #babc3e;
-    margin-top: 20px;
-    color: white;
-    
+    height: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+    padding: 0px;
+    box-sizing: border-box;
+    background-color: #56E8BA;
+    width: 100%;
 }
 
+.site-nav-trigger {
+    border: 0;
+    border-radius: 5px;
+    background: #ffffff;
+}
+
+.site-menu {
+    display: flex;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0px;
+    right: 0;
+    height: 100%;
+    width: 300px;
+    background: #34b999;
+    transform: translateX(100%)
+}
+
+    .site-menu ul {
+        padding: 0;
+        list-style-type: none;
+        margin: 0 10px;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
+    }
+
+    .site-menu li {
+        background: #FFFFFF;
+        margin-top: 20px;
+        color: #696e9e;
+        border-radius: 5px;
+        flex-basis: 100%;
+        height: 30px;
+    }
+
+        .site-menu li:last-child {
+            background: #d2f9ed
+        }
+
+        .site-menu li:hover {
+            background-color: #159d72;
+            cursor: pointer;
+        }
+
+    .site-menu div {
+        display: flex;
+        padding: 10px;
+        box-sizing: border-box;
+        text-decoration: none;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+    }
+
+.site-menu-trigger:focus ~ .site-menu {
+    transform: translateX(0);
+}
+
+
 #person {
-    background-color: #d6d6cf;
     color: white;
-    padding: 10px;
+    padding-top: 10px;
     margin-top: 20px;
-    margin-bottom: 25px;
-    height: 100px;
+    margin-bottom: 20px;
+    height: 10%;
     text-align: center;
+    width: 100%;
+    margin-left: -10px;
+    background-image: linear-gradient(#56E8BA,#5EFF9F);
 }
 
 #personIMG {
@@ -62,14 +153,12 @@ body {
     text-align: center;
 }
 
-#personIMG img {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    
-    
-}
+    #personIMG img {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+    }
 
 #personName {
     float: none;
@@ -92,34 +181,34 @@ body {
     z-index: 1;
 }
 
-#friends:hover {
-    transform: translateX(304px);
-}
+    #friends:hover {
+        transform: translateX(304px);
+    }
 
 
-#friends #friends_content{
-    background: #fff;
-    min-height: 200px;
-    padding: 10px;
-    position: relative;
-}
+    #friends #friends_content {
+        background: #fff;
+        min-height: 200px;
+        padding: 10px;
+        position: relative;
+    }
 
-#friends #friends_submit {
-    background: #fff;
-    border: solid #ffc000;
-    border-radius: 0px 0px 4px 4px;
-    border-width: 0px 4px 4px;
-    cursor: default;
-    font-size: 18px;
-    height: 30px;
-    line-height: 30px;
-    position: absolute;
-    right: -74px;
-    text-align: center;
-    top: 70px;
-    transform: rotate(-90deg);
-    width: 106px;
-}
+    #friends #friends_submit {
+        background: #fff;
+        border: solid #ffc000;
+        border-radius: 0px 0px 4px 4px;
+        border-width: 0px 4px 4px;
+        cursor: default;
+        font-size: 18px;
+        height: 30px;
+        line-height: 30px;
+        position: absolute;
+        right: -74px;
+        text-align: center;
+        top: 70px;
+        transform: rotate(-90deg);
+        width: 106px;
+    }
 
 #friends_list {
     width: 250px;
@@ -135,15 +224,23 @@ body {
     overflow: auto;
     overflow-y: auto;
     float: left;
-    width:97%;
+    width: 90%;
     height: 400px;
     background-color: snow;
 }
 
+#dialogue {
+    width: 90%;
+    margin-left: 3%;
+    /*margin-right: 5%;*/
+}
+
 
 #typing {
-   clear:both;
-    
+    clear: both;
+    width: 80%;
+    margin-left: 3%;
+    /*padding-top: -40px;*/
 }
 
 #form1 {
@@ -157,7 +254,6 @@ body {
 }
 
 #submit {
-
 }
 
 input[type=submit] {
@@ -170,16 +266,14 @@ input[type=submit] {
     width: 20%;
     padding: 20px;
     margin-left: 10px;
-    
 }
 
-.option {
+/*.option {
     float: left;
     min-width: 50px;
     height: 25px;
     font-size: 18px;
     padding: 10px;
-    border-right: 2px dashed #444444;
     opacity: 0.8;
 }
 
@@ -189,9 +283,8 @@ input[type=submit] {
     height: 25px;
     font-size: 18px;
     padding: 10px;
-    border-left: 2px dashed #444444;
     opacity: 0.8;
-}
+}*/
 
 #divLogout {
     float: right;
@@ -199,12 +292,5 @@ input[type=submit] {
     height: 25px;
     font-size: 18px;
     padding: 10px;
-    border-left: 2px dashed #444444;
     opacity: 0.8;
 }
-
-.option:hover {
-    background-color: #484900;
-    cursor: pointer;
-}
-

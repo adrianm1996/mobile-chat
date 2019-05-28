@@ -28,10 +28,10 @@ $(function () {
             }
         },
         messages: {
-            email: "Please enter a valid email address",
+            email: "Wpisz poprawny adres email",
 
             password: {
-                required: "Please enter password",
+                required: "Wpisz has³o",
 
             }
 

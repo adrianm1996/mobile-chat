@@ -7,14 +7,14 @@
 </head>
 
 
-<body style="background-color:grey;" onload="load()">
+<body style="background-color:#5EFF9F;" onload="load()">
 
     <div class="header" id="header">
-        <a class="brand" href="">admisChat</a>
+        <a class="brand" href=""><img id="logo" src="img/logo_transparent.png" alt="admis logo"></a>
 
         <ul class="left">
             <li><input id="check" class="btn" type="button" onclick="check()" value=""></li>
-            <li><input class="btn" type="submit" target="about.php" value="About"></li>
+            <li><input class="btn" type="submit" target="about.php" value="Info"></li>
         </ul>
     </div>
 
@@ -24,16 +24,15 @@
 
             <form action="">
 
-                <label for="email">Email ID&nbsp;&nbsp;&nbsp;</label>
+                <label for="email">Email&nbsp;&nbsp;&nbsp;</label>
                 <input type="email" class="box" name="email" id="email" value="" placeholder="Email ID" onkeyup="validation()"><br>
                 <p style="color:red;" id="error"><br><br><br></p>
 
-                <label for="password">Password&nbsp;&nbsp;&nbsp;</label>
+                <label for="password">Hasło&nbsp;&nbsp;&nbsp;</label>
                 <input type="password" class="box" name="password" id="password" value="" placeholder="Password"><br><br><br>
 
-                <input class="button" type="button" value="Register &nbsp;" onclick="register()">
 
-                <input type="submit" class="button" value="Submit">
+                <input type="submit" class="button" value="Zaloguj się">
             </form>
         </div>
 
@@ -53,11 +52,7 @@
                 <label for="password">Hasło&nbsp;&nbsp;&nbsp;</label>
                 <input class="box" type="password" name="password" id="passwordR" value="" placeholder="Hasło"><br><br><br>
 
-
-
-                <input class="button" type="button" value="Login" onclick="login()">
-
-                <input type="submit" class="button" value="Submit">
+                <input type="submit" class="button" value="Zarejestruj się">
             </form>
         </div>
 
@@ -92,11 +87,10 @@
                     $('#surnameR').val('');
                     $('#emailR').val('');
                     $('#passwordR').val('');
-                    
+
                 }
                 return false;
             });
-
 
             $('form').submit(function () {
                 if ($('#email').val().length > 0 && $('#password').val().length > 0) {
@@ -104,16 +98,13 @@
                         email: $('#email').val(),
                         password: $('#password').val()
                     });
-                    //$('#email').val('');
-                    //$('#password').val('');
+                    $('#email').val('');
+                    $('#password').val('');
                 }
                 return false;
             });
 
-
-
             socket.on('redirect', function (destination) {
-
                 window.location.href = destination;
             });
 

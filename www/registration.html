@@ -26,21 +26,29 @@
 </head>
 <body>
     <div id="container">
-        <div id="logo">
-            admisChat
-        </div>
-        <div id="menu">
-            <div class="option">Znajomi</div>
-            <div class="option">M�j profil</div>
-            <div class="option">Grupowa</div>
-            <div id="option2">Logged</div>
-            <div id="divLogout"><form action="" id="logout"><button>Logout</button></form></div>
-            <div style="clear:both"></div>
+
+        <div id="header">
+            <div id="menu">
+                <button class="site-nav-trigger">Menu</button>
+                <div class="site-menu">
+                    <ul>
+                        <li><div class="option">Znajomi</div></li>
+                        <li><div class="option">Mój profil</div></li>
+                        <li><div class="option">Grupowa</div></li>
+                        <li><div id="option2">Logged</div></li>
+                        <li><div id="divLogout"><form action="" id="logout">Wyloguj się</form></div></li>
+        
+                    </ul>
+                </div>
+            </div>
+            <div id="logo">
+                <a class="brand" href=""><img id="logo2" src="img/logo_transparent.png" alt="admis logo"></a>
+            </div>
         </div>
         <div id="person">
             <!--<div id="personIMG">
-                <img src="https://ocdn.eu/pulscms-transforms/1/___ktkqTURBXy9jMjJiOGM3M2E2YzMyNmY2NTVhNzJjZTQ2NzY0YzczOS5qcGVnkZMCAM0B5A" />
-            </div>-->
+            <img src="https://ocdn.eu/pulscms-transforms/1/___ktkqTURBXy9jMjJiOGM3M2E2YzMyNmY2NTVhNzJjZTQ2NzY0YzczOS5qcGVnkZMCAM0B5A" />
+        </div>-->
             <div id="personName">Imię Nazwisko</div>
             <!--<div style="clear:both"></div>-->
         </div>
@@ -91,8 +99,6 @@
                     }
                 }
             });
-
-
 
             // Wyświetlanie wiadomości
 
