@@ -92,7 +92,7 @@ body {
     transform: translateX(100%)
 }
 
-    .site-menu ul {
+    .site-menu ul{
         padding: 0;
         list-style-type: none;
         margin: 0 10px;
@@ -114,7 +114,7 @@ body {
             background: #d2f9ed
         }
 
-        .site-menu li:hover {
+        .site-menu li:last-child:hover {
             background-color: #159d72;
             cursor: pointer;
         }
@@ -170,7 +170,7 @@ body {
 }
 
 #friends {
-    background: #ffc000;
+    background: #56E8BA;
     border-radius: 0px 4px 4px 0px;
     left: -304px;
     padding: 4px 4px 4px 0px;
@@ -195,11 +195,12 @@ body {
 
     #friends #friends_submit {
         background: #fff;
-        border: solid #ffc000;
+        border: solid #56E8BA;
         border-radius: 0px 0px 4px 4px;
         border-width: 0px 4px 4px;
         cursor: default;
-        font-size: 18px;
+        font-size: 14px;
+
         height: 30px;
         line-height: 30px;
         position: absolute;
@@ -268,14 +269,31 @@ input[type=submit] {
     margin-left: 10px;
 }
 
-/*.option {
-    float: left;
-    min-width: 50px;
-    height: 25px;
-    font-size: 18px;
-    padding: 10px;
-    opacity: 0.8;
+#people {
+    padding: 0;
+    list-style-type: none;
+    margin: 0 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    overflow: hidden;
+    overflow-y: scroll; 
 }
+
+#people li {
+    background: #5EFF9F;
+    margin-top: 5px;
+    text-align: center;
+    color: #696e9e;
+    border-radius: 5px;
+    flex-basis: 100%;
+    height: 30px;
+
+}
+
+a {
+    text-decoration: none;
+} 
 
 #option2 {
     float: right;

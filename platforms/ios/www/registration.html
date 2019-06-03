@@ -32,9 +32,9 @@
                 <button class="site-nav-trigger">Menu</button>
                 <div class="site-menu">
                     <ul>
-                        <li><div class="option">Znajomi</div></li>
+                        <!--<li><div class="option">Znajomi</div></li>
                         <li><div class="option">Mój profil</div></li>
-                        <li><div class="option">Grupowa</div></li>
+                        <li><div class="option">Grupowa</div></li>-->
                         <li><div id="option2">Logged</div></li>
                         <li><div id="divLogout">Wyloguj się</div></li>
         
@@ -54,7 +54,7 @@
         </div>
         <div id="friends">
             <div id="friends_content">
-                <div id="friends_submit">Friends</div>
+                <div id="friends_submit">Użytkownicy</div>
                 <div id="friends_text">
                     <ul id="people"></ul>
                 </div>
@@ -85,7 +85,7 @@
     <script>
         $(function () {
             var socket = io.connect('http://admis-chat.herokuapp.com/registration.html');
-
+            var tmpPerson;
             // Wyświetlanie zarejestrowanych osób
             socket.on('peopleOutput', function (data) {
                 if (data.length) {
@@ -94,7 +94,7 @@
                             $('<li>').append(
                                 $('<a>').attr('href', '#').text(data[x].name + " " + data[x].surname)));
                         $('#people').scrollTop($('#people')[0].scrollHeight);
-                        var tmpPerson = $('#people').find('li:first').text();
+                        tmpPerson = $('#people').find('li:first').text();
                         $('#personName').text(tmpPerson);
                     }
                 }
@@ -133,6 +133,13 @@
                 logged = usr.email;
                 $('#option2').text(usr.email);
             });
+
+            
+            socket.emit('createChat', {
+                    loggedUser: $('#option2').text(),
+                    withUserName: tmpPerson.substring(0, tmpPerson.indexOf(" ")),
+                    withUserSurname: tmpPerson.substring(tmpPerson.indexOf(" ")+1, tmpPerson.length)
+                });
 
             $("#divLogout").on('click', function (event) {
                 var location = window.location.hostname;
