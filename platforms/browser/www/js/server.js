@@ -101,14 +101,14 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     else {
 
                         users.findOne({
-                            where: { user: usrLog.email }
-                        }).then(function (user){
+                             user: usrLog.email }
+                        ).then(function (user){
                             if (!user)
                                 console.log('not found');
                             else
         
                                 bcrypt.compare(usrLog.password, user.password, function (errors, result2) {
-                                    if (result2) {
+                                    if (result2 == true) {
                                         var destination = './registration.html';
                                         loggedUsr = result.user;
                                         socket.emit('redirect', destination);
