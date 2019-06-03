@@ -174,7 +174,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         var hashMessage = msg.message;
                         bcrypt.genSalt(12, function (err, salt) {
                             if (err) throw err;
-                            bcrypt.hash(hashMessage, salt, function (err, hash) {
+                            bcrypt.hash(hashMessage, salt,null, function (err, hash) {
                                 if (err) throw err;
                                 hashMessage = hash;
 
