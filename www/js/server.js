@@ -197,7 +197,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         socket.emit('er', "wiadomość nie może być pusta.");
                     }
                     else {
-                        userChat.insert({ username: msg.username, message: hashMessage })
+                        userChat.insert({ username: msg.username, message: msg.message })
 
                         io.of('registration.html').emit('message', {
 
