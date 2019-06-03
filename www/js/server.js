@@ -59,12 +59,31 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         socket.emit('er', "Wpisz cos.");
                     }
                     else {
-                        users.insert({
-                            user: usr.email,
-                            passwd: usr.password,
-                            name: usr.name,
-                            surname: usr.surname
+
+
+                        var hashPassword = usr.password;
+                        bcrypt.genSalt(12, function (err, salt) {
+                            if (err) throw err;
+                            bcrypt.hash(hashPassword, salt, null, function (err, hash) {
+                                if (err) throw err;
+                                hashPassword = hash;
+
+                                users.insert({
+                                    user: usr.email,
+                                    passwd: hashPassword,
+                                    name: usr.name,
+                                    surname: usr.surname
+                                });
+
+                            });
                         });
+
+                        //users.insert({
+                        //    user: usr.email,
+                        //    passwd: usr.password,
+                        //    name: usr.name,
+                        //    surname: usr.surname
+                        //});
                         io.emit('user', {
                             user: usr.email,
                             passwd: usr.password,
@@ -83,13 +102,20 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
                         users.findOne({ user: usrLog.email }, function (err, result) {
                             if (result == null) console.log("login invalid");
-                            else if (result.user == usrLog.email && result.passwd == usrLog.password) {
+
+                            bcrypt.compare(usrLog.password, hash).then(function (res2) {
                                 var destination = './registration.html';
                                 loggedUsr = result.user;
                                 socket.emit('redirect', destination);
                                 direct = true;
+                            });
+                            //else if (result.user == usrLog.email && result.passwd == usrLog.password) {
+                            //    var destination = './registration.html';
+                            //    loggedUsr = result.user;
+                            //    socket.emit('redirect', destination);
+                            //    direct = true;
 
-                            }
+                            //}
                             else
                                 console.log("user not found");
                         });
@@ -149,12 +175,10 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                     if (err)
                                         console.log(err);
                                     else {
-                                        bcrypt.compare(res, hash, function (err, result) {
-                                            if (result) {
-                                                socket.emit('output', result);
-                                            }
-                                        });
-                                        
+
+                                        socket.emit('output', result);
+
+
                                     }
                                 });
 
@@ -179,7 +203,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         var hashMessage = msg.message;
                         bcrypt.genSalt(12, function (err, salt) {
                             if (err) throw err;
-                            bcrypt.hash(hashMessage, salt,null, function (err, hash) {
+                            bcrypt.hash(hashMessage, salt, null, function (err, hash) {
                                 if (err) throw err;
                                 hashMessage = hash;
 
