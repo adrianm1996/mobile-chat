@@ -173,7 +173,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     else {
                         bcrypt.hash(msg.message, 12)
                             .then(function (hashedPassword) {
-                                userChat.insert({ username: msg.username, message: msg.message })
+                                userChat.insert({ username: msg.username, message: hashedPassword })
                             })
                             .then(function () {
                                 io.of('registration.html').emit('message', {
