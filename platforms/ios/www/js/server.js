@@ -15,7 +15,7 @@ var express = require('express'),
     mongo = require('mongodb').MongoClient,
     jsdom = require('jsdom'),
     JSDOM = jsdom.JSDOM,
-    bcrypt = require('bcrypt');
+    bcrypt = require('bcrypt-nodejs');
 
 GLOBAL.document = new JSDOM('./registration.html').window.document;
 GLOBAL.window = new JSDOM('./registration.html').window;
