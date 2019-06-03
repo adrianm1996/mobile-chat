@@ -155,7 +155,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
                             });
 
-                            
+
                         }
                         else
                             console.log("user not found");
@@ -171,17 +171,23 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         socket.emit('er', "wiadomość nie może być pusta.");
                     }
                     else {
-                        bcrypt.hash(msg.message, 12)
-                            .then(function (hashedPassword) {
-                                userChat.insert({ username: msg.username, message: hashedPassword })
-                            })
-                            .then(function () {
+                        var hashMessage = msg.message;
+                        bcrypt.genSalt(12, function (err, salt) {
+                            if (err) throw err;
+                            bcrypt.hash(hashMessage, salt, function (err, hash) {
+                                if (err) throw err;
+                                hashMessage = hash;
+
+                                userChat.insert({ username: msg.username, message: hashMessage })
+
+
                                 io.of('registration.html').emit('message', {
 
                                     message: msg.message,
                                     username: msg.username
                                 });
-                            })
+                            });
+                        });
                     }
 
                 });
