@@ -64,8 +64,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         var hashPassword = usr.password;
                         bcrypt.genSalt(12, function (err, salt) {
                             if (err) throw err;
-                            bcrypt.hash(hashPassword, salt, null, function (err, hash) {
-                                if (err) throw err;
+                            bcrypt.hash(hashPassword, salt, null, function (erro, hash) {
+                                if (erro) throw erro;
                                 hashPassword = hash;
 
                                 users.insert({
