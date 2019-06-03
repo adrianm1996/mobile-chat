@@ -115,12 +115,17 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
             io.of('/registration.html').on('connection', function (socket) {
                 console.log("messages connect");
+
+
                 io.of('registration.html').emit('userLogin', {
 
                     email: loggedUsr
                 });
 
+
+
                 socket.on('createChat', function (usr) {
+                    //db.getMongo().getDBNames().indexOf("mydb");
                     var userName = usr.withUserName;
                     var userSurname = usr.withUserSurname;
                     var useremail;
@@ -183,7 +188,10 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             message: msg.message,
                             username: msg.username
                         });
+
+
                     }
+
                 });
 
 
@@ -197,6 +205,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         socket.emit('peopleOutput', res);
                     }
                 });
+
+
             });
         }
     });

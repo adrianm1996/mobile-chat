@@ -37,7 +37,7 @@
                         <li><div class="option">Grupowa</div></li>-->
                         <li><div id="option2">Logged</div></li>
                         <li><div id="divLogout">Wyloguj się</div></li>
-        
+
                     </ul>
                 </div>
             </div>
@@ -47,8 +47,8 @@
         </div>
         <div id="person">
             <!--<div id="personIMG">
-            <img src="https://ocdn.eu/pulscms-transforms/1/___ktkqTURBXy9jMjJiOGM3M2E2YzMyNmY2NTVhNzJjZTQ2NzY0YzczOS5qcGVnkZMCAM0B5A" />
-        </div>-->
+                <img src="https://ocdn.eu/pulscms-transforms/1/___ktkqTURBXy9jMjJiOGM3M2E2YzMyNmY2NTVhNzJjZTQ2NzY0YzczOS5qcGVnkZMCAM0B5A" />
+            </div>-->
             <div id="personName">Imię Nazwisko</div>
             <!--<div style="clear:both"></div>-->
         </div>
@@ -87,17 +87,30 @@
             var socket = io.connect('http://admis-chat.herokuapp.com/registration.html');
             var tmpPerson;
             // Wyświetlanie zarejestrowanych osób
+            socket.on('userLogin', function (usr) {
+                logged = usr.email;
+                $('#option2').text(usr.email);
+            });
             socket.on('peopleOutput', function (data) {
                 if (data.length) {
+
                     for (var x = 0; x < data.length; x++) {
-                        $('#people').append(
-                            $('<li>').append(
-                                $('<a>').attr('href', '#').text(data[x].name + " " + data[x].surname)));
-                        $('#people').scrollTop($('#people')[0].scrollHeight);
-                        tmpPerson = $('#people').find('li:first').text();
-                        $('#personName').text(tmpPerson);
+                        if (data[x].user != $("#option2").text()) {
+                            $('#people').append(
+                                $('<li>').append(
+                                    $('<a>').attr('href', '#').text(data[x].name + " " + data[x].surname)));
+                            $('#people').scrollTop($('#people')[0].scrollHeight);
+                            tmpPerson = $('#people').find('li:first').text();
+                            $('#personName').text(tmpPerson);
+                        }
                     }
                 }
+                
+                socket.emit('createChat', {
+                    loggedUser: $('#option2').text(),
+                    withUserName: tmpPerson.substring(0, tmpPerson.indexOf(" ")),
+                    withUserSurname: tmpPerson.substring(tmpPerson.indexOf(" ") + 1, tmpPerson.length)
+                });
             });
 
             // Wyświetlanie wiadomości
@@ -129,17 +142,10 @@
                 $("html, body").scrollTop($(document).height());
             });
 
-            socket.on('userLogin', function (usr) {
-                logged = usr.email;
-                $('#option2').text(usr.email);
-            });
 
-            
-            socket.emit('createChat', {
-                    loggedUser: $('#option2').text(),
-                    withUserName: tmpPerson.substring(0, tmpPerson.indexOf(" ")),
-                    withUserSurname: tmpPerson.substring(tmpPerson.indexOf(" ")+1, tmpPerson.length)
-                });
+
+
+
 
             $("#divLogout").on('click', function (event) {
                 var location = window.location.hostname;
@@ -151,8 +157,9 @@
             });
 
 
-
+            
             $("#people").on('click', 'li', function (event) {
+                
                 var value = $(this).text();
                 var clickUser = value.replace(' ', '');
                 //var tmpPerson = $('#people').find('li:first').text();
@@ -161,7 +168,7 @@
                 socket.emit('createChat', {
                     loggedUser: $('#option2').text(),
                     withUserName: value.substring(0, value.indexOf(" ")),
-                    withUserSurname: value.substring(value.indexOf(" ")+1, value.length)
+                    withUserSurname: value.substring(value.indexOf(" ") + 1, value.length)
                 });
             });
 
