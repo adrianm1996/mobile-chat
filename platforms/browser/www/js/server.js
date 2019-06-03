@@ -14,7 +14,8 @@ var express = require('express'),
     urlencodedParser = bodyParser.urlencoded({ extended: true }),
     mongo = require('mongodb').MongoClient,
     jsdom = require('jsdom'),
-    JSDOM = jsdom.JSDOM;
+    JSDOM = jsdom.JSDOM,
+    bcrypt = require('bcrypt');
 
 GLOBAL.document = new JSDOM('./registration.html').window.document;
 GLOBAL.window = new JSDOM('./registration.html').window;
@@ -170,12 +171,17 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         socket.emit('er', "wiadomość nie może być pusta.");
                     }
                     else {
-                        userChat.insert({ username: msg.username, message: msg.message })
-                        io.of('registration.html').emit('message', {
+                        bcrypt.hash(msg.message, 12)
+                            .then(function (hashedPassword) {
+                                userChat.insert({ username: msg.username, message: msg.message })
+                            })
+                            .then(function () {
+                                io.of('registration.html').emit('message', {
 
-                            message: msg.message,
-                            username: msg.username
-                        });
+                                    message: msg.message,
+                                    username: msg.username
+                                });
+                            })
                     }
 
                 });
