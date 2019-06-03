@@ -149,7 +149,12 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                     if (err)
                                         console.log(err);
                                     else {
-                                        socket.emit('output', res);
+                                        bcrypt.compare(res, hash, function (err, result) {
+                                            if (result) {
+                                                socket.emit('output', result);
+                                            }
+                                        });
+                                        
                                     }
                                 });
 
@@ -179,7 +184,6 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 hashMessage = hash;
 
                                 userChat.insert({ username: msg.username, message: hashMessage })
-
 
                                 io.of('registration.html').emit('message', {
 
