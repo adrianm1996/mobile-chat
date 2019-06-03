@@ -104,7 +104,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             if (result == null) console.log("login invalid");
 
                             else
-                                bcrypt.compare(usrLog.password, result.password, function (errors, result2) {
+                                bcrypt.compare(usrLog.password, result.passwd, function (errors, result2) {
                                     if (result2) {
                                         var destination = './registration.html';
                                         loggedUsr = result.user;
