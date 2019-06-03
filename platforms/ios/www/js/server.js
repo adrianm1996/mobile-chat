@@ -115,15 +115,6 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                         console.log("user not found");
                                 });
 
-                            //else if (result.user == usrLog.email && result.passwd == usrLog.password) {
-                            //    var destination = './registration.html';
-                            //    loggedUsr = result.user;
-                            //    socket.emit('redirect', destination);
-                            //    direct = true;
-
-                            //}
-                            //else
-                            //    console.log("user not found");
                         });
                     }
                 });
@@ -206,22 +197,15 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         socket.emit('er', "wiadomość nie może być pusta.");
                     }
                     else {
-                        var hashMessage = msg.message;
-                        bcrypt.genSalt(12, function (err, salt) {
-                            if (err) throw err;
-                            bcrypt.hash(hashMessage, salt, null, function (err, hash) {
-                                if (err) throw err;
-                                hashMessage = hash;
+                        userChat.insert({ username: msg.username, message: hashMessage })
 
-                                userChat.insert({ username: msg.username, message: hashMessage })
+                        io.of('registration.html').emit('message', {
 
-                                io.of('registration.html').emit('message', {
-
-                                    message: msg.message,
-                                    username: msg.username
-                                });
-                            });
+                            message: msg.message,
+                            username: msg.username
                         });
+
+
                     }
 
                 });

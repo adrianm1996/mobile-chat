@@ -36,7 +36,7 @@
                         <li><div class="option">Mój profil</div></li>
                         <li><div class="option">Grupowa</div></li>
                         <li><div id="option2">Logged</div></li>
-                        <li><div id="divLogout"><form action="" id="logout">Wyloguj się</form></div></li>
+                        <li><div id="divLogout">Wyloguj się</div></li>
         
                     </ul>
                 </div>
@@ -134,7 +134,7 @@
                 $('#option2').text(usr.email);
             });
 
-            $("#logout").on('click', function (event) {
+            $("#divLogout").on('click', function (event) {
                 var location = window.location.hostname;
                 var port = window.location.port;
                 var destination = location.replace('/registration.html', '/');
