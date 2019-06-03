@@ -100,15 +100,12 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     }
                     else {
 
-                        users.findOne({
-                             user: usrLog.email }
-                        ).then(function (user){
-                            if (!user)
-                                console.log('not found');
+                        users.findOne({ user: usrLog.email }, function (err, result) {
+                            if (result == null) console.log("login invalid");
+
                             else
-        
-                                bcrypt.compare(usrLog.password, user.password, function (errors, result2) {
-                                    if (result2 == true) {
+                                bcrypt.compare(usrLog.password, result.password, function (errors, result2) {
+                                    if (result2) {
                                         var destination = './registration.html';
                                         loggedUsr = result.user;
                                         socket.emit('redirect', destination);
