@@ -16,6 +16,7 @@
     "jsdom": "^15.1.0",
     "memcached": "^2.2.2",
     "mongodb": "^3.2.2",
+    "node-pre-gyp": "^0.13.0",
     "phonegap": "^8.2.2",
     "requirejs": "^2.3.6",
     "scripts": {
