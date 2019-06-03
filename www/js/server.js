@@ -103,12 +103,18 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         users.findOne({ user: usrLog.email }, function (err, result) {
                             if (result == null) console.log("login invalid");
 
-                            bcrypt.compare(usrLog.password, hash).then(function (res2) {
-                                var destination = './registration.html';
-                                loggedUsr = result.user;
-                                socket.emit('redirect', destination);
-                                direct = true;
-                            });
+                            else
+                                bcrypt.compare(usrLog.password, result.password, function (errors, result2) {
+                                    if (result2) {
+                                        var destination = './registration.html';
+                                        loggedUsr = result.user;
+                                        socket.emit('redirect', destination);
+                                        direct = true;
+                                    }
+                                    else
+                                        console.log("user not found");
+                                });
+
                             //else if (result.user == usrLog.email && result.passwd == usrLog.password) {
                             //    var destination = './registration.html';
                             //    loggedUsr = result.user;
