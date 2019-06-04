@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
@@ -17,14 +18,24 @@
     <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
     <meta http-equiv="Content-Security-Policy" content="img-src *;">
     <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/loading.css" />
     <link href="https://fonts.googleapis.com/css?family=Pacifico|Lato" rel="stylesheet">
     <title>My First Node App</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script>
+        $("#messages").ready(function () {
+            $('.loader').hide();
+            $('#container').css('visibility', 'visible');
+        });
+    </script>
 </head>
+
 <body>
+    
+    <div class="loader"></div>
     <div id="container">
 
         <div id="header">
@@ -49,8 +60,7 @@
             <!--<div id="personIMG">
                 <img src="https://ocdn.eu/pulscms-transforms/1/___ktkqTURBXy9jMjJiOGM3M2E2YzMyNmY2NTVhNzJjZTQ2NzY0YzczOS5qcGVnkZMCAM0B5A" />
             </div>-->
-            <div id="personName">Imię Nazwisko</div>
-            <!--<div style="clear:both"></div>-->
+            <div id="personName"></div>
         </div>
         <div id="friends">
             <div id="friends_content">
@@ -81,9 +91,12 @@
     <script src="jquery-3.3.1.min.js"></script>
     <script type="text/javascript">
         app.initialize();
+
     </script>
     <script>
+
         $(function () {
+           
             var socket = io.connect('http://admis-chat.herokuapp.com/registration.html');
             var tmpPerson;
             // Wyświetlanie zarejestrowanych osób
@@ -105,7 +118,7 @@
                         }
                     }
                 }
-                
+
                 socket.emit('createChat', {
                     loggedUser: $('#option2').text(),
                     withUserName: tmpPerson.substring(0, tmpPerson.indexOf(" ")),
@@ -119,10 +132,10 @@
                 if (data.length) {
                     for (var x = 0; x < data.length; x++) {
                         if (data[x].username != $('#option2').text()) {
-                            $('#messages').append($('<li>').css({ "text-align":"left", "float":"left"}).text(data[x].message));
+                            $('#messages').append($('<li>').css({ "text-align": "left", "float": "left" }).text(data[x].message));
                             $('#messages').scrollTop($('#messages')[0].scrollHeight);
                         } else {
-                            $('#messages').append($('<li>').css({ "text-align":"right", "float":"right"}).text(data[x].message));
+                            $('#messages').append($('<li>').css({ "text-align": "right", "float": "right" }).text(data[x].message));
                             $('#messages').scrollTop($('#messages')[0].scrollHeight);
                         }
                     }
@@ -162,9 +175,9 @@
             });
 
 
-            
+
             $("#people").on('click', 'li', function (event) {
-                
+
                 var value = $(this).text();
                 var clickUser = value.replace(' ', '');
                 //var tmpPerson = $('#people').find('li:first').text();
@@ -182,6 +195,8 @@
                 alert(er);
             });
         });
+
+            
     </script>
 </body>
 </html>

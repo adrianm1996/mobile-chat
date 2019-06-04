@@ -3,12 +3,19 @@
 <head>
     <title>admisChat || Login</title>
     <link rel="stylesheet" type="text/css" href="css/registration.css" />
+    <link rel="stylesheet" type="text/css" href="css/loading.css" />
+    <!--<script>
+        $(document).ready(function () {
+            $('.loader').hide();
+            $('#container').css('visibility', 'visible');
+        });
 
+    </script>-->
 </head>
-
 
 <body style="background-color:#5EFF9F;" onload="load()">
 
+    <div class="loader"></div>
     <div class="header" id="header">
         <a class="brand" href=""><img id="logo" src="img/logo_transparent.png" alt="admis logo"></a>
 
@@ -58,6 +65,7 @@
 
 
     </div>
+
     <!--<script src="/path/to/angular.js"></script>-->
     <script src="/socket.io/socket.io.js"></script>
     <!--<script src="/socket.io/socket.io.js"></script>-->
@@ -68,10 +76,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
     <!--<script src="jquery-3.3.1.min.js"></script>-->
+
     <script type="text/javascript">
         app.initialize();
+        $('.loader').hide();
+        $('.outer').css('visibility', 'visible');
+        $('.header').css('visibility', 'visible');
     </script>
     <script>
+
+
         $(function () {
             var socket = io.connect('https://admis-chat.herokuapp.com');
             $('form').submit(function () {
