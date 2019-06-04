@@ -34,7 +34,7 @@
 </head>
 
 <body>
-    
+
     <div class="loader"></div>
     <div id="container">
 
@@ -96,7 +96,7 @@
     <script>
 
         $(function () {
-           
+
             var socket = io.connect('http://admis-chat.herokuapp.com/registration.html');
             var tmpPerson;
             // Wyświetlanie zarejestrowanych osób
@@ -132,10 +132,10 @@
                 if (data.length) {
                     for (var x = 0; x < data.length; x++) {
                         if (data[x].username != $('#option2').text()) {
-                            $('#messages').append($('<li>').css({ "text-align": "left", "float": "left" }).text(data[x].message));
+                            $('#messages').append($('<li>').css({ "text-align": "left", "float": "left", "background": "#56E8BA" }).text(data[x].message));
                             $('#messages').scrollTop($('#messages')[0].scrollHeight);
                         } else {
-                            $('#messages').append($('<li>').css({ "text-align": "right", "float": "right" }).text(data[x].message));
+                            $('#messages').append($('<li>').css({ "text-align": "right", "float": "right", "background": "#3498db" }).text(data[x].message));
                             $('#messages').scrollTop($('#messages')[0].scrollHeight);
                         }
                     }
@@ -196,7 +196,7 @@
             });
         });
 
-            
+
     </script>
 </body>
 </html>

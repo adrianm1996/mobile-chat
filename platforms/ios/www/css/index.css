@@ -234,10 +234,10 @@ body {
 
     #messages li {
         background: #5EFF9F;
-        margin-top: 5px;
-        color: #696e9e;
+        margin-top: 5%;
+        color: #FFFFFF;
         border-radius: 5px;
-        /*flex-basis: 100%;*/
+        flex-basis: 100%;
         height: auto;
         text-decoration: none;
         width: auto;
@@ -329,4 +329,14 @@ a {
     font-size: 18px;
     padding: 10px;
     opacity: 0.8;
+}
+
+#form1 button {
+    font-size: 15px;
+    width: 70px;
+    height: 30px;
+    border-radius: 15px;
+    box-shadow: 4px 5px 8px 0px rgba(0, 0, 0, 0.5);
+    margin: 2px;
+    background-image: linear-gradient(to right, #00ffff, #33cccc);
 }
