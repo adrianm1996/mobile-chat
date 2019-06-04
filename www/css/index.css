@@ -228,7 +228,24 @@ body {
     width: 90%;
     height: 400px;
     background-color: snow;
+    list-style-type: none;
 }
+
+    #messages li {
+        background: #5EFF9F;
+        margin-top: 5px;
+        color: #696e9e;
+        border-radius: 5px;
+        /*flex-basis: 100%;*/
+        height: auto;
+        text-decoration: none;
+        width: auto;
+        clear: both;
+        padding: 5px;
+        margin-right: 5%;
+        margin-left: -5%;
+        
+    }
 
 #dialogue {
     width: 90%;
@@ -302,7 +319,7 @@ a {
     font-size: 18px;
     padding: 10px;
     opacity: 0.8;
-}*/
+}
 
 #divLogout {
     float: right;

@@ -118,8 +118,13 @@
             socket.on('output', function (data) {
                 if (data.length) {
                     for (var x = 0; x < data.length; x++) {
-                        $('#messages').append($('<li>').text(data[x].username + ": " + data[x].message));
-                        $('#messages').scrollTop($('#messages')[0].scrollHeight);
+                        if (data[x].username != $('#option2').text()) {
+                            $('#messages').append($('<li>').css({ "text-align":"left", "float":"left"}).text(data[x].message));
+                            $('#messages').scrollTop($('#messages')[0].scrollHeight);
+                        } else {
+                            $('#messages').append($('<li>').css({ "text-align":"right", "float":"right"}).text(data[x].message));
+                            $('#messages').scrollTop($('#messages')[0].scrollHeight);
+                        }
                     }
                 }
             });
