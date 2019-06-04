@@ -17,40 +17,48 @@
  * under the License.
  */
 
+html{
+    height: 100vh;
+}
 body {
     /*background-color: #56E8BA;*/
     background: #5EFF9F;
     padding: 0;
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
 }
 
 #header {
     background-color: #56E8BA;
     width: 100%;
+    height: 25vh;
     top: 0;
     margin-left: -10px;
-    margin-top: -10px;
+    margin-top: -16px;
 }
-
 #container {
     width: 100%;
     /*margin-left: auto;
     margin-right: auto;*/
     font-family: 'Lato', sans-serif;
     /*margin:0;*/
-    visibility: hidden;   
+    height: 100vh;
+    visibility: hidden;
 }
+
+.brand {
+    height: 100vh;
+}
+
+
 
 #logo {
     color: white;
     margin-top: 20px;
-    font-size: 44px;
-    letter-spacing: 3px;
-    font-family: 'Pacifico', cursive;
-    font-weight: 900;
+
     text-align: center;
     width: 100%;
+    height: 50vh;
 }
 
 #logo2 {
@@ -59,12 +67,13 @@ body {
     margin-left: auto;
     margin-right: auto;
     margin-top: -50px;
-    margin-bottom: -45px;
+    margin-bottom: 5px;
     z-index: -1;
-    padding-bottom: 20px;
+    /*padding-bottom: 20px;*/
 }
 
 #menu {
+    margin-top: 5px;
     height: 20px;
     display: flex;
     justify-content: flex-end;
@@ -76,6 +85,7 @@ body {
 }
 
 .site-nav-trigger {
+    margin-top:7px;
     border: 0;
     border-radius: 5px;
     background: #ffffff;
@@ -93,7 +103,7 @@ body {
     transform: translateX(100%)
 }
 
-    .site-menu ul{
+    .site-menu ul {
         padding: 0;
         list-style-type: none;
         margin: 0 10px;
@@ -115,10 +125,10 @@ body {
             background: #d2f9ed
         }
 
-        .site-menu li:last-child:hover {
-            background-color: #159d72;
-            cursor: pointer;
-        }
+            .site-menu li:last-child:hover {
+                background-color: #159d72;
+                cursor: pointer;
+            }
 
     .site-menu div {
         display: flex;
@@ -137,10 +147,7 @@ body {
 
 #person {
     color: white;
-    padding-top: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    height: 10%;
+    height: 5vh;
     text-align: center;
     width: 100%;
     margin-left: -10px;
@@ -166,7 +173,7 @@ body {
     /*padding-left: 50px;*/
     /*width: 50%;*/
     letter-spacing: 3px;
-    font-size: 40px;
+    font-size: 20px;
     text-align: center;
 }
 
@@ -201,7 +208,6 @@ body {
         border-width: 0px 4px 4px;
         cursor: default;
         font-size: 14px;
-
         height: 30px;
         line-height: 30px;
         position: absolute;
@@ -227,7 +233,8 @@ body {
     overflow-y: auto;
     float: left;
     width: 90%;
-    height: 400px;
+    height: 90%;
+   
     background-color: snow;
     list-style-type: none;
 }
@@ -245,25 +252,28 @@ body {
         padding: 5px;
         margin-right: 5%;
         margin-left: -5%;
-        
     }
 
 #dialogue {
     width: 90%;
     margin-left: 3%;
+    height: 60vh;
+    /*position: center;*/
     /*margin-right: 5%;*/
 }
 
 
 #typing {
     clear: both;
-    width: 80%;
+    width: 90%;
     margin-left: 3%;
+    height: 10vh;
     /*padding-top: -40px;*/
 }
 
 #form1 {
-    padding-top: 15px;
+    /*padding-top: 15px;*/
+    /*width: 100%;*/
 }
 
 #msg {
@@ -295,23 +305,22 @@ input[type=submit] {
     flex-wrap: wrap;
     align-content: flex-start;
     overflow: hidden;
-    overflow-y: scroll; 
+    overflow-y: scroll;
 }
 
-#people li {
-    background: #5EFF9F;
-    margin-top: 5px;
-    text-align: center;
-    color: #696e9e;
-    border-radius: 5px;
-    flex-basis: 100%;
-    height: 30px;
-
-}
+    #people li {
+        background: #5EFF9F;
+        margin-top: 5px;
+        text-align: center;
+        color: #696e9e;
+        border-radius: 5px;
+        flex-basis: 100%;
+        height: 30px;
+    }
 
 a {
     text-decoration: none;
-} 
+}
 
 #option2 {
     float: right;
@@ -333,10 +342,11 @@ a {
 
 #form1 button {
     font-size: 15px;
-    width: 70px;
+    width: 20%;
     height: 30px;
     border-radius: 15px;
     box-shadow: 4px 5px 8px 0px rgba(0, 0, 0, 0.5);
-    margin: 2px;
+    /*margin-left: 1%;*/
+    float: right;
     background-image: linear-gradient(to right, #00ffff, #33cccc);
 }
