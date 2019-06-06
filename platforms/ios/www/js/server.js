@@ -2,10 +2,10 @@
 
 var express = require('express'),
     //session = require('express-session')({
-        secret: 'my-secret',
-        saveUninitialized: true,
-        resave: true
-    }),
+    //    secret: 'my-secret',
+    //    saveUninitialized: true,
+    //    resave: true
+    //}),
     app = express(),
     http = require('http').createServer(app),
     io = require('socket.io')(http),
