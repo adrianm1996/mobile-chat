@@ -1,7 +1,7 @@
 
 
 var express = require('express'),
-    session = require('express-session')({
+    //session = require('express-session')({
         secret: 'my-secret',
         saveUninitialized: true,
         resave: true
@@ -9,7 +9,7 @@ var express = require('express'),
     app = express(),
     http = require('http').createServer(app),
     io = require('socket.io')(http),
-    sharedsession = require("express-socket.io-session"),
+    //sharedsession = require("express-socket.io-session"),
     bodyParser = require('body-parser'),
     urlencodedParser = bodyParser.urlencoded({ extended: true }),
     mongo = require('mongodb').MongoClient,
@@ -27,7 +27,7 @@ var userChat;
 var dbName1, dbName2, dbName;
 
 
-app.use(session);
+//app.use(session);
 app.use(bodyParser.json());
 app.use(urlencodedParser);
 app.use(express.static('public'));
@@ -35,7 +35,7 @@ app.get('/', function (req, res) {
     res.sendFile('index.html', { root: './www' });
 });
 
-io.use(sharedsession(session));
+//io.use(sharedsession(session));
 mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app',
     { useNewUrlParser: true },
     function (err, db) {
@@ -143,12 +143,10 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             newDB.listCollections().toArray((error, collections) => {
                                 if (collections.find(x => x.name === dbName1)) {
                                     dbName = dbName1;
-                                    //userChat = db.db().collection(dbName);
                                 }
 
                                 if (collections.find(x => x.name === dbName2)) {
                                     dbName = dbName2;
-                                    //userChat = db.db().collection(dbName);
                                 }
 
                                 userChat = db.db().collection(dbName);
@@ -163,7 +161,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             });
                         }
                         else
-                            console.log("user not found");
+                            console.log("Nie ma takiego użytkownika");
                     });
                 });
 
