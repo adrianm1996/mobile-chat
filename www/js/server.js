@@ -117,7 +117,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
             });
 
 
-            io.of('/registration.html').use(sharedsession(session, { autoSave: true })).on('connection', function (socket) {
+            io.of('/registration.html').on('connection', function (socket) {
                 console.log("messages connect");
 
 
@@ -130,7 +130,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 socket.on('login', function (userdata) {
                     console.log(userdata.login);
                     console.log(userdata);
-                    socket.handshake.session.userdata = userdata.login;
+                    socket.handshake.session.userdata = userdata;
                     socket.handshake.session.save();
                 });
                 socket.on('logout', function (userdata) {

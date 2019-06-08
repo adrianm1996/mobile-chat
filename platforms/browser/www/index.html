@@ -115,6 +115,9 @@
             });
 
             socket.on('redirect', function (destination) {
+                socket.emit('login' {
+                    login: $('#email').val()
+                });
 
                 window.location.href = destination;
             });
