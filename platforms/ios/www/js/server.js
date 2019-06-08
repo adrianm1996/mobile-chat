@@ -36,7 +36,7 @@ app.get('/', function (req, res) {
     res.sendFile('index.html', { root: './www' });
 });
 
-//io.use(sharedsession(session, { autoSave: true }));
+io.use(sharedsession(session, { autoSave: true }));
 mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app',
     { useNewUrlParser: true },
     function (err, db) {
