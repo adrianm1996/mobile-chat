@@ -10,6 +10,7 @@ var express = require('express'),
     http = require('http').createServer(app),
     io = require('socket.io')(http),
     sharedsession = require("express-socket.io-session"),
+    cookieParser = require("cookie-parser"),
     bodyParser = require('body-parser'),
     urlencodedParser = bodyParser.urlencoded({ extended: true }),
     mongo = require('mongodb').MongoClient,
@@ -35,7 +36,7 @@ app.get('/', function (req, res) {
     res.sendFile('index.html', { root: './www' });
 });
 
-io.use(sharedsession(session));
+io.use(sharedsession(session, { autoSave: true }));
 mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app',
     { useNewUrlParser: true },
     function (err, db) {
@@ -46,6 +47,9 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
         else {
 
             io.of('/').on('connection', function (socket) {
+
+
+
                 console.log("Socket connected.");
 
 
@@ -122,6 +126,17 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     email: loggedUsr
                 });
 
+
+                socket.on('login', function (userdata) {
+                    socket.handshake.session.userdata = userdata;
+                    socket.handshake.session.save();
+                });
+                socket.on('logout', function (userdata) {
+                    if (socket.handshake.session.userdata) {
+                        delete socket.handshake.session.userdata;
+                        socket.handshake.session.save();
+                    }
+                });
 
 
                 socket.on('createChat', function (usr) {

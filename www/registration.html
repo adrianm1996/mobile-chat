@@ -103,6 +103,10 @@
             socket.on('userLogin', function (usr) {
                 logged = usr.email;
                 $('#option2').text(usr.email);
+
+                socket.emit('login' {
+                    login: usr.email
+                });
             });
             socket.on('peopleOutput', function (data) {
                 if (data.length) {
@@ -160,7 +164,7 @@
 
                 } else {
                     $('#messages').append($('<li>').css({ "text-align": "right", "float": "right", "background": "#3498db" }).text(msg.message));
-
+                    
                 }
                 $('#messages').animate({ scrollTop: $('#messages').prop("scrollHeight") }, 500);
                 $("html, body").scrollTop($(document).height());
@@ -172,6 +176,11 @@
 
 
             $("#divLogout").on('click', function (event) {
+                socket.emit('logout', {
+                    login: $('#option2').text()
+                });
+
+
                 var location = window.location.hostname;
                 var port = window.location.port;
                 var destination = location.replace('/registration.html', '/');

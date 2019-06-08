@@ -2,10 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\www",
-    "\\www\\css",
-    "\\www\\img",
     "\\www\\js"
   ],
-  "SelectedNode": "\\www\\js\\registration.js",
+  "SelectedNode": "\\www\\js\\login.js",
   "PreviewInSolutionExplorer": false
 }
