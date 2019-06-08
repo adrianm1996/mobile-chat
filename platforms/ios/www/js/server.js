@@ -149,8 +149,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     socket.emit('logged', {
                         login: socket.username
                     });
-                    socket.handshake.session.userdata = userdata;
-                    socket.handshake.session.save();
+                    //socket.handshake.session.userdata = userdata;
+                    //socket.handshake.session.save();
                 });
 
 
