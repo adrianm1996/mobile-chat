@@ -9,11 +9,12 @@ var express = require('express'),
     mongo = require('mongodb').MongoClient,
     jsdom = require('jsdom'),
     JSDOM = jsdom.JSDOM,
-    bcrypt = require('bcrypt-nodejs'),
-    $ = require('jquery');
+    bcrypt = require('bcrypt-nodejs');
+    
 
 GLOBAL.document = new JSDOM('./registration.html').window.document;
 GLOBAL.window = new JSDOM('./registration.html').window;
+var $ = require('jquery');
 var loggedUsr = "loggedUser";
 var userChat;
 var dbName1, dbName2, dbName;
@@ -40,7 +41,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 socket.on('user', function (usr) {
                     var whiteSpacePattern = /^\s*$/;
                     if (whiteSpacePattern.test(usr.email) || whiteSpacePattern.test(usr.password)) {
-                        socket.emit('er', "Hasło lub email zawiera niedozwolone znaki.");
+                        socket.emit('er', "Nie podano hasła lub email.");
                     }
                     else {
                         var hashPassword = usr.password;
