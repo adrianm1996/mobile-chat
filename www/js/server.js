@@ -157,10 +157,10 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     users.splice(users.indexOf(socket.username), 1);
                     connections.splice(connections.indexOf(socket), 1);
                     console.log("Disconnected: %s sockets connected", connections.length);
-                    if (socket.handshake.session.userdata) {
-                        delete socket.handshake.session.userdata;
-                        socket.handshake.session.save();
-                    }
+                    //if (socket.handshake.session.userdata) {
+                    //    delete socket.handshake.session.userdata;
+                    //    socket.handshake.session.save();
+                    //}
                 });
 
 
