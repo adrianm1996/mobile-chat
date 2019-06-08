@@ -107,15 +107,6 @@
             var socket = io.connect('http://admis-chat.herokuapp.com/registration.html');
             var tmpPerson;
 
-            //socket.on('userLogin', function (usr) {
-            //    logged = usr.email;
-            //    //$('#option2').text(usr.email);
-
-            //    socket.emit('login' {
-            //        login: usr.email
-            //    });
-            //});
-
             socket.emit('login', {
                 login: $('#option2').text()
             });
