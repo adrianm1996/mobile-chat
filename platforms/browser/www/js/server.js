@@ -223,7 +223,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     else {
                         userChat.insert({ username: msg.username, message: msg.message })
 
-                        socket.emit('message', {
+                        io.of('registration.html').emit('message', {
 
                             message: msg.message,
                             username: msg.username
