@@ -128,10 +128,14 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
 
                 socket.on('login', function (userdata) {
-                    socket.handshake.session.userdata = userdata;
+                    console.log(userdata.login);
+                    console.log(userdata);
+                    socket.handshake.session.userdata = userdata.login;
                     socket.handshake.session.save();
                 });
                 socket.on('logout', function (userdata) {
+                    console.log(userdata.login);
+                    console.log(userdata);
                     if (socket.handshake.session.userdata) {
                         delete socket.handshake.session.userdata;
                         socket.handshake.session.save();
