@@ -96,7 +96,7 @@
     <script>
 
         $(function () {
-            var login;
+    
             var loginSocket = io.connect('http://admis-chat.herokuapp.com');
 
             loginSocket.on('loggedUser', function (user) {
@@ -116,7 +116,7 @@
             //    });
             //});
 
-            socket.emit('login' {
+            socket.emit('login', {
                 login: $('#option2').text()
             });
 
