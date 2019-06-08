@@ -4,6 +4,13 @@
     <title>admisChat || Login</title>
     <link rel="stylesheet" type="text/css" href="css/registration.css" />
     <link rel="stylesheet" type="text/css" href="css/loading.css" />
+    <!--<script>
+        $(document).ready(function () {
+            $('.loader').hide();
+            $('#container').css('visibility', 'visible');
+        });
+
+    </script>-->
 </head>
 
 <body style="background-color:#5EFF9F;" onload="load()">
@@ -14,6 +21,7 @@
 
         <ul class="left">
             <li><input id="check" class="btn" type="button" onclick="check()" value=""></li>
+            <li><input class="btn" type="submit" target="about.php" value="Info"></li>
         </ul>
     </div>
 
@@ -54,6 +62,8 @@
                 <input type="submit" class="button" value="Zarejestruj się">
             </form>
         </div>
+
+
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
@@ -89,11 +99,6 @@
                     $('#passwordR').val('');
 
                 }
-                else {
-                    $('#error').text("Niepoprawny email lub hasło");
-
-                }
-
                 return false;
             });
 
