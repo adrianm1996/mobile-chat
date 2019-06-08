@@ -96,19 +96,27 @@
     <script>
 
         $(function () {
+            var login;
+            var loginSocket = io.connect('http://admis-chat.herokuapp.com');
+
+            loginSocket.on('loggedUser', function (user) {
+                $('#option2').text(user.login);
+            });
 
             var socket = io.connect('http://admis-chat.herokuapp.com/registration.html');
             var tmpPerson;
 
-            socket.emit('login', {
-                login: usr.email
-            });
+            //socket.on('userLogin', function (usr) {
+            //    logged = usr.email;
+            //    //$('#option2').text(usr.email);
 
-            socket.on('logged', function (usr) {
-                logged = usr.login;
-                $('#option2').text(logged);
+            //    socket.emit('login' {
+            //        login: usr.email
+            //    });
+            //});
 
-
+            socket.emit('login' {
+                login: $('#option2').text()
             });
 
 
