@@ -48,7 +48,12 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
             io.of('/').on('connection', function (socket) {
 
-
+                socket.on('login', function (userdata) {
+                    console.log(userdata.login);
+                    console.log(userdata);
+                    socket.handshake.session.userdata = userdata;
+                    socket.handshake.session.save();
+                });
 
                 console.log("Socket connected.");
 
@@ -127,12 +132,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 });
 
 
-                socket.on('login', function (userdata) {
-                    console.log(userdata.login);
-                    console.log(userdata);
-                    socket.handshake.session.userdata = userdata;
-                    socket.handshake.session.save();
-                });
+
                 socket.on('logout', function (userdata) {
                     console.log(userdata.login);
                     console.log(userdata);
