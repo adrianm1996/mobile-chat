@@ -115,7 +115,7 @@
             });
 
             socket.on('redirect', function (destination) {
-                socket.emit('login' {
+                socket.emit('login', {
                     login: $('#email').val()
                 });
 

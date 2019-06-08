@@ -104,9 +104,9 @@
                 logged = usr.email;
                 $('#option2').text(usr.email);
 
-                //socket.emit('login' {
-                //    login: usr.email
-                //});
+                socket.emit('login', {
+                    login: usr.email
+                });
             });
 
 
