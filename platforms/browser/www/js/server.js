@@ -26,7 +26,8 @@ var $ = require('jquery');
 var sess;
 var userChat;
 var dbName1, dbName2, dbName;
-
+users = [];
+connections = [];
 
 app.use(session);
 app.use(bodyParser.json());
@@ -48,12 +49,12 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
             io.of('/').on('connection', function (socket) {
 
-                socket.on('login', function (userdata) {
-                    console.log(userdata.login);
-                    console.log(userdata);
-                    //socket.handshake.session.userdata = userdata;
-                    //socket.handshake.session.save();
-                });
+                //socket.on('login', function (userdata) {
+                //    console.log(userdata.login);
+                //    console.log(userdata);
+                //    //socket.handshake.session.userdata = userdata;
+                //    //socket.handshake.session.save();
+                //});
 
                 console.log("Socket connected.");
 
@@ -123,8 +124,10 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
 
             io.of('/registration.html').on('connection', function (socket) {
-                console.log("messages connect");
+                
 
+                connections.push(socket);
+                console.log("Connected: %s sockets connected", connections.length);
 
                 io.of('registration.html').emit('userLogin', {
 
@@ -134,12 +137,16 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
 
                 socket.on('logout', function (userdata) {
-                    console.log(userdata.login);
-                    console.log(userdata);
-                    if (socket.handshake.session.userdata) {
-                        delete socket.handshake.session.userdata;
-                        socket.handshake.session.save();
-                    }
+                    connections.splice(connections.indexOf(socket), 1);
+                    console.log("Disconnected: %s sockets connected", connections.length);
+
+
+                    //console.log(userdata.login);
+                    //console.log(userdata);
+                    //if (socket.handshake.session.userdata) {
+                    //    delete socket.handshake.session.userdata;
+                    //    socket.handshake.session.save();
+                    //}
                 });
 
 
