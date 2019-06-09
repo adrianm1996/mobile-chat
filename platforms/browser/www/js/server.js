@@ -251,14 +251,14 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
                         });
 
-                        //socket.selected.find().toArray(function (err, res) {
-                        //    if (err)
-                        //        console.log(err);
-                        //    else {
-                        //        console.log('test');
-                        //        io.of('registration.html').emit('message', res);
-                        //    }
-                        //});
+                        socket.selected.find().toArray(function (err, res) {
+                            if (err)
+                                console.log(err);
+                            else {
+                                console.log('test');
+                                socket.emit('output', res);
+                            }
+                        });
 
                     }
 
