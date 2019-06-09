@@ -29,6 +29,7 @@ var dbName1, dbName2, dbName;
 var useremail;
 users = [];
 connections = [];
+toSend = [];
 
 app.use(session);
 app.use(bodyParser.json());
@@ -180,11 +181,11 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         if (result == null) console.log("login invalid");
                         else if (result.name == userName && result.surname == userSurname) {
                             useremail = result.user;
+                           
                             console.log(useremail);
                             dbName1 = usr.loggedUser + '&' + useremail + 'CHAT';
                             dbName2 = useremail + '&' + usr.loggedUser + 'CHAT';
                             dbName = useremail + '&' + usr.loggedUser + 'CHAT';
-
                             var newDB = db.db();
                             newDB.listCollections().toArray((error, collections) => {
                                 if (collections.find(x => x.name === dbName1)) {
@@ -230,12 +231,13 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         console.log(socket);
 
                         //io.of('registration.html').emit('message', {
-                            socket.emit('message', {
+                        //socket.emit('message', {
 
-                            message: msg.message,
-                            username: msg.username
-                        });
+                        //    message: msg.message,
+                        //    username: msg.username
+                        //});
 
+                        socket.emit('output', msg);
 
 
                     }
