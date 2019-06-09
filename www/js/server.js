@@ -206,7 +206,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                     console.error('brak 2');
 
                                 userChat = db.db().collection(dbName);
-                                socket.selected = useremail;
+                                socket.selected = userChat;
                                 userChat.find().toArray(function (err, res) {
                                     if (err)
                                         console.log(err);
@@ -233,7 +233,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
                       
 
-                            userChat.insert({ username: msg.username, message: msg.message })
+                        sickket.selected.insert({ username: msg.username, message: msg.message })
 
                             //console.log(socket);
 
@@ -244,7 +244,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             //    username: msg.username
                             //});
 
-                        });
+                        //});
 
                     }
 
