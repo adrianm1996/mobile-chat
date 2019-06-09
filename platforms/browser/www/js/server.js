@@ -221,7 +221,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     });
                 });
 
-                io.socket.on('message', function (msg) {
+                socket.on('message', function (msg) {
                     var whitespacepattern = /^\s*$/;
                     if (whitespacepattern.test(msg.message)) {
                         socket.emit('er', "wiadomość nie może być pusta.");
