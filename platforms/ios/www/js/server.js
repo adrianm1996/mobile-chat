@@ -206,7 +206,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                     console.error('brak 2');
 
                                 userChat = db.db().collection(dbName);
-                                socet.second = useremail;
+                                socket.second = useremail;
                                 socket.selected = userChat;
                                 userChat.find().toArray(function (err, res) {
                                     if (err)
