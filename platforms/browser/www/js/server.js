@@ -227,17 +227,14 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         socket.emit('er', "wiadomość nie może być pusta.");
                     }
                     else {
-                        var loginUser = socket.username;
-                        var clickuser = msg.user;
-
-
-
+                        toSend.push(socket.selected);
+                        toSend.push(socket.username);
 
                         socket.selected.insert({ username: msg.username, message: msg.message })
 
                         //console.log(socket);
 
-                        socket.broadcast.to(socket.selected).emit('message', {
+                        io.emit('message', {
 
                                 message: msg.message,
                                 username: msg.username
