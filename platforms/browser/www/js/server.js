@@ -181,7 +181,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         if (result == null) console.log("login invalid");
                         else if (result.name == userName && result.surname == userSurname) {
                             useremail = result.user;
-                            socket.emit("clickedUser"{
+                            socket.emit("clickedUser", {
                                 clickuser: useremail
                             });
                             console.log(useremail);
@@ -253,18 +253,18 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
                             userChat = db.db().collection(dbName);
 
-                        userChat.insert({ username: msg.username, message: msg.message })
+                            userChat.insert({ username: msg.username, message: msg.message })
 
-                        console.log(socket);
+                            console.log(socket);
 
-                        io.of('registration.html').emit('message', {
-                            //socket.emit('message', {
+                            io.of('registration.html').emit('message', {
+                                //socket.emit('message', {
 
-                            message: msg.message,
-                            username: msg.username
+                                message: msg.message,
+                                username: msg.username
+                            });
+
                         });
-
-
 
                     }
 
