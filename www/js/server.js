@@ -108,6 +108,9 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             else
                                 bcrypt.compare(usrLog.password, result.passwd, function (errors, result2) {
                                     if (result2) {
+                                        $('.outer').css('visibility', 'hidden');
+                                        $('.header').css('visibility', 'hidden');
+                                        $('.loader').show();
                                         var destination = './registration.html';
                                         loggedUsr = result.user;
                                         socket.emit('redirect', destination);

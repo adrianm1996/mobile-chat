@@ -62,11 +62,11 @@ body {
 }
 
 #logo2 {
-    width: 50%;
+    width: 24vh;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: -50px;
+    margin-top: -6vh;
     margin-bottom: 5px;
     z-index: -1;
     /*padding-bottom: 20px;*/
@@ -98,7 +98,7 @@ body {
     top: 0px;
     right: 0;
     height: 100%;
-    width: 300px;
+    width: 40vh;
     background: #34b999;
     transform: translateX(100%)
 }
@@ -251,13 +251,19 @@ body {
         clear: both;
         padding: 5px;
         margin-right: 5%;
-        margin-left: -5%;
+        margin-left: -4%;
+        
     }
+
+        #messages li:last-child {
+            margin-bottom: 5%;
+        }
 
 #dialogue {
     width: 90%;
     margin-left: 3%;
     height: 60vh;
+    
     /*position: center;*/
     /*margin-right: 5%;*/
 }
