@@ -206,6 +206,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                     console.error('brak 2');
 
                                 userChat = db.db().collection(dbName);
+                                socet.second = useremail;
                                 socket.selected = userChat;
                                 userChat.find().toArray(function (err, res) {
                                     if (err)
@@ -222,6 +223,9 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 });
 
                 socket.on('message', function (msg) {
+                    var loginUser = socket.username;
+                    var selectUser = socket.second;
+
                     var whitespacepattern = /^\s*$/;
                     if (whitespacepattern.test(msg.message)) {
                         socket.emit('er', "wiadomość nie może być pusta.");
@@ -234,11 +238,13 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
                         //console.log(socket);
 
-                        io.emit('message', {
+                        io.of('registration.html').emit('message', {
 
-                                message: msg.message,
-                                username: msg.username
-                 
+                            message: msg.message,
+                            username: msg.username,
+                            login: loginUser,
+                            select: selectUser
+
                         });
 
                     }
