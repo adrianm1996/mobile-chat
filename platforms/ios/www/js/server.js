@@ -225,8 +225,43 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         socket.emit('er', "wiadomość nie może być pusta.");
                     }
                     else {
-                        var toUser = socket.selected
-                        toUser.insert({ username: msg.username, message: msg.message })
+                        var toUser = socket.username;
+                        var withUser = socket.selected;
+
+
+                        dbName1 = toUser + '&' + withUser + 'CHAT';
+                        dbName2 = withUser + '&' + toUser + 'CHAT';
+                        dbName = userewithUsermail + '&' + toUser + 'CHAT';
+
+                        db.db().newDB.listCollections().toArray((error, collections) => {
+                            if (collections.find(x => x.name === dbName1)) {
+                                console.log(collections.find(x => x.name === dbName1).name);
+                                dbName = dbName1;
+                                userChat = db.db().collection(dbName);
+                            }
+                            else
+                                console.error('brak 1');
+                            if (collections.find(x => x.name === dbName2)) {
+                                console.log(collections.find(x => x.name === dbName2).name)
+                                dbName = dbName2;
+                                userChat = db.db().collection(dbName);
+                            }
+                            else
+                                console.error('brak 2');
+
+                            userChat = db.db().collection(dbName);
+                        //    socket.selected = useremail;
+                        //    userChat.find().toArray(function (err, res) {
+                        //        if (err)
+                        //            console.log(err);
+                        //        else {
+                        //            socket.emit('output', res);
+                        //        }
+                        //    });
+                        //});
+
+
+                        userChat.insert({ username: msg.username, message: msg.message })
 
                         console.log(socket);
 
