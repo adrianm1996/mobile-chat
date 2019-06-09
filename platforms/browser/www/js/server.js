@@ -248,6 +248,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             if (err)
                                 console.log(err);
                             else {
+                                console.log('test');
                                 socket.emit('output', res);
                             }
                         });
