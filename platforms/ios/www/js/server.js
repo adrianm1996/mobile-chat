@@ -226,13 +226,14 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     var loginUser = socket.username;
                     var selectUser = socket.second;
 
+                    console.log(loginUser);
+                    console.log(selectUser);
                     var whitespacepattern = /^\s*$/;
                     if (whitespacepattern.test(msg.message)) {
                         socket.emit('er', "wiadomość nie może być pusta.");
                     }
                     else {
-                        toSend.push(socket.selected);
-                        toSend.push(socket.username);
+                      
 
                         socket.selected.insert({ username: msg.username, message: msg.message })
 
