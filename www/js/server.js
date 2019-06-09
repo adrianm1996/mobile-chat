@@ -103,7 +103,10 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     else {
 
                         users.findOne({ user: usrLog.email }, function (err, result) {
-                            if (result == null) console.log("login invalid");
+                            if (result == null) 
+                                socket.emit('er', {
+                                    error: "Użytkownik o takim adresie e-mail nie istnieje, zarejestruj się."
+                                });
 
                             else
                                 bcrypt.compare(usrLog.password, result.passwd, function (errors, result2) {
@@ -162,10 +165,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     users.splice(users.indexOf(socket.username), 1);
                     connections.splice(connections.indexOf(socket), 1);
                     console.log("Disconnected: %s sockets connected", connections.length);
-                    //if (socket.handshake.session.userdata) {
-                    //    delete socket.handshake.session.userdata;
-                    //    socket.handshake.session.save();
-                    //}
+
                 });
 
 
@@ -204,7 +204,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                     console.error('brak 2');
 
                                 userChat = db.db().collection(dbName);
-
+                                socket.selected = userChat;
                                 userChat.find().toArray(function (err, res) {
                                     if (err)
                                         console.log(err);
@@ -220,13 +220,13 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 });
 
                 socket.on('message', function (msg) {
+                    var toUser = socket.selected;
                     var whitespacepattern = /^\s*$/;
-
                     if (whitespacepattern.test(msg.message)) {
                         socket.emit('er', "wiadomość nie może być pusta.");
                     }
                     else {
-                        userChat.insert({ username: msg.username, message: msg.message })
+                        toUser.insert({ username: msg.username, message: msg.message })
 
                         io.of('registration.html').emit('message', {
 
