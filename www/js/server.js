@@ -242,7 +242,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
                         //});
 
-                        socket.to('connections').emit('message', {
+                        socket.to(connections).emit('message', {
                             //socket.brodcast.to(socket.second).emit('message', {
 
                             message: msg.message,
