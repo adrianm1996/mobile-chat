@@ -26,6 +26,7 @@ var $ = require('jquery');
 var sess;
 var userChat;
 var dbName1, dbName2, dbName;
+var useremail;
 users = [];
 connections = [];
 
@@ -103,7 +104,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     else {
 
                         users.findOne({ user: usrLog.email }, function (err, result) {
-                            if (result == null) 
+                            if (result == null)
                                 socket.emit('er', {
                                     error: "Użytkownik o takim adresie e-mail nie istnieje, zarejestruj się."
                                 });
@@ -111,9 +112,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             else
                                 bcrypt.compare(usrLog.password, result.passwd, function (errors, result2) {
                                     if (result2) {
-                                        $('.outer').css('visibility', 'hidden');
-                                        $('.header').css('visibility', 'hidden');
-                                        $('.loader').show();
+
                                         var destination = './registration.html';
                                         loggedUsr = result.user;
                                         socket.emit('redirect', destination);
@@ -121,7 +120,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                     }
                                     else
                                         socket.emit('er', {
-                                           error: "Błędny login lub hasło"
+                                            error: "Błędny login lub hasło"
                                         });
                                 });
 
@@ -173,7 +172,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     //db.getMongo().getDBNames().indexOf("mydb");
                     var userName = usr.withUserName;
                     var userSurname = usr.withUserSurname;
-                    var useremail;
+
                     console.log(userName);
                     console.log(userSurname);
                     var findEmail = db.db().collection('users');
@@ -204,7 +203,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                     console.error('brak 2');
 
                                 userChat = db.db().collection(dbName);
-                                socket.selected = userChat;
+                                socket.selected = useremail;
                                 userChat.find().toArray(function (err, res) {
                                     if (err)
                                         console.log(err);
@@ -226,14 +225,17 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         socket.emit('er', "wiadomość nie może być pusta.");
                     }
                     else {
-                        toUser.insert({ username: msg.username, message: msg.message })
+                        userChat.insert({ username: msg.username, message: msg.message })
+
+                        console.log(socket);
 
                         //io.of('registration.html').emit('message', {
-                        io.socket.emit('message', {
+                            socket.emit('message', {
 
                             message: msg.message,
                             username: msg.username
                         });
+
 
 
                     }

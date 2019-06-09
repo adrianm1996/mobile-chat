@@ -111,13 +111,16 @@
                     $('#email').val('');
                     $('#password').val('');
 
-                    
+
 
                 }
                 return false;
             });
 
             socket.on('redirect', function (destination) {
+                $('.outer').css('visibility', 'hidden');
+                $('.header').css('visibility', 'hidden');
+                $('.loader').show();
                 window.location.href = destination;
             });
 
