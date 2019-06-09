@@ -237,13 +237,11 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
                         //console.log(socket);
 
-                        io.emit('message', {
-                            socket.emit('message', {
+                            socket.selected.emit('message', {
 
                                 message: msg.message,
                                 username: msg.username
-                            });
-
+                 
                         });
 
                     }
