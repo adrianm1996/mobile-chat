@@ -231,7 +231,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
                         dbName1 = toUser + '&' + withUser + 'CHAT';
                         dbName2 = withUser + '&' + toUser + 'CHAT';
-                        dbName = userewithUsermail + '&' + toUser + 'CHAT';
+                        dbName = withUser + '&' + toUser + 'CHAT';
 
                         db.db().newDB.listCollections().toArray((error, collections) => {
                             if (collections.find(x => x.name === dbName1)) {
