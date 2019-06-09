@@ -144,19 +144,19 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 console.log("Connected: %s sockets connected", connections.length);
 
 
-                io.of('registration.html').emit('userLogin', {
+                //io.of('registration.html').emit('userLogin', {
 
-                    email: loggedUsr
-                });
+                //    email: loggedUsr
+                //});
 
                 socket.on('login', function (userdata) {
                     console.log(userdata.login);
                     console.log(userdata);
                     socket.username = userdata.login;
                     users.push(socket.username);
-                    socket.emit('logged', {
-                        login: socket.username
-                    });
+                    //socket.emit('logged', {
+                    //    login: socket.username
+                    //});
                 });
 
 
@@ -181,7 +181,9 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         if (result == null) console.log("login invalid");
                         else if (result.name == userName && result.surname == userSurname) {
                             useremail = result.user;
-
+                            socket.emit("clickedUser"{
+                                clickuser: useremail
+                            });
                             console.log(useremail);
                             dbName1 = usr.loggedUser + '&' + useremail + 'CHAT';
                             dbName2 = useremail + '&' + usr.loggedUser + 'CHAT';
@@ -225,20 +227,44 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         socket.emit('er', "wiadomość nie może być pusta.");
                     }
                     else {
-      
+                        var loginUser = socket.username;
+                        var clickuser = msg.user;
 
-                            userChat.insert({ username: msg.username, message: msg.message })
 
-                            console.log(socket);
+                        dbName1 = loginUser + '&' + clickuser + 'CHAT';
+                        dbName2 = clickuser + '&' + loginUser + 'CHAT';
+                        dbName = clickuser + '&' + loginUser + 'CHAT';
+                        var newDB = db.db();
+                        newDB.listCollections().toArray((error, collections) => {
+                            if (collections.find(x => x.name === dbName1)) {
+                                console.log(collections.find(x => x.name === dbName1).name);
+                                dbName = dbName1;
+                                userChat = db.db().collection(dbName);
+                            }
+                            else
+                                console.error('brak 1b');
+                            if (collections.find(x => x.name === dbName2)) {
+                                console.log(collections.find(x => x.name === dbName2).name)
+                                dbName = dbName2;
+                                userChat = db.db().collection(dbName);
+                            }
+                            else
+                                console.error('brak 2b');
 
-                            io.of('registration.html').emit('message', {
-                                //socket.emit('message', {
+                            userChat = db.db().collection(dbName);
 
-                                message: msg.message,
-                                username: msg.username
-                            });
+                        userChat.insert({ username: msg.username, message: msg.message })
 
+                        console.log(socket);
+
+                        io.of('registration.html').emit('message', {
+                            //socket.emit('message', {
+
+                            message: msg.message,
+                            username: msg.username
                         });
+
+
 
                     }
 

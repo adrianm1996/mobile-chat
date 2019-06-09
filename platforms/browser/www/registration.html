@@ -106,6 +106,7 @@
 
             var socket = io.connect('http://admis-chat.herokuapp.com/registration.html');
             var tmpPerson;
+            var logged;
 
             socket.emit('login', {
                 login: $('#option2').text()
@@ -150,12 +151,17 @@
                 }
             });
 
+            socket.on('clickedUser', function (user) {
+                logged = user.clickuser;
+            });
+
 
             $('form').submit(function () {
                 if ($('#msg').val().length > 0) {
                     socket.emit('message', {
                         message: $('#msg').val(),
-                        username: $('#option2').text()
+                        username: $('#option2').text(),
+                        user: logged
                     });
                     $('#msg').val('');
                 }
@@ -176,6 +182,7 @@
                 $("html, body").scrollTop($(document).height());
 
             });
+
 
 
 
