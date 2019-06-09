@@ -250,29 +250,29 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 console.error('brak 2');
 
                             userChat = db.db().collection(dbName);
-                        //    socket.selected = useremail;
-                        //    userChat.find().toArray(function (err, res) {
-                        //        if (err)
-                        //            console.log(err);
-                        //        else {
-                        //            socket.emit('output', res);
-                        //        }
-                        //    });
-                        //});
+                            //    socket.selected = useremail;
+                            //    userChat.find().toArray(function (err, res) {
+                            //        if (err)
+                            //            console.log(err);
+                            //        else {
+                            //            socket.emit('output', res);
+                            //        }
+                            //    });
+                            //});
 
 
-                        userChat.insert({ username: msg.username, message: msg.message })
+                            userChat.insert({ username: msg.username, message: msg.message })
 
-                        console.log(socket);
+                            console.log(socket);
 
-                        io.of('registration.html').emit('message', {
-                            //socket.emit('message', {
+                            io.of('registration.html').emit('message', {
+                                //socket.emit('message', {
 
-                            message: msg.message,
-                            username: msg.username
+                                message: msg.message,
+                                username: msg.username
+                            });
+
                         });
-
-
 
                     }
 
