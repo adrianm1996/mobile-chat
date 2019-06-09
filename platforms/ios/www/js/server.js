@@ -174,8 +174,6 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     var userName = usr.withUserName;
                     var userSurname = usr.withUserSurname;
 
-                    console.log(userName);
-                    console.log(userSurname);
                     var findEmail = db.db().collection('users');
                     findEmail.findOne({ name: userName, surname: userSurname }, function (err, result) {
                         if (result == null) console.log("login invalid");
@@ -184,21 +182,19 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             socket.emit("clickedUser", {
                                 clickuser: useremail
                             });
-                            console.log(useremail);
                             dbName1 = usr.loggedUser + '&' + useremail + 'CHAT';
                             dbName2 = useremail + '&' + usr.loggedUser + 'CHAT';
                             dbName = useremail + '&' + usr.loggedUser + 'CHAT';
                             var newDB = db.db();
                             newDB.listCollections().toArray((error, collections) => {
                                 if (collections.find(x => x.name === dbName1)) {
-                                    console.log(collections.find(x => x.name === dbName1).name);
                                     dbName = dbName1;
                                     userChat = db.db().collection(dbName);
                                 }
                                 else
                                     console.error('brak 1');
                                 if (collections.find(x => x.name === dbName2)) {
-                                    console.log(collections.find(x => x.name === dbName2).name)
+
                                     dbName = dbName2;
                                     userChat = db.db().collection(dbName);
                                 }
