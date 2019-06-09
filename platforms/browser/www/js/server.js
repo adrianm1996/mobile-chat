@@ -169,7 +169,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 });
 
 
-                socket.on('createChat', function (usr) {
+                socket.username.on('createChat', function (usr) {
                     //db.getMongo().getDBNames().indexOf("mydb");
                     var userName = usr.withUserName;
                     var userSurname = usr.withUserSurname;
@@ -231,38 +231,18 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         var clickuser = msg.user;
 
 
-                        dbName1 = loginUser + '&' + clickuser + 'CHAT';
-                        dbName2 = clickuser + '&' + loginUser + 'CHAT';
-                        dbName = clickuser + '&' + loginUser + 'CHAT';
-                        var newDB = db.db();
-                        newDB.listCollections().toArray((error, collections) => {
-                            if (collections.find(x => x.name === dbName1)) {
-                                console.log(collections.find(x => x.name === dbName1).name);
-                                dbName = dbName1;
-                                userChat = db.db().collection(dbName);
-                            }
-                            else
-                                console.error('brak 1b');
-                            if (collections.find(x => x.name === dbName2)) {
-                                console.log(collections.find(x => x.name === dbName2).name)
-                                dbName = dbName2;
-                                userChat = db.db().collection(dbName);
-                            }
-                            else
-                                console.error('brak 2b');
-
-                            userChat = db.db().collection(dbName);
+                      
 
                             userChat.insert({ username: msg.username, message: msg.message })
 
-                            console.log(socket);
+                            //console.log(socket);
 
-                            io.of('registration.html').emit('message', {
-                                //socket.emit('message', {
+                            //io.of('registration.html').emit('message', {
+                            //    //socket.emit('message', {
 
-                                message: msg.message,
-                                username: msg.username
-                            });
+                            //    message: msg.message,
+                            //    username: msg.username
+                            //});
 
                         });
 
