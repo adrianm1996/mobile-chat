@@ -235,21 +235,21 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
                         //console.log(socket);
 
-                        //io.of('registration.html').emit('message', {
-                        //    message: msg.message,
-                        //    username: msg.username,
-                        //    login: loginUser
-
-                        //});
-
-                        socket.to(connections).emit('message', {
-                            //socket.brodcast.to(socket.second).emit('message', {
-
+                        io.of('registration.html').emit('message', {
                             message: msg.message,
                             username: msg.username,
                             login: loginUser
 
                         });
+
+                        //socket.to(connections).emit('message', {
+                        //    //socket.brodcast.to(socket.second).emit('message', {
+
+                        //    message: msg.message,
+                        //    username: msg.username,
+                        //    login: loginUser
+
+                        //});
 
                         //socket.selected.find().toArray(function (err, res) {
                         //    if (err)
