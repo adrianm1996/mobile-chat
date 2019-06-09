@@ -181,7 +181,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         if (result == null) console.log("login invalid");
                         else if (result.name == userName && result.surname == userSurname) {
                             useremail = result.user;
-                           
+
                             console.log(useremail);
                             dbName1 = usr.loggedUser + '&' + useremail + 'CHAT';
                             dbName2 = useremail + '&' + usr.loggedUser + 'CHAT';
@@ -221,6 +221,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
                 socket.on('message', function (msg) {
                     var toUser = socket.selected;
+                    var withUser = socket.username;
                     var whitespacepattern = /^\s*$/;
                     if (whitespacepattern.test(msg.message)) {
                         socket.emit('er', "wiadomość nie może być pusta.");
@@ -231,12 +232,22 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         console.log(socket);
 
                         io.of('registration.html').emit('message', {
-                        //socket.emit('message', {
+                            //socket.emit('message', {
 
                             message: msg.message,
                             username: msg.username,
                             dbname: toUser
                         });
+
+                        io.of('registration.html').emit('message', {
+                            //socket.emit('message', {
+
+                            message: msg.message,
+                            username: msg.username,
+                            dbname: withUser
+                        });
+
+  
 
 
 
