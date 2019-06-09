@@ -239,8 +239,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
                         //console.log(socket);
 
-                        //io.of('registration.html').emit('message', {
-                        socket.brodcast.to(socket.second).emit('message', {
+                        io.of('registration.html').emit('message', {
+                        //socket.brodcast.to(socket.second).emit('message', {
 
                             message: msg.message,
                             username: msg.username,
