@@ -96,13 +96,13 @@
     <script>
 
         $(function () {
-    
+
             var loginSocket = io.connect('http://admis-chat.herokuapp.com');
 
             loginSocket.on('loggedUser', function (user) {
                 $('#option2').text(user.login);
             });
-            
+
 
             var socket = io.connect('http://admis-chat.herokuapp.com/registration.html');
             var tmpPerson;
@@ -163,7 +163,7 @@
             });
 
             socket.on('message', function (msg) {
-                if (msg.toUser == $('#option2').text() || $('#option2').text() {
+                if (msg.toUser == $('#option2').text()) {
 
                     if (msg.username != $('#option2').text()) {
                         $('#messages').append($('<li>').css({ "text-align": "left", "float": "left", "background": "#56E8BA" }).text(msg.message));
@@ -175,9 +175,21 @@
                     $('#messages').animate({ scrollTop: $('#messages').prop("scrollHeight") }, 500);
                     $("html, body").scrollTop($(document).height());
                 }
-                });
+            });
 
+            socket.on('messageSecond', function (msg) {
 
+                if (msg.username != $('#option2').text()) {
+                    $('#messages').append($('<li>').css({ "text-align": "left", "float": "left", "background": "#56E8BA" }).text(msg.message));
+
+                } else {
+                    $('#messages').append($('<li>').css({ "text-align": "right", "float": "right", "background": "#3498db" }).text(msg.message));
+
+                }
+                $('#messages').animate({ scrollTop: $('#messages').prop("scrollHeight") }, 500);
+                $("html, body").scrollTop($(document).height());
+
+            });
 
 
 
