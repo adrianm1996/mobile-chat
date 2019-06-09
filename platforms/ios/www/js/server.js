@@ -221,7 +221,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     });
                 });
 
-                socket.on('message', function (msg) {
+                io.socket.on('message', function (msg) {
                     var whitespacepattern = /^\s*$/;
                     if (whitespacepattern.test(msg.message)) {
                         socket.emit('er', "wiadomość nie może być pusta.");
@@ -233,7 +233,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
                       
 
-                        sickket.selected.insert({ username: msg.username, message: msg.message })
+                        socket.selected.insert({ username: msg.username, message: msg.message })
 
                             //console.log(socket);
 
