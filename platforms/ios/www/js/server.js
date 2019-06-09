@@ -213,36 +213,36 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                     }
                                 });
                             });
+
+                            socket.on('message', function (msg) {
+                                var whitespacepattern = /^\s*$/;
+                                if (whitespacepattern.test(msg.message)) {
+                                    socket.emit('er', "wiadomość nie może być pusta.");
+                                }
+                                else {
+                                    userChat.insert({ username: msg.username, message: msg.message })
+
+                                    console.log(socket);
+
+                                    io.of('registration.html').emit('message', {
+                                        //socket.emit('message', {
+
+                                        message: msg.message,
+                                        username: msg.username
+                                    });
+
+
+
+                                }
+
+                            });
                         }
                         else
                             console.log("user not found");
                     });
                 });
 
-                socket.on('message', function (msg) {
-                    var toUser = socket.selected;
-                    var withUser = socket.username;
-                    var whitespacepattern = /^\s*$/;
-                    if (whitespacepattern.test(msg.message)) {
-                        socket.emit('er', "wiadomość nie może być pusta.");
-                    }
-                    else {
-                        userChat.insert({ username: msg.username, message: msg.message })
 
-                        console.log(socket);
-
-                        io.of('registration.html').emit('message', {
-                            //socket.emit('message', {
-
-                            message: msg.message,
-                            username: msg.username
-                        });
-
-
-
-                    }
-
-                });
 
 
                 var regUser = db.db().collection('users');
