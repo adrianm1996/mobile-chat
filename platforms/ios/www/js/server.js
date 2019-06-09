@@ -169,7 +169,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 });
 
 
-                socket.username.on('createChat', function (usr) {
+                socket.on('createChat', function (usr) {
                     //db.getMongo().getDBNames().indexOf("mydb");
                     var userName = usr.withUserName;
                     var userSurname = usr.withUserSurname;
