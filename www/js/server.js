@@ -228,7 +228,8 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     else {
                         toUser.insert({ username: msg.username, message: msg.message })
 
-                        io.of('registration.html').emit('message', {
+                        //io.of('registration.html').emit('message', {
+                        socket.emit('message', {
 
                             message: msg.message,
                             username: msg.username
