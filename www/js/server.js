@@ -222,6 +222,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             io.of('registration.html').emit('message', {
                                 message: msg.message,
                                 username: msg.username,
+                                userlogin: selectUser,
                                 login: username1
                             });
                         });
@@ -238,6 +239,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             io.of('registration.html').emit('message', {
                                 message: msg.message,
                                 username: msg.username,
+                                userlogin: loginUser,
                                 login: username2
                             });
                         });
