@@ -231,7 +231,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                     else {
                         var name, name2;
                         var surname, surname2;
-                        var username1, username2;
+                        var username1 = 'test', username2 = 'test';
 
                         socket.selected.insert({ username: msg.username, message: msg.message })
 
@@ -246,6 +246,14 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             username1 = name + ' ' + surname;
                             console.log(username1);
 
+                            io.of('registration.html').emit('message', {
+                                message: msg.message,
+                                username: msg.username,
+                                login: username2,
+                                secondUser: username1
+
+                            });
+
                         });
 
                         var findEmailSecond = db.db().collection('users');
@@ -257,15 +265,23 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                             username2 = name2 + ' ' + surname2;
                             console.log(username2);
 
+                            io.of('registration.html').emit('message', {
+                                message: msg.message,
+                                username: msg.username,
+                                login: username2,
+                                secondUser: username1
+
+                            });
+
                         });
 
-                        io.of('registration.html').emit('message', {
-                            message: msg.message,
-                            username: msg.username,
-                            login: username2,
-                            secondUser: username1
+                        //io.of('registration.html').emit('message', {
+                        //    message: msg.message,
+                        //    username: msg.username,
+                        //    login: username2,
+                        //    secondUser: username1
 
-                        });
+                        //});
 
 
 

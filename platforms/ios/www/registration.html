@@ -176,7 +176,9 @@
             });
 
             socket.on('message', function (msg) {
-               alert($('#personName').text())
+                alert($('#personName').text());
+                alert(msg.login);
+                alert(msg.secnodUser);
                 if ($('#personName').text() == msg.login || $('#personName').text() == msg.secondUser ) {
                     if (msg.username != $('#option2').text()) {
                         $('#messages').append($('<li>').css({ "text-align": "left", "float": "left", "background": "#56E8BA" }).text(msg.message));
