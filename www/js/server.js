@@ -51,16 +51,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
 
             io.of('/').on('connection', function (socket) {
 
-                //socket.on('login', function (userdata) {
-                //    console.log(userdata.login);
-                //    console.log(userdata);
-                //    //socket.handshake.session.userdata = userdata;
-                //    //socket.handshake.session.save();
-                //});
-
                 console.log("Socket connected.");
-
-
 
                 var users = db.db().collection('users');
                 socket.on('user', function (usr) {
@@ -143,20 +134,11 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 connections.push(socket);
                 console.log("Connected: %s sockets connected", connections.length);
 
-
-                //io.of('registration.html').emit('userLogin', {
-
-                //    email: loggedUsr
-                //});
-
                 socket.on('login', function (userdata) {
                     console.log(userdata.login);
                     console.log(userdata);
                     socket.username = userdata.login;
                     users.push(socket.username);
-                    //socket.emit('logged', {
-                    //    login: socket.username
-                    //});
                 });
 
 
@@ -221,9 +203,6 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 socket.on('message', function (msg) {
                     var loginUser = socket.username;
                     var selectUser = socket.second;
-
-                    console.log(loginUser);
-                    console.log(selectUser);
                     var whitespacepattern = /^\s*$/;
                     if (whitespacepattern.test(msg.message)) {
                         socket.emit('er', "wiadomość nie może być pusta.");
@@ -234,8 +213,6 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         var username1 = 'test', username2 = 'test';
 
                         socket.selected.insert({ username: msg.username, message: msg.message })
-
-                        //console.log(socket);
 
                         var findEmail = db.db().collection('users');
                         findEmail.findOne({ user: selectUser }, function (err, result) {
@@ -250,10 +227,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 message: msg.message,
                                 username: msg.username,
                                 login: username1
-           
-
                             });
-
                         });
 
                         var findEmailSecond = db.db().collection('users');
@@ -269,23 +243,9 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                 message: msg.message,
                                 username: msg.username,
                                 login: username2
-
                             });
-
                         });
-
-                        //io.of('registration.html').emit('message', {
-                        //    message: msg.message,
-                        //    username: msg.username,
-                        //    login: username2,
-                        //    secondUser: username1
-
-                        //});
-
-
-
                     }
-
                 });
 
 
@@ -299,8 +259,6 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         socket.emit('peopleOutput', res);
                     }
                 });
-
-
             });
         }
     });
