@@ -135,8 +135,6 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                 console.log("Connected: %s sockets connected", connections.length);
 
                 socket.on('login', function (userdata) {
-                    console.log(userdata.login);
-                    console.log(userdata);
                     socket.username = userdata.login;
                     users.push(socket.username);
                 });
@@ -173,15 +171,13 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                                     dbName = dbName1;
                                     userChat = db.db().collection(dbName);
                                 }
-                                else
-                                    console.error('brak 1');
+
                                 if (collections.find(x => x.name === dbName2)) {
 
                                     dbName = dbName2;
                                     userChat = db.db().collection(dbName);
                                 }
-                                else
-                                    console.error('brak 2');
+
 
                                 userChat = db.db().collection(dbName);
                                 socket.second = useremail;
