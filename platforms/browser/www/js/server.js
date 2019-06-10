@@ -229,16 +229,31 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
                         socket.emit('er', "wiadomość nie może być pusta.");
                     }
                     else {
-                      
+                        var name;
+                        var surname;
+                        var username1;
 
                         socket.selected.insert({ username: msg.username, message: msg.message })
 
                         //console.log(socket);
 
+                        var findEmail = db.db().collection('users');
+                        findEmail.findOne({ user: selectUser }, function (err, result) {
+
+                            name = result.name;
+                            surname = result.surname;
+       
+                            username1 = name + ' ' + surname;
+                            console.log(username1);
+              
+
+                        });
+
                         io.of('registration.html').emit('message', {
                             message: msg.message,
                             username: msg.username,
-                            login: loginUser
+                            login: loginUser,
+                            secondUser: username1
 
                         });
 

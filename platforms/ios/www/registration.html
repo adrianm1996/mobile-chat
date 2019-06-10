@@ -176,7 +176,7 @@
             });
 
             socket.on('message', function (msg) {
-                //if ($('#option2').text() == msg.login) {
+                if ($('#option2').text() == msg.login || $('#personName').text() == msg.secondUser ) {
                     if (msg.username != $('#option2').text()) {
                         $('#messages').append($('<li>').css({ "text-align": "left", "float": "left", "background": "#56E8BA" }).text(msg.message));
 
@@ -186,7 +186,7 @@
                     }
                     $('#messages').animate({ scrollTop: $('#messages').prop("scrollHeight") }, 500);
                     $("html, body").scrollTop($(document).height());
-                //}
+                }
             });
 
 
