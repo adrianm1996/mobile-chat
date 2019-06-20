@@ -101,6 +101,12 @@ li > a {
     width: 200px;
     height: 30px;
     border-radius: 5%;
+
+}
+
+.box{
+    margin-left: 5px;
+    float: right;
 }
 
 .button {

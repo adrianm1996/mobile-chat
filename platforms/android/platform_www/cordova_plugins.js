@@ -446,20 +446,28 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-plugin-statusbar.statusbar",
-      "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
-      "pluginId": "cordova-plugin-statusbar",
-      "clobbers": [
-        "window.StatusBar"
-      ]
-    },
-    {
       "id": "cordova-plugin-vibration.notification",
       "file": "plugins/cordova-plugin-vibration/www/vibration.js",
       "pluginId": "cordova-plugin-vibration",
       "merges": [
         "navigator.notification",
         "navigator"
+      ]
+    },
+    {
+      "id": "pushbots-cordova-plugin.PushbotsPlugin",
+      "file": "plugins/pushbots-cordova-plugin/www/pushbots.js",
+      "pluginId": "pushbots-cordova-plugin",
+      "clobbers": [
+        "PushbotsPlugin"
+      ]
+    },
+    {
+      "id": "phonegap-plugin-local-notification.Notification",
+      "file": "plugins/phonegap-plugin-local-notification/www/notification.js",
+      "pluginId": "phonegap-plugin-local-notification",
+      "clobbers": [
+        "Notification"
       ]
     }
   ];
@@ -480,8 +488,9 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-media": "2.2.0",
     "cordova-plugin-network-information": "1.2.1",
     "cordova-plugin-splashscreen": "3.2.2",
-    "cordova-plugin-statusbar": "2.1.3",
     "cordova-plugin-vibration": "2.1.6",
-    "cordova-plugin-whitelist": "1.2.2"
+    "cordova-plugin-whitelist": "1.2.2",
+    "pushbots-cordova-plugin": "1.6.10",
+    "phonegap-plugin-local-notification": "1.0.1"
   };
 });

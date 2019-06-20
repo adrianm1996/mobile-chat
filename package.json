@@ -20,6 +20,8 @@
     "nan": "^2.14.0",
     "node-pre-gyp": "^0.13.0",
     "phonegap": "^8.2.2",
+    "phonegap-plugin-local-notification": "1.0.1",
+    "pushbots-cordova-plugin": "1.6.10",
     "requirejs": "^2.3.6",
     "scripts": {
       "start": "node www/js/server.js"

@@ -20,6 +20,7 @@ var express = require('express'),
 
 GLOBAL.document = new JSDOM('./registration.html').window.document;
 GLOBAL.window = new JSDOM('./registration.html').window;
+
 var direct = false;
 var loggedUsr = "loggedUser";
 var $ = require('jquery');
@@ -218,7 +219,7 @@ mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-a
        
                             username1 = name + ' ' + surname;
                             console.log(username1);
-
+                            
                             io.of('registration.html').emit('message', {
                                 message: msg.message,
                                 username: msg.username,

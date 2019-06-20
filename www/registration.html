@@ -43,9 +43,6 @@
                 <button class="site-nav-trigger">Menu</button>
                 <div class="site-menu">
                     <ul>
-                        <!--<li><div class="option">Znajomi</div></li>
-                        <li><div class="option">Mój profil</div></li>
-                        <li><div class="option">Grupowa</div></li>-->
                         <li><div id="option2">Logged</div></li>
                         <li><div id="divLogout">Wyloguj się</div></li>
 
@@ -57,9 +54,6 @@
             </div>
         </div>
         <div id="person">
-            <!--<div id="personIMG">
-                <img src="https://ocdn.eu/pulscms-transforms/1/___ktkqTURBXy9jMjJiOGM3M2E2YzMyNmY2NTVhNzJjZTQ2NzY0YzczOS5qcGVnkZMCAM0B5A" />
-            </div>-->
             <div id="personName"></div>
         </div>
         <div id="friends">
@@ -113,12 +107,6 @@
             var socket = io.connect('http://admis-chat.herokuapp.com/registration.html');
             var tmpPerson;
             var logged;
-
-            //socket.emit('login', {
-
-            //    login: $('#option2').text()
-            //});
-
 
             socket.on('peopleOutput', function (data) {
                 if (data.length) {

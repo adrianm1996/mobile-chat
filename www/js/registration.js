@@ -38,7 +38,7 @@ function validation() {
         var value = document.getElementById('email').value;
         if (value == "") {
 
-            document.getElementById('error').innerHTML = "Incorrect Email Address";
+            document.getElementById('error').innerHTML = "Niepoprawny adres e-mail";
 
         }
     }
