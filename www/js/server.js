@@ -41,7 +41,7 @@ app.get('/', function (req, res) {
 });
 
 io.use(sharedsession(session, { autoSave: true }));
-mongo.connect('mongodb+srv://admis:Turing123@cluster0-xts4d.mongodb.net/mobile-app',
+mongo.connect('mongodb+srv://admis:passwd@cluster0-xts4d.mongodb.net/mobile-app',
     { useNewUrlParser: true },
     function (err, db) {
         if (err) {
